@@ -9,15 +9,15 @@
 
 <main id="zpm_welcome_page">
 	<div id="zpm_welcome_container" class="zpm_body">
-		<h1>Welcome to Zephyr Project Manager</h1>
+		<h1><?php _e( 'Welcome to Zephyr Project Manager', 'zephyr-project-manager' ); ?></h1>
 		<div id="zpm-welcome-content">
 			<span class="zpm-col-4">
 				<div class="zpm-feature-image-holder">
 					<img class="zpm-feature-image" src="<?php echo ZPM_PLUGIN_URL . 'assets/img/icon-tasks.png'; ?>">
 				</div>
 				<div class="zpm-feature-text">
-					<h3 class="zpm-feature-title">Get Things Done</h3>
-					<p class="zpm-feature-description">Create unlimited projects, tasks and subtasks and manage them easily and get work done all inside WordPress.</p>
+					<h3 class="zpm-feature-title"><?php _e( 'Get Things Done', 'zephyr-project-manager' ); ?></h3>
+					<p class="zpm-feature-description"><?php _e( 'Create unlimited projects, tasks and subtasks and manage them easily and get work done all inside WordPress.', 'zephyr-project-manager' ); ?></p>
 				</div>
 			</span>
 			<span class="zpm-col-4">
@@ -25,8 +25,8 @@
 					<img class="zpm-feature-image" src="<?php echo ZPM_PLUGIN_URL . 'assets/img/icon-discussion.png'; ?>">
 				</div>
 				<div class="zpm-feature-text">
-					<h3 class="zpm-feature-title">Communicate and collaborate</h3>
-					<p class="zpm-feature-description">Manage user roles, receive updates and notifications via email and add comments and discussions to tasks and projects.</p>
+					<h3 class="zpm-feature-title"><?php _e( 'Communicate and collaborate', 'zephyr-project-manager' ); ?></h3>
+					<p class="zpm-feature-description"><?php _e( 'Manage user roles, receive updates and notifications via email and add comments and discussions to tasks and projects.', 'zephyr-project-manager' ); ?></p>
 				</div>
 			</span>
 			<span class="zpm-col-4">

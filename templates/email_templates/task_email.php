@@ -23,7 +23,7 @@
 	$date = date('d M Y H:i');
 
     $message_data = array(
-    	'heading' 		=> 'New Task',
+    	'heading' 		=> __( 'New Task', 'zephyr-project-manager' ),
     	'description'	=> $task->description,
     	'assignee'		=> $task->assignee_name,
     	'project'		=> $task->project_name,
@@ -127,27 +127,31 @@
 			
 			<div id="zpm_email_title">
 				<?php echo $subject; ?>
-				<span id="zpm_email_byline"> - Created by <?php echo $message_data['created_by'] ?> on <?php echo $message_data['date']; ?></span>
+				<?php
+
+
+				?>
+				<span id="zpm_email_byline"> - <?php printf( __e( 'Created by %s on $s', 'zephyr-project-manager' ), $message_data['created_by'], $message_data['date'] ); ?></span>
 			</div>
 
 			<div id="zpm_email_body">
 				<div class="zpm_email_row">
-					<span class="zpm_email_row_label">Assignee: </span>
+					<span class="zpm_email_row_label"><?php _e( 'Assignee', 'zephyr-project-manager' ); ?>: </span>
 					<?php echo $message_data['assignee']; ?>
 				</div>
 
 				<div class="zpm_email_row">
-					<span class="zpm_email_row_label">Project: </span>
+					<span class="zpm_email_row_label"><?php _e( 'Project', 'zephyr-project-manager' ); ?>: </span>
 					<?php echo $message_data['project']; ?>
 				</div>
 
 				<div class="zpm_email_row">
-					<span class="zpm_email_row_label">Due Date: </span>
+					<span class="zpm_email_row_label"><?php _e( 'Due Date', 'zephyr-project-manager' ); ?>: </span>
 					<?php echo $message_data['due_date']; ?>
 				</div>
 
 				<div class="zpm_email_row">
-					<span class="zpm_email_row_label">Description: </span>
+					<span class="zpm_email_row_label"><?php _e( 'Description', 'zephyr-project-manager' ); ?>: </span>
 					<div class="zpm_email_description">
 						<?php echo $message_data['description'] ;?>
 					</div>
@@ -156,15 +160,17 @@
 
 			<div id="zpm_email_footer">
 				<a href="<?php echo $message_data['url']; ?>" class="zpm_email_link">
-					<button id="zpm_action_button">Go to Task</button>
+					<button id="zpm_action_button"><?php _e( 'Go to Task', 'zephyr-project-manager' ); ?></button>
 				</a>
 			</div>
 		</div>
 
 		<div id="zpm_after_email">
-			<a class="zpm_after_email_link" href="<?php echo $message_data['url']; ?>">View task in WordPress</a> | 
-			<a class="zpm_after_email_link" href="<?php echo $message_data['url']; ?>">Unfollow</a>
-			<span id="zpm_after_email_extra_info">Reply with: <b>complete</b> to mark as complete | <b>comment</b> to comment</span>
+			<a class="zpm_after_email_link" href="<?php echo $message_data['url']; ?>"><?php _e( 'View Task in WordPress', 'zephyr-project-manager' ); ?></a> | 
+			<a class="zpm_after_email_link" href="<?php echo $message_data['url']; ?>"><?php _e( 'Unfollow', 'zephyr-project-manager' ); ?></a>
+
+			
+			<span id="zpm_after_email_extra_info"><?php printf( __( 'Reply with %s to mark as complete | %s to comment', 'zephyr-project-manager'), '<b>complete</b>', '<b>comment</b>' ); ?></span>
 		</div>
 	</body>
 </html>

@@ -132,36 +132,35 @@
 		<div id="zpm_email_container">
 			
 			<div id="zpm_email_title">
-				<h2 class="zpm_email_header">Weekly Progress Update</h2>
+				<h2 class="zpm_email_header"><?php _e( 'Weekly Progress Update', 'zephyr-project-manager' ); ?></h2>
 			</div>
 
 			<div id="zpm_email_body">
 					<span class="task_item">
 						<div class="task_count"><?php echo $project_count; ?></div>
-						<div class="task_subject">Projects</div>
+						<div class="task_subject"><?php _e( 'Projects', 'zephyr-project-manager' ); ?></div>
 					</span>
 					<span class="task_item">
 						<div class="task_count"><?php echo $completed_projects; ?></div>
-						<div class="task_subject">Completed Projects</div>
+						<div class="task_subject"><?php _e( 'Completed Projects', 'zephyr-project-manager' ); ?></div>
 					</span>
 					<span class="task_item">
 						<div class="task_count"><?php echo $pending_projects; ?></div>
-						<div class="task_subject">Pending Projects</div>
+						<div class="task_subject"><?php _e( 'Pending Projects', 'zephyr-project-manager' ); ?></div>
 					</span>
 				</div>
 			</div>
 
 			<div id="zpm_email_footer">
 				<a href="" class="zpm_email_link">
-					<button id="zpm_action_button">View Projects</button>
+					<button id="zpm_action_button"><?php _e( 'View Projects', 'zephyr-project-manager' ); ?></button>
 				</a>
 			</div>
 		</div>
 
 		<div id="zpm_after_email">
-			<a class="zpm_after_email_link" href="">View projects in WordPress</a> | 
-			<a class="zpm_after_email_link" href="">Unfollow</a>
-			<span id="zpm_after_email_extra_info">Reply to this email to ask the project creator about the progress.</span>
+			<a class="zpm_after_email_link" href=""><?php _e( 'View Projects in WordPress', 'zephyr-project-manager' ); ?></a> | 
+			<a class="zpm_after_email_link" href=""><?php _e( 'Unfollow', 'zephyr-project-manager' ); ?></a>
 		</div>
 	</body>
 </html>

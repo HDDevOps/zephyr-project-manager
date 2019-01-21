@@ -29,7 +29,10 @@
 		<?php else: ?>
 			
 			<!-- There are no tasks yet -->
-			<div class="zpm_no_results_message" style="<?php echo ($task_count > 0) ? 'display: none;' : ''; ?>">No tasks created yet. To create a task, click on the 'Add' button at the top right of the screen or click <a id="zpm_first_task" class="zpm_button_link">here</a></div>
+			<div class="zpm_no_results_message" style="<?php echo ($task_count > 0) ? 'display: none;' : ''; ?>">
+				<?php printf( __( 'No tasks created yet. To create a task, click on the \'Add\' button at the top right of the screen or click %s here %s', 'zephyr-project-manager' ), '<a id="zpm_first_task" class="zpm_button_link">', '</a>' ) ?>
+			</div>
+			
 			
 			<div id="zpm_task_option_container" class="<?php echo $task_count <= 0 ? 'zpm_hidden' : ''; ?>">
 				<span class="zpm_modal_options_btn" data-dropdown-id="zpm_view_task_dropdown">
@@ -37,11 +40,11 @@
 					<div class="zpm_modal_dropdown" id="zpm_view_task_dropdown">
 						<ul class="zpm_modal_list">
 							<li id="zpm_export_task">
-								Export Tasks
+								<?php _e( 'Export Tasks', 'zephyr-project-manager' ); ?>
 								<div class="zpm_export_dropdown">
 									<ul>
-										<li id="zpm_export_all_tasks_to_csv">Export to CSV</li>
-										<li id="zpm_export_all_tasks_to_json">Export to JSON</li>
+										<li id="zpm_export_all_tasks_to_csv"><?php _e( 'Export to CSV', 'zephyr-project-manager' ); ?></li>
+										<li id="zpm_export_all_tasks_to_json"><?php _e( 'Export to JSON', 'zephyr-project-manager' ); ?></li>
 									</ul>
 								</div>
 							</li>
@@ -49,8 +52,8 @@
 								Import Tasks 
 								<div class="zpm_export_dropdown">
 									<ul>
-										<li id="zpm_import_tasks_from_csv">Import from CSV</li>
-										<li id="zpm_import_tasks_from_json">Import from JSON</li>
+										<li id="zpm_import_tasks_from_csv"><?php _e( 'Import from CSV', 'zephyr-project-manager' ); ?></li>
+										<li id="zpm_import_tasks_from_json"><?php _e( 'Import from JSON', 'zephyr-project-manager' ); ?></li>
 									</ul>
 								</div>
 							</li>
@@ -62,13 +65,13 @@
 				<div id="zpm-tasks-filter-nav" class="zpm_nav_holder zpm_body">
 					<nav class="zpm_nav">
 						<ul class="zpm_nav_list">
-							<li class="zpm_nav_item zpm_selection_option zpm_nav_item_selected" data-zpm-filter="0" data-user-id="<?php echo $current_user->data->ID; ?>">My Tasks</li>
-							<li class="zpm_nav_item zpm_selection_option" data-zpm-filter="-1">All Tasks</li>
-							<li class="zpm_nav_item zpm_selection_option" data-zpm-filter="1">Incomplete Tasks</li>
-							<li class="zpm_nav_item zpm_selection_option" id="zpm_update_project_progress" data-zpm-filter="2">Complete Tasks</li>
+							<li class="zpm_nav_item zpm_selection_option zpm_nav_item_selected" data-zpm-filter="0" data-user-id="<?php echo $current_user->data->ID; ?>"><?php _e( 'My Tasks', 'zephyr-project-manager' ); ?></li>
+							<li class="zpm_nav_item zpm_selection_option" data-zpm-filter="-1"><?php _e( 'All Tasks', 'zephyr-project-manager' ); ?></li>
+							<li class="zpm_nav_item zpm_selection_option" data-zpm-filter="1"><?php _e( 'Incomplete Tasks', 'zephyr-project-manager' ); ?></li>
+							<li class="zpm_nav_item zpm_selection_option" id="zpm_update_project_progress" data-zpm-filter="2"><?php _e( 'Complete Tasks', 'zephyr-project-manager' ); ?></li>
 									</ul>
 					</nav>
-					<button class="zpm_button" name="zpm_task_add_new" id="zpm_task_add_new">Add New</button>
+					<button class="zpm_button" name="zpm_task_add_new" id="zpm_task_add_new"><?php _e( 'Add New', 'zephyr-project-manager' ); ?></button>
 				</div>
 
 				
@@ -88,16 +91,16 @@
 
 <!-- New Subtask Modal -->
 <div id="zpm_new_subtask_modal" class="zpm-modal zpm_compact_modal">
-	<label class="zpm_label" for="zpm_new_subtask_name">Name</label>
-	<input class="zpm_input" id="zpm_new_subtask_name" placeholder="Subtask name"/>
-	<button id="zpm_save_new_subtask" class="zpm_button">Create Subtask</button>
+	<label class="zpm_label" for="zpm_new_subtask_name"><?php _e( 'Subtask Name', 'zephyr-project-manager' ); ?></label>
+	<input class="zpm_input" id="zpm_new_subtask_name" placeholder="<?php _e( 'Subtask Name', 'zephyr-project-manager' ); ?>"/>
+	<button id="zpm_save_new_subtask" class="zpm_button"><?php _e( 'Create Subtask', 'zephyr-project-manager' ); ?></button>
 </div>
 
 <!-- Edit Subtask Modal -->
 <div id="zpm_edit_subtask_modal" class="zpm-modal zpm_compact_modal">
-	<label class="zpm_label" for="zpm_edit_subtask_name">Name</label>
-	<input class="zpm_input" id="zpm_edit_subtask_name" placeholder="New Subtask Name" value=/>
-	<button id="zpm_update_subtask" class="zpm_button">Save Changes</button>
+	<label class="zpm_label" for="zpm_edit_subtask_name"><?php _e( 'Subtask Name', 'zephyr-project-manager' ); ?></label>
+	<input class="zpm_input" id="zpm_edit_subtask_name" placeholder="<?php _e( 'Subtask Name', 'zephyr-project-manager' ); ?>" />
+	<button id="zpm_update_subtask" class="zpm_button"><?php _e( 'Save Changes', 'zephyr-project-manager' ); ?></button>
 </div>
 
 <?php $this->get_footer(); ?>

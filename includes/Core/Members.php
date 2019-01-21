@@ -126,7 +126,7 @@ class Members {
 			<div class="zpm_member_details">
 				<h3 class="zpm-team-name"><?php echo $team['name']; ?></h3>
 				<p class="zpm-description-text"><?php echo $team['description'] !== "" ? $team['description'] : "<p class='zpm-no-description-error'>No description added.</p>"; ?></p>
-				<h3 class="zpm-team-members-title">Members</h3>
+				<h3 class="zpm-team-members-title"><?php _e( 'Members', 'zephyr-project-manager' ); ?></h3>
 
 				<ul class="zpm-team-member-list">
 					<?php $member_count = 0; ?>
@@ -138,12 +138,12 @@ class Members {
 				</ul>
 
 				<?php if ($member_count <= 0) : ?>
-					<p class="zpm-team-no-members">No members have been added to this team.</p>
+					<p class="zpm-team-no-members"><?php _e( 'No members have been added to this team', 'zephyr-project-manager' ); ?></p>
 				<?php endif; ?>
 
 				<div class="zpm-team-options-btns">
 					<button class="zpm_button zpm-delete-team" data-team-id="<?php echo $team['id']; ?>">Delete</button>
-					<button class="zpm_button zpm-edit-team" data-team-id="<?php echo $team['id']; ?>" data-zpm-modal-trigger="zpm-edit-team-modal">Edit Team</button>
+					<button class="zpm_button zpm-edit-team" data-team-id="<?php echo $team['id']; ?>" data-zpm-modal-trigger="zpm-edit-team-modal"><?php _e( 'Edit Team', 'zephyr-project-manager' ); ?></button>
 				</div>
 			</div>
 		</div>
@@ -160,7 +160,7 @@ class Members {
 		
 		?>
 			<select id="<?php echo $id !== '' ? $id : 'zpm-team-select-dropdown'; ?>" class="zpm-team-select-dropdown zpm_input zpm-input-chosen">
-				<option value="-1">Select Team</option>
+				<option value="-1"><?php _e( 'Select Team', 'zephyr-project-manager' ); ?></option>
 				<?php foreach ($teams as $team) : ?>
 					<option value="<?php echo $team['id']; ?>" <?php echo !is_null( $selected ) && $selected == $team['id'] ? 'selected' : ''; ?>><?php echo $team['name']; ?></option>
 				<?php endforeach; ?>

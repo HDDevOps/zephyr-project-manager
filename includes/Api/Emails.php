@@ -138,7 +138,7 @@ class Emails {
 			
 			if ($user['preferences']['notify_updates']) {
 				foreach ($projects as $project) {
-					$header = 'Weekly Updates - ' . stripslashes($project->name);
+					$header = __( 'Weekly Updates', 'zephyr-project-manager' ) . ' - ' . stripslashes($project->name);
 
 					$task_count = Tasks::get_project_task_count($project->id);
 					$completed_tasks = Tasks::get_project_completed_tasks($project->id);
@@ -155,29 +155,29 @@ class Emails {
 					<div class="tasks_section">
 						<span class="task_item">
 							<div class="task_count"><?php echo $task_count; ?></div>
-							<div class="task_subject">Tasks</div>
+							<div class="task_subject"><?php _e( 'Tasks', 'zephyr-project-manager' ); ?></div>
 						</span>
 						<span class="task_item">
 							<div class="task_count"><?php echo $completed_tasks; ?></div>
-							<div class="task_subject">Completed</div>
+							<div class="task_subject"><?php _e( 'Completed', 'zephyr-project-manager' ); ?></div>
 						</span>
 						<span class="task_item">
 							<div class="task_count"><?php echo $pending_tasks; ?></div>
-							<div class="task_subject">Pending/Due</div>
+							<div class="task_subject"><?php _e( 'Pending', 'zephyr-project-manager' ); ?></div>
 						</span>
 						<span class="task_item">
 							<div class="task_count"><?php echo $percent_complete; ?>%</div>
-							<div class="task_subject">Complete</div>
+							<div class="task_subject"><?php _e( 'Complete', 'zephyr-project-manager' ); ?></div>
 						</span>
 					</div>
 					<?php
 					$body = ob_get_clean();
 
 					$link = esc_url(admin_url("/admin.php?page=zephyr_project_manager_projects"));
-					$footer = '<button id="zpm_action_button" style="padding: 10px;"><a href="' . $link . '" style="color: #fff; text-decoration: none;">Go to WordPress</a></button>';
+					$footer = '<button id="zpm_action_button" style="padding: 10px;"><a href="' . $link . '" style="color: #fff; text-decoration: none;">' . __( 'View in WordPress', 'zephyr-project-manager' ) . '</a></button>';
 
 					$html = Emails::email_template($header, $body, $footer);
-					Emails::send_email($email, 'Zephyr - Weekly Update', $html);
+					Emails::send_email($email, 'Zephyr - ' . __( 'Weekly Updates', 'zephyr-project-manager' ), $html);
 				}
 			}
 		}
@@ -198,8 +198,8 @@ class Emails {
 				$name = $user['name'] !== '' ? $user['name'] : wp_get_current_user()->display_name;
 				
 				if ($user['preferences']['notify_tasks']) {
-					$subject = 'Tasks due this week';
-					$header = 'You have the following due tasks this week';
+					$subject = __( 'Tasks due this week', 'zephyr-project-manager' );
+					$header = __( 'You have the following due tasks this week', 'zephyr-project-manager' );
 
 					ob_start();
 					$i = 0;
@@ -208,7 +208,7 @@ class Emails {
 							$date = new DateTime();
 							$original = new DateTime($task->date_due);
 							$overdue = '';
-							$due_date = $original->format('Y') !== '-0001' ? $original->format('d M') : 'No date set';
+							$due_date = $original->format('Y') !== '-0001' ? $original->format('d M') : __( 'No date set', 'zephyr-project-manager' );
 							$overdue = ($date->format('Y-m-d') > $original->format('Y-m-d')) ? 'overdue' : '';
 						?>
 						<?php if ($user_id == $task->assignee) : ?>
@@ -222,10 +222,10 @@ class Emails {
 					$body = ob_get_clean();
 
 					$link = esc_url(admin_url("/admin.php?page=zephyr_project_manager_tasks"));
-					$footer = '<button id="zpm_action_button" style="padding: 10px;"><a href="' . $link . '" style="color: #fff; text-decoration: none;">View tasks in WordPress</a></button>';
+					$footer = '<button id="zpm_action_button" style="padding: 10px;"><a href="' . $link . '" style="color: #fff; text-decoration: none;">' . __( 'View Tasks in WordPress', 'zephyr-project-manager' ) . '</a></button>';
 					if ($i > 0) {
-						$html = Emails::email_template($header, $body, $footer);
-						Emails::send_email($email, $subject, $html);
+						//$html = Emails::email_template($header, $body, $footer);
+						//Emails::send_email($email, $subject, $html);
 					}
 				}
 			}
@@ -290,25 +290,26 @@ class Emails {
 		// Only send email to user if they have enabled notifications for new tasks
 		if (isset($user['preferences']['notify_task_assigned']) && $user['preferences']['notify_task_assigned']) {
 			$task = Tasks::get_task($task_id);
-			$header = 'New task created by ' . $creator['name'];
-			$subject = 'New Task';
+
+			$header = __( 'New task created by', 'zephyr-project-manager' ) . ' ' . $creator['name'];
+			$subject = __( 'New Task', 'zephyr-project-manager' );
 
 			if ($task->assignee && $task->assignee !== '-1') {
 				$assignee = BaseController::get_project_manager_user($task->assignee);
 				if ($task->assignee == $user_id) {
-					$subject = 'New task assigned to you';
-					$header = 'New task assigned to you';
-					$body = '<div><span id="zpm_user_image" style="background-image: url(' . $creator['avatar'] . ')"></span><span class="zpm_content">' . $creator['name'] . ' has assigned a new task to you.</span></div>';
+					$subject = __( 'New Task Assigned to You', 'zephyr-project-manager' );
+					$header = __( 'New Task Assigned to You', 'zephyr-project-manager' );
+					$body = '<div><span id="zpm_user_image" style="background-image: url(' . $creator['avatar'] . ')"></span><span class="zpm_content">' . $creator['name'] . ' ' . __( 'has assigned a new task to you', 'zephyr-project-manager' ) . '.</span></div>';
 				} else {
-					$subject = 'New task assigned to you';
-					$header = 'New Task: ' . $task->name;
-					$body = '<div><span class="zpm_content">' . $creator['name'] . ' has created and assigned a new task to ' . $assignee['name'] . '.</span></div>';
+					$subject = __( 'New Task Assigned to You', 'zephyr-project-manager' );
+					$header = __( 'New Task', 'zephyr-project-manager' ) . ': ' . $task->name;
+					$body = '<div><span class="zpm_content">' . $creator['name'] . ' ' . __( 'has created and assigned a new task to', 'zephyr-project-manager' ) . ' ' . $assignee['name'] . '.</span></div>';
 				}
 			}
 			
 
 			$link = esc_url(admin_url("/admin.php?page=zephyr_project_manager_tasks&action=view_task&task_id="));
-			$footer = '<button id="zpm_action_button" style="padding: 10px;"><a href="' . $link . $task->id . '" style="color: #fff; text-decoration: none;">View Task in WordPress</a></button>';
+			$footer = '<button id="zpm_action_button" style="padding: 10px;"><a href="' . $link . $task->id . '" style="color: #fff; text-decoration: none;">' . __( 'View Task in WordPress', 'zephyr-project-manager' ) . '</a></button>';
 			$html = Emails::email_template($header, $body, $footer);
 			Emails::send_email($email, $subject, $html);
 		}
@@ -462,12 +463,13 @@ class Emails {
 		];
 		if ($user['preferences']['notify_activity']) {
 			$date = $date_due->format('d M');
-			$subject = 'Task Date Changed';
-			$header = 'Task Date Changed';
-			$body = '<div><span class="zpm_content">' . $creator['name'] . ' has changed the date of the task <b>' . $task_name . '</b> to ' . $date . '.</span></div>';
+			$subject = __( 'Task Date Changed', 'zephyr-project-manager' );
+			$header = __( 'Task Date Changed', 'zephyr-project-manager' );
+			;
+			$body = '<div><span class="zpm_content">' . sprintf( __( '%s has changed the date of the task %s to %s.', 'zephyr-project-manager' ), $creator['name'], $task_name, $date ) . '</span></div>';
 			
 			$link = esc_url(admin_url("/admin.php?page=zephyr_project_manager_tasks&action=view_task&task_id="));
-			$footer = '<button id="zpm_action_button" style="padding: 10px;"><a href="' . $link . $id . '" style="color: #fff; text-decoration: none;">View task in WordPress</a></button>';
+			$footer = '<button id="zpm_action_button" style="padding: 10px;"><a href="' . $link . $id . '" style="color: #fff; text-decoration: none;">' . __( 'View Task in WordPress.', 'zephyr-project-manager' ) . '</a></button>';
 			$html = Emails::email_template($header, $body, $footer);
 			Emails::send_email($email, $subject, $html);
 		}

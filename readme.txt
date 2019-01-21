@@ -139,6 +139,21 @@ For more information and documentation, please visit [the website](https://zephy
 * Improvement: Default 'All Activity' and 'Weekly Activity' to false
 * Improvement: Added notificaiton option for 'Task Assigned'
 
+= 2.8.0 =
+* Fix: Fixed conflicting AJAX errors when error reporting is active
+* Improvement: Completely internationalized the plugin for localization
+* Improvement: Added loader/spinner for certain AJAX requests to improve the UX
+* Improvement: Changed layout of dashboard to make it easier to use and get data from
+* Improvement: Added team and project link to task modal view
+* Imrpovement: Various small styling changes and improvements
+* Added Spanish Translation with 100% translation
+
+= 2.81.0 =
+* Fix: Calendar task URL leading to incorrect URL in dashboard
+* Fix: Added 'Task Assigned' notification preference to Teams & Members edit section
+* Fix: Tasks due this week email being sent if no tasks are due
+* Fix: Added check for the rest URL to see if it is available to fix a Calendar issue
+
 == Upgrade Notice ==
 
 == Feature Requests ==

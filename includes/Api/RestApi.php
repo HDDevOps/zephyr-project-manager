@@ -1000,7 +1000,7 @@ class RestApi {
 				foreach ($task->custom_fields as $custom_field) {
 					$field = CustomFields::get_custom_field( $custom_field['id'] );
 					$custom_field['label'] = $field->name;
-					$custom_field['field_values'] = unserialize( $custom_field['field_values'] );
+					$custom_field['field_values'] = isset( $custom_field['field_values'] ) ? maybe_unserialize( $custom_field['field_values'] ) : array();
 					array_push( $array, $custom_field );
 				}
 				$task->custom_fields = $array;

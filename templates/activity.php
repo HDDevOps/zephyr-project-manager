@@ -16,7 +16,7 @@
 
 	$BaseController = new BaseController;
 	$attachments = Tasks::get_attachments();
-	$activities = Activity::get_activities( array('limit' => 10, 'offset' => 0) );
+	$activities = Activity::get_activities( array( 'limit' => 10, 'offset' => 0 ) );
 ?>
 
 <main id="zpm_activity_page" class="zpm_settings_wrap">
@@ -25,13 +25,13 @@
 		<div id="zpm_activity_body" class="zpm_body">
 			<?php $activities = Activity::display_activities($activities); ?>
 			<?php if (!$activities) : ?>
-				<div class="zpm_no_results_message"><?php _e('There is no activity yet. Once there is, the activities will be displayed here.', 'zephyr_project_manager'); ?></div>
+				<div class="zpm_no_results_message"><?php _e('There is no activity yet. Once there is, the activities will be displayed here.', 'zephyr-project-manager'); ?></div>
 				<?php exit; ?>
 			<?php else: ?>
 				<?php echo $activities; ?>
 			<?php endif; ?>
 		</div>
-		<button id="zpm_load_activities" class="zpm_button" data-offset="1"><?php _e('Load More', 'zephyr_project_manager'); ?></button>
+		<button id="zpm_load_activities" class="zpm_button" data-offset="1"><?php _e('Load More', 'zephyr-project-manager'); ?></button>
 	</div>
 </main>
 <?php $this->get_footer(); ?>

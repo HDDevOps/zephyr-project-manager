@@ -6,10 +6,11 @@
 * Plugin Name: 	Zephyr Project Manager
 * Description: 	A modern project manager for WordPress to keep track of all your projects from within WordPress.
 * Plugin URI: 	https://zephyr-one.com
-* Version: 		2.79.0
+* Version: 		2.81.0
 * Author: 		Dylan J. Kotze
 * License: 		GPLv2 or later
-* Text Domain: 	zephyr_project_manager
+* Text Domain: 	zephyr-project-manager
+* Domain Path: /languages
 */
 
 if ( !defined( 'ABSPATH' ) ) {
@@ -48,3 +49,9 @@ register_deactivation_hook( __FILE__, 'deactivate_project_manager_plugin' );
 if ( class_exists( 'Inc\\Init' ) ) {
 	Inc\Init::register_services();
 }
+
+function zephyr_load_plugin_textdomain() {
+    load_plugin_textdomain( 'zephyr-project-manager', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
+}
+
+add_action( 'plugins_loaded', 'zephyr_load_plugin_textdomain' );

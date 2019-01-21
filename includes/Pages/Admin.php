@@ -42,6 +42,7 @@ class Admin extends BaseController {
 
 		$project = new Projects();
 		$zpm_used = get_option('zpm_used');
+
 		if (get_option('zpm_first_time')) {
 			$this->set_sub_pages();
 		} else {
@@ -165,8 +166,8 @@ class Admin extends BaseController {
 		
 		$this->pages = array(
 			array(
-				'page_title' => 'Zephyr Project Manager', 
-				'menu_title' => 'Zephyr Project Manager', 
+				'page_title' => __( 'Zephyr Project Manager', 'zephyr-project-manager' ), 
+				'menu_title' => __( 'Zephyr Project Manager', 'zephyr-project-manager' ), 
 				'capability' => $this->access_level, 
 				'menu_slug'  => 'zephyr_project_manager', 
 				'callback'   => array( $this->callbacks, 'adminDashboard' ), 
@@ -183,72 +184,64 @@ class Admin extends BaseController {
 		$this->subpages = array(
 			array(
 				'parent_slug' => 'zephyr_project_manager',
-				'page_title'  => 'Zephyr Projects', 
-				'menu_title'  => 'Projects', 
+				'page_title'  => __( 'Zephyr Projects', 'zephyr-project-manager' ), 
+				'menu_title'  => __( 'Projects', 'zephyr-project-manager' ), 
 				'capability'  => $this->access_level, 
 				'menu_slug'   => 'zephyr_project_manager_projects', 
 				'callback'    => array( $this->callbacks, 'adminProjects' )
 			),
 			array(
 				'parent_slug' => 'zephyr_project_manager',
-				'page_title'  => 'Zephyr Tasks', 
-				'menu_title'  => 'Tasks', 
+				'page_title'  => __( 'Zephyr Tasks', 'zephyr-project-manager' ), 
+				'menu_title'  => __( 'Tasks', 'zephyr-project-manager' ), 
 				'capability'  => $this->access_level, 
 				'menu_slug'   => 'zephyr_project_manager_tasks', 
 				'callback'    => array( $this->callbacks, 'adminTasks' )
 			),
 			array(
 				'parent_slug' => 'zephyr_project_manager',
-				'page_title'  => 'Zephyr Files', 
-				'menu_title'  => 'Files', 
+				'page_title'  => __( 'Zephyr File Manager', 'zephyr-project-manager' ), 
+				'menu_title'  => __( 'Files', 'zephyr-project-manager' ), 
 				'capability'  => $this->access_level, 
 				'menu_slug'   => 'zephyr_project_manager_files', 
 				'callback'    => array( $this->callbacks, 'adminFiles' )
 			),
 			array(
 				'parent_slug' => 'zephyr_project_manager',
-				'page_title'  => 'Zephyr Activity', 
-				'menu_title'  => 'Activity', 
+				'page_title'  => __( 'Zephyr Activity', 'zephyr-project-manager' ), 
+				'menu_title'  => __( 'Activity', 'zephyr-project-manager' ), 
 				'capability'  => $this->access_level, 
 				'menu_slug'   => 'zephyr_project_manager_activity', 
 				'callback'    => array( $this->callbacks, 'adminActivity' )
 			),
 			array(
 				'parent_slug' => 'zephyr_project_manager',
-				'page_title'  => 'Zephyr Calendar', 
-				'menu_title'  => 'Calendar', 
+				'page_title'  => __( 'Zephyr Calendar', 'zephyr-project-manager' ), 
+				'menu_title'  => __( 'Calendar', 'zephyr-project-manager' ), 
 				'capability'  => $this->access_level, 
 				'menu_slug'   => 'zephyr_project_manager_calendar', 
 				'callback'    => array( $this->callbacks, 'adminCalendar' )
 			),
-			// array(
-			// 	'parent_slug' => 'zephyr_project_manager',
-			// 	'page_title'  => 'Zephyr Progress', 
-			// 	'menu_title'  => 'Progress', 
-			// 	'capability'  => '$this->access_level, 
-			// 	'menu_slug'   => 'zephyr_project_manager_progress', 
-			// 	'callback'    => array( $this->callbacks, 'adminProgress' )
-			// ),
 			array(
 				'parent_slug' => 'zephyr_project_manager',
-				'page_title'  => 'Zephyr Categories', 
-				'menu_title'  => 'Categories', 
+				'page_title'  => __( 'Zephyr Categories', 'zephyr-project-manager' ), 
+				'menu_title'  => __( 'Categories', 'zephyr-project-manager' ), 
 				'capability'  => $this->access_level, 
 				'menu_slug'   => 'zephyr_project_manager_categories', 
 				'callback'    => array( $this->callbacks, 'adminCategories' )
 			),
 			array(
 				'parent_slug' => 'zephyr_project_manager',
-				'page_title'  => 'Zephyr Settings', 
-				'menu_title'  => 'Settings', 
+				'page_title'  => __( 'Zephyr Settings', 'zephyr-project-manager' ), 
+				'menu_title'  => __( 'Settings', 'zephyr-project-manager' ), 
 				'capability'  => $this->access_level, 
 				'menu_slug'   => 'zephyr_project_manager_settings', 
 				'callback'    => array( $this->callbacks, 'adminSettings' )
 			),
 			array(
 				'parent_slug' => 'zephyr_project_manager',
-				'page_title'  => 'Zephyr Teams & Members', 
-				'menu_title'  => 'Teams & Members', 
+				'page_title'  => __( 'Zephyr Teams & Members', 'zephyr-project-manager' ), 
+				'menu_title'  => __( 'Teams & Members', 'zephyr-project-manager' ), 
 				'capability'  => $this->access_level, 
 				'menu_slug'   => 'zephyr_project_manager_teams_members', 
 				'callback'    => array( $this->callbacks, 'adminTeamsMembers' )
@@ -257,8 +250,8 @@ class Admin extends BaseController {
 		if (!BaseController::is_pro()) {
 			$this->subpages[] = array(
 				'parent_slug' => 'zephyr_project_manager',
-				'page_title'  => 'Zephyr Pro', 
-				'menu_title'  => 'Get Premium', 
+				'page_title'  => __( 'Zephyr Pro', 'zephyr-project-manager' ), 
+				'menu_title'  => __( 'Get Premium', 'zephyr-project-manager' ), 
 				'capability'  => 'manage_options', 
 				'menu_slug'   => 'zephyr_project_manager_purchase_premium', 
 				'callback'    => array( $this->callbacks, 'purchase_premium' )
@@ -296,7 +289,7 @@ class Admin extends BaseController {
 		if ($project_count > 0) {
 			wp_add_dashboard_widget(
 	            'zpm_dashboard_overview',
-	            'Zephyr Latest Projects',
+	            __( 'Zephyr Latest Projects', 'zephyr-project-manager' ),
 	            array($this, 'render_dashboard_widget' )
 	        );
 		}
@@ -304,19 +297,9 @@ class Admin extends BaseController {
 		// WP Dashboard Tasks
         wp_add_dashboard_widget(
             'zpm_dashboard_tasks_overview',
-            'Zephyr Tasks',
+            __( 'Zephyr Tasks', 'zephyr-project-manager' ),
             array($this, 'render_dashboard_tasks_widget' )
         );
-
-
-        // WP Dashboard Projects
-        // if (!empty(Projects::get_dashboard_projects())) {
-        // 	wp_add_dashboard_widget(
-	       //      'zpm_dashboard_projects',
-	       //      'Zephyr - Projects',
-	       //      array($this, 'render_dashboard_projects' )
-	       //  );
-        // }
 	}
 
 	/**
@@ -340,15 +323,15 @@ class Admin extends BaseController {
 		<div id="zpm_project_overview">
 			<span class="zpm_project_stat_section">
 				<span class="zpm_project_stat_status"><?php echo $project_count; ?></span>
-				<span class="zpm_project_stat_title">Projects</span>
+				<span class="zpm_project_stat_title"><?php _e( 'Projects', 'zephyr-project-manager' ); ?></span>
 			</span>
 			<span class="zpm_project_stat_section">
 				<span class="zpm_project_stat_status"><?php echo $completed_projects; ?></span>
-				<span class="zpm_project_stat_title">Completed</span>
+				<span class="zpm_project_stat_title"><?php _e( 'Completed', 'zephyr-project-manager' ); ?></span>
 			</span>
 			<span class="zpm_project_stat_section">
 				<span class="zpm_project_stat_status"><?php echo $pending_projects; ?></span>
-				<span class="zpm_project_stat_title">Pending</span>
+				<span class="zpm_project_stat_title"><?php _e( 'Pending', 'zephyr-project-manager' ); ?></span>
 			</span>
 		</div>
 
@@ -373,7 +356,7 @@ class Admin extends BaseController {
 				</ul>
 			<?php endif; ?>
 			<div class="zpm-dashboard-widget-buttons">
-				<a href="<?php echo esc_url(admin_url('/admin.php?page=zephyr_project_manager_projects')); ?>" class="zpm_button">View All Projects</a>
+				<a href="<?php echo esc_url(admin_url('/admin.php?page=zephyr_project_manager_projects')); ?>" class="zpm_button"><?php _e( 'View All Projects', 'zephyr-project-manager' ); ?></a>
 			</div>
 		</div>
 		<?php
@@ -393,10 +376,10 @@ class Admin extends BaseController {
 		$overdue_tasks = Tasks::get_overdue_tasks($args); ?>
 
 		<?php if (Tasks::get_task_count() <= 0) : ?>
-			<p>There are no tasks to view at the moment.</p>
+			<p><?php _e( 'There are no tasks to view at the moment.', 'zephyr-project-manager' ); ?></p>
 			<?php return; ?>
 		<?php endif; ?>
-		<h3 class="zpm_dashboard_heading">My Tasks Due This Week:</h3>
+		<h3 class="zpm_dashboard_heading"><?php _e( 'My Tasks Due This Weeks', 'zephyr-project-manager' ); ?>:</h3>
 		<ul class="zpm_admin_list">
 			<?php foreach($week_tasks as $task) : ?>
 				<?php $due_date = date('D', strtotime($task->date_due)); ?>
@@ -404,10 +387,10 @@ class Admin extends BaseController {
 			<?php endforeach; ?>
 		</ul>
 		<?php if (empty($week_tasks)) : ?>
-			<p>You have no tasks due this week.</p>
+			<p><?php _e( 'You have no tasks due this week', 'zephyr-project-manager' ); ?>.</p>
 		<?php endif; ?>
 
-		<h3 class="zpm_dashboard_heading">My Overdue Tasks:</h3>
+		<h3 class="zpm_dashboard_heading"><?php _e( 'My Overdue Tasks', 'zephyr-project-manager' ); ?>:</h3>
 		<ul class="zpm_admin_list">
 			<?php foreach($overdue_tasks as $task) : ?>
 				<?php if ($task->date_due == '0000-00-00 00:00:00') { continue; } ?>
@@ -417,11 +400,11 @@ class Admin extends BaseController {
 		</ul>
 
 		<?php if (empty($overdue_tasks)) : ?>
-			<p>You have no overdue tasks.</p>
+			<p><?php _e( 'You have no overdue tasks.', 'zephyr-project-manager' ); ?></p>
 		<?php endif; ?>
 		
 		<div class="zpm-dashboard-widget-buttons">
-			<a href="<?php echo esc_url(admin_url('/admin.php?page=zephyr_project_manager_tasks')); ?>" class="zpm_button">See All Tasks</a>
+			<a href="<?php echo esc_url(admin_url('/admin.php?page=zephyr_project_manager_tasks')); ?>" class="zpm_button"><?php _e( 'See All Tasks', 'zephyr-project-manager' ); ?></a>
 		</div>
 
 		<?php
@@ -457,7 +440,7 @@ class Admin extends BaseController {
 	public function first_time_use() {
 		?>
 	    <div class="zpm_update_notice zpm_admin_notice update notice">
-	        <p><?php _e( 'Get started with Zephyr Project Manager now from <a href="' . esc_url(admin_url('/admin.php?page=zephyr_project_manager')) . '" class="zpm_link">here</a>', 'zephyr_project_manager' ); ?></p>
+	        <p><?php printf( __( 'Get started with Zephyr Project Manager now from %s here %s', 'zephyr-project-manager' ), '<a href="' . esc_url(admin_url('/admin.php?page=zephyr_project_manager')) . '" class="zpm_link">', '</a>' ); ?></p>
 	    </div>
 	    <?php
 	}
@@ -469,8 +452,8 @@ class Admin extends BaseController {
 		?>
 	    <div class="zpm_update_notice zpm_admin_notice update notice">
 	    	<span id="zpm_dismiss_review_notice" class="lnr lnr-cross-circle"></span>
-	        <p><?php _e( 'Thanks for using Zephyr Project Manager. If you enjoy it, could you please consider leaving a review? It would really mean the world to me!', 'zephyr_project_manager' ); ?></p>
-	        <button class="zpm_button"><a href="https://wordpress.org/support/plugin/zephyr-project-manager/reviews/" target="_blank">Leave a Review</a></button>
+	        <p><?php _e( 'Thanks for using Zephyr Project Manager. If you enjoy it, could you please consider leaving a review? It would really mean the world to me!', 'zephyr-project-manager' ); ?></p>
+	        <button class="zpm_button"><a href="https://wordpress.org/support/plugin/zephyr-project-manager/reviews/" target="_blank"><?php _e( 'Leave a Review', 'zephyr-project-manager' ); ?></a></button>
 	    </div>
 	    <?php
 	}
@@ -482,9 +465,9 @@ class Admin extends BaseController {
 		?>
 	    <div class="zpm_update_notice zpm_admin_notice update notice">
 	    	<span id="zpm_dismiss_welcome_notice" class="lnr lnr-cross-circle"></span>
-	        <h4 class="zpm_notice_heading"><?php _e('Welcome to Zephyr Project Manager', 'zephyr_project_manager'); ?></h4>
+	        <h4 class="zpm_notice_heading"><?php _e('Welcome to Zephyr Project Manager', 'zephyr-project-manager'); ?></h4>
 			<p class="zpm_panel_description">
-				<?php _e('Thanks for using Zephyr Project Manager. If should experience any problems or have any feature requests, I would be more than happy to add them. Please contact me at dylanjkotze@gmail.com for any queries.', 'zephyr_project_manager') ?>
+				<?php _e('Thanks for using Zephyr Project Manager. If should experience any problems or have any feature requests, I would be more than happy to add them. Please contact me at dylanjkotze@gmail.com for any queries.', 'zephyr-project-manager') ?>
 			</p>
 	    </div>
 	    <?php

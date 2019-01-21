@@ -11,7 +11,7 @@
 	<?php $this->get_header(); ?>
 	<div id="zpm_container">
 		<article class="zpm_body">
-			<h3>Calender</h3>
+			<h3><?php _e( 'Calendar', 'zephyr-project-manager' ); ?></h3>
 			<div class="zpm_body_panel">
 				<div id="zpm_calendar">
 					<div class="zpm_task_loader"></div>

@@ -40,16 +40,16 @@
 				if ( empty($project_members) || !in_array( get_current_user_id(), (array) $project_members )) {
 					if ((int) get_current_user_id() !== (int) $project->user_id) {
 						?>
-							<div class="zpm-notice">Sorry, you do not have access to this project.</div>
+							<div class="zpm-notice"><?php _e( 'Sorry, you do not have access to this project.', 'zephyr-project-manager' ); ?></div>
 						<?php
 						exit;
 					}
 				}
 				break;
 			case '2':
-				if ( (int)get_current_user_id() !== (int)$project->user_id ) {
+				if ( (int)get_current_user_id() !== (int) $project->user_id ) {
 					?>
-						<div class="zpm-notice">Sorry, you do not have access to this project.</div>
+						<div class="zpm-notice"><?php _e( 'Sorry, you do not have access to this project.', 'zephyr-project-manager' ); ?></div>
 					<?php
 					exit;
 				}
@@ -69,11 +69,11 @@
 <div class="zpm_nav_holder zpm_body">
 	<nav class="zpm_nav">
 		<ul class="zpm_nav_list">
-			<li class="zpm_nav_item zpm_nav_item_selected" data-zpm-tab="1">Overview</li>
-			<li class="zpm_nav_item" data-zpm-tab="2">Tasks</li>
-			<li class="zpm_nav_item" data-zpm-tab="3">Discussion</li>
-			<li class="zpm_nav_item" data-zpm-tab="0">Members</li>
-			<li class="zpm_nav_item" id="zpm_update_project_progress" data-zpm-tab="4">Progress</li>
+			<li class="zpm_nav_item zpm_nav_item_selected" data-zpm-tab="1"><?php _e( 'Overview', 'zephyr-project-manager' ); ?></li>
+			<li class="zpm_nav_item" data-zpm-tab="2"><?php _e( 'Tasks', 'zephyr-project-manager' ); ?></li>
+			<li class="zpm_nav_item" data-zpm-tab="3"><?php _e( 'Discussion', 'zephyr-project-manager' ); ?></li>
+			<li class="zpm_nav_item" data-zpm-tab="0"><?php _e( 'Members', 'zephyr-project-manager' ); ?></li>
+			<li class="zpm_nav_item" id="zpm_update_project_progress" data-zpm-tab="4"><?php _e( 'Progress', 'zephyr-project-manager' ); ?></li>
 			<?php echo apply_filters( 'zpm-project-tabs', '' ); ?>
 		</ul>
 	</nav>
@@ -82,25 +82,27 @@
 <div id="zpm_project_editor" class="zpm_body <?php echo 'project-type-' . $project->type; ?>" data-project-id="<?php echo $project->id; ?>">
 	<!-- Project Overview / Editing -->
 	<div class="zpm_tab_pane zpm_tab_active" data-zpm-tab="1">
-		<label class="zpm_label" for="zpm_edit_project_name">Name</label>
+		<label class="zpm_label" for="zpm_edit_project_name"><?php _e( 'Project Name', 'zephyr-project-manager' ); ?></label>
 		<input type="text" id="zpm_edit_project_name" class="zpm_input" name="zpm_edit_project_name" value="<?php echo $project->name; ?>" />
-		<label class="zpm_label" for="zpm_edit_project_description">Description</label>
+		<label class="zpm_label" for="zpm_edit_project_description"><?php _e( 'Project Description', 'zephyr-project-manager' ); ?></label>
 		<textarea id="zpm_edit_project_description" class="zpm_input" name="zpm_edit_project_description"><?php echo $project->description; ?></textarea>
 
-		<label class="zpm_label" for="zpm_edit_project_start_date">Start Date</label>
-		<input type="text" id="zpm_edit_project_start_date" placeholder="Start Date"  class="zpm_input" value="<?php echo $project->date_start; ?>"/>
-		<label class="zpm_label" for="zpm_edit_project_due_date">Due Date</label>
-		<input type="text" id="zpm_edit_project_due_date" placeholder="Due Date" class="zpm_input" value="<?php echo $project->date_due; ?>"/>
+		<label class="zpm_label" for="zpm_edit_project_start_date"><?php _e( 'Start Date', 'zephyr-project-manager' ); ?></label>
+		<input type="text" id="zpm_edit_project_start_date" placeholder="<?php _e( 'Start Date', 'zephyr-project-manager' ); ?>"  class="zpm_input" value="<?php echo $project->date_start; ?>"/>
+		<label class="zpm_label" for="zpm_edit_project_due_date"><?php _e( 'Due Date', 'zephyr-project-manager' ); ?></label>
+		<input type="text" id="zpm_edit_project_due_date" placeholder="<?php _e( 'Due Date', 'zephyr-project-manager' ); ?>" class="zpm_input" value="<?php echo $project->date_due; ?>"/>
 
 		<div class="zpm_project_editor_categories">
-			<label class="zpm_label">Categories</label>
+			<label class="zpm_label"><?php _e( 'Categories', 'zephyr-project-manager' ); ?></label>
 			<?php $assigned_categories = unserialize($project->categories); ?>
 			<?php $categories = Categories::get_categories(); ?>
+			<?php $categories_url = menu_page_url( 'zephyr_project_manager_categories', false ); ?>
 			<?php $i = 0 ?>
 
 			<?php if (empty($categories)) : ?>
 				<!-- No categories found -->
-				<p class="zpm_extra_info zpm_text_italic">There are no categories yet. You can create categories <a href="<?php menu_page_url( 'zephyr_project_manager_categories', true ); ?>" class="zpm_link">here</a>.</p>
+				<p class="zpm_extra_info zpm_text_italic">
+					<?php printf( __('There are no categories yet. You can create categories %s here %s.', 'zephyr-project-manager' ), '<a href="' . $categories_url . '" class="zpm_link">', '</a>' ); ?></p>
 			<?php endif; ?>
 
 			<?php foreach ($categories as $category) : ?>
@@ -121,8 +123,8 @@
 			<?php endforeach; ?>
 		</div>
 
-		<button id="zpm_project_save_settings" class="zpm_button">Save Changes</button>
-		<a class="zpm_button" href="<?php echo $base_url; ?>" id="zpm_back_to_projects">Back to Projects</a>
+		<button id="zpm_project_save_settings" class="zpm_button"><?php _e( 'Save Changes', 'zephyr-project-manager' ); ?></button>
+		<a class="zpm_button" href="<?php echo $base_url; ?>" id="zpm_back_to_projects"><?php _e( 'Back to Projects', 'zephyr-project-manager' ); ?></a>
 
 		<div class="zpm_project_options">
 			<span id="zpm_like_project_btn" class="zpm_circle_option_btn <?php echo (is_array($liked_projects) && in_array($project->id, $liked_projects)) ? 'zpm_liked' : ''; ?>" data-project-id="<?php echo $project->id; ?>">
@@ -134,14 +136,14 @@
 	<!-- Project Tasks -->
 	<?php ob_start(); ?>
 	<div id="zpm_project_view_tasks" class="zpm_tab_pane zpm_body" data-zpm-tab="2">
-		<button id="zpm_add_new_project_task" class="zpm_button">New Task</button>
+		<button id="zpm_add_new_project_task" class="zpm_button"><?php _e( 'New Task', 'zephyr-project-manager' ); ?></button>
 		<?php $Task->view_task_list(); ?>
 	</div>
 	<?php $html = ob_get_clean();
 	echo apply_filters('zpm-kanban-tasks', $html); ?>
 
 	<div id="zpm_project_view_discussion" class="zpm_tab_pane" data-zpm-tab="3">
-		<h4 class="zpm_panel_heading">Comments</h4>
+		<h4 class="zpm_panel_heading"><?php _e( 'Comments', 'zephyr-project-manager' ); ?></h4>
 		<div class="zpm_task_comments">
 			<?php $comments = Projects::get_comments( $project->id ); ?>
 			<?php foreach($comments as $comment) : ?>
@@ -151,7 +153,7 @@
 		<div class="zpm_chat_box_section">
 			<div class="zpm_chat_box">
 				<div id="zpm_text_editor_wrap">
-					<div id="zpm_chat_message" contenteditable="true" placeholder="Write comment..."></div>
+					<div id="zpm_chat_message" contenteditable="true" placeholder="<?php _e( 'Write comment...', 'zephyr-project-manager' ); ?>"></div>
 					<div class="zpm_editor_toolbar">
 						<a href="#" data-command='addCode'><i class='lnr lnr-code'></i></a>
 						<a href="#" data-command='createlink'><i class='lnr lnr-link'></i></a>
@@ -159,8 +161,8 @@
 					</div>
 				</div>
 				<div class="zpm_chat_box_footer">
-					<button data-project-id="<?php echo $project->id; ?>" id="zpm_project_chat_files" class="zpm_task_chat_files zpm_button">Upload Files</button>
-					<button data-project-id="<?php echo $project->id; ?>" id="zpm_project_chat_comment" class="zpm_button">Comment</button>
+					<button data-project-id="<?php echo $project->id; ?>" id="zpm_project_chat_files" class="zpm_task_chat_files zpm_button"><?php _e( 'Upload Files', 'zephyr-project-manager' ); ?></button>
+					<button data-project-id="<?php echo $project->id; ?>" id="zpm_project_chat_comment" class="zpm_button"><?php _e( 'Comment', 'zephyr-project-manager' ); ?></button>
 					<div id="zpm_chat_attachments">
 					</div>
 				</div>
@@ -170,7 +172,7 @@
 
 	<!-- Memebers -->
 	<div id="zpm_project_view_progress" class="zpm_tab_pane" data-zpm-tab="0">
-		<h4 class="zpm_panel_heading">Members</h4>
+		<h4 class="zpm_panel_heading"><?php _e( 'Members', 'zephyr-project-manager' ); ?></h4>
 		<div>
 			<ul class="zpm-member-list">
 				<?php foreach ($members as $member) : ?>
@@ -182,7 +184,7 @@
 						</span>
 					</li>
 				<?php endforeach; ?>
-				<button id="zpm-save-project-members" class="zpm_button">Save Members</button>
+				<button id="zpm-save-project-members" class="zpm_button"><?php _e( 'Save Members', 'zephyr-project-manager' ); ?></button>
 			</ul>
 		</div>
 	</div>
@@ -190,7 +192,7 @@
 	<!-- Progress -->
 	<div id="zpm_project_view_progress" class="zpm_tab_pane" data-zpm-tab="4">
 		<div id="zpm_project_view_status">
-			<h4 class="zpm_panel_heading">Project Status</h4>
+			<h4 class="zpm_panel_heading"><?php _e( 'Project Status', 'zephyr-project-manager' ); ?></h4>
 
 			<div id="zpm_project_overview_section">
 				<div id="zpm_project_status_colors">
@@ -198,11 +200,11 @@
 					<span class="zpm_project_status zpm_status_pending <?php echo isset($project_status['color']) && $project_status['color'] == 'yellow' ? 'active' : ''; ?>" data-status="yellow"></span>
 					<span class="zpm_project_status zpm_status_overdue <?php echo isset($project_status['color']) && $project_status['color'] == 'red' ? 'active' : ''; ?>" data-status="red"></span>
 				</div>
-				<div id="zpm_project_status" placeholder="Project Status" contentEditable="true">
+				<div id="zpm_project_status" placeholder="<?php _e( 'Project Status', 'zephyr-project-manager' ); ?>" contentEditable="true">
 					<?php echo isset($project_status['status']) ? esc_html($project_status['status']) : ''; ?>
 				</div>
 				<div id="zpm_project_status_footer">
-					<button id="zpm_update_project_status" class="zpm_button" data-project-id="<?php echo $project->id; ?>">Update Status</button>
+					<button id="zpm_update_project_status" class="zpm_button" data-project-id="<?php echo $project->id; ?>"><?php _e( 'Update Status', 'zephyr-project-manager' ); ?></button>
 				</div>
 			</div>
 		</div>
@@ -212,7 +214,7 @@
 
 		$project = Projects::get_project($project_id);
 		$project_creator = BaseController::get_project_manager_user($project->user_id);
-		$description = ($project->description !== '') ? $project->description : '<span class="zpm_subtle_error">No description</span>';
+		$description = ($project->description !== '') ? $project->description : '<span class="zpm_subtle_error">' . __( 'No description', 'zephyr-project-manager' ) . '</span>';
 		$date = date('d/m/Y');
 		$created_on = new DateTime($project->date_created);
 		$start_on = new DateTime($project->date_start);
@@ -228,23 +230,23 @@
 		ob_start();
 		?>
 
-		<h4 class="zpm_panel_heading">Progress</h4>
+		<h4 class="zpm_panel_heading"><?php _e( 'Progress', 'zephyr-project-manager' ); ?></h4>
 		<canvas class="zpm_report_chart" id="zpm_project_progress_chart" width="400" height="200"></canvas>
 
 		<img id="zpm_project_report_chart_img" style="display: none">
 		
 		<div class='zpm_report_task_stats'>
 			<span class='zpm_report_stat'>
-				<label class='zpm_label'>Completed Tasks</label> <?php echo $completed_tasks; ?>
+				<label class='zpm_label'><?php _e( 'Completed Tasks', 'zephyr-project-manager' ); ?></label> <?php echo $completed_tasks; ?>
 			</span>
 			<span class='zpm_report_stat'>
-				<label class='zpm_label'>Pending Tasks</label> <?php echo $pending_tasks; ?>
+				<label class='zpm_label'><?php _e( 'Pending Tasks', 'zephyr-project-manager' ); ?></label> <?php echo $pending_tasks; ?>
 			</span>
 			<span class='zpm_report_stat'>
-				<label class='zpm_label'>Overdue Tasks</label> <?php echo $overdue_tasks; ?>
+				<label class='zpm_label'><?php _e( 'Overdue Tasks', 'zephyr-project-manager' ); ?></label> <?php echo $overdue_tasks; ?>
 			</span>
 			<span class='zpm_report_stat'>
-				<label class='zpm_label'>Percent Complete:</label> <?php echo $percent_complete . '%'; ?>
+				<label class='zpm_label'><?php _e( 'Percent Complete', 'zephyr-project-manager' ); ?>:</label> <?php echo $percent_complete . '%'; ?>
 			</span>
 		</div>
 	</div>

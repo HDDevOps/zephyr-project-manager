@@ -20,7 +20,7 @@ use Inc\Api\Callbacks\AdminCallbacks;
 class Projects extends Tasks {
 	function __construct() {
 		// Update project progress daily
-		add_action( 'zpm_update_progress', array($this, 'update_progress') );
+		add_action( 'zpm_update_progress', array( $this, 'update_progress' ) );
 		date_default_timezone_set('UTC');
 		$time = strtotime('00:00:00');
 		$recurrence = 'daily';
@@ -30,7 +30,7 @@ class Projects extends Tasks {
 		}
 
 		// Send weekly email progress reports
-		add_action( 'zpm_weekly_updates', array($this, 'weekly_updates') );
+		add_action( 'zpm_weekly_updates', array( $this, 'weekly_updates' ) );
 		date_default_timezone_set('UTC');
 		$time = strtotime('00:00:00');
 		$recurrence = 'weekly';
@@ -40,7 +40,7 @@ class Projects extends Tasks {
 		}
 
 		// Send daily updates on due tasks
-		add_action( 'zpm_task_notifications', array($this, 'task_notifications') );
+		add_action( 'zpm_task_notifications', array( $this, 'task_notifications' ) );
 		date_default_timezone_set('UTC');
 		$time = strtotime('00:00:00');
 		$recurrence = 'daily';
@@ -237,9 +237,9 @@ class Projects extends Tasks {
 		$today = new DateTime(date('Y-m-d H:i:s'));
 		$created_on = new DateTime($data->date_created);
 		
-		$return = ($today->format('Y-m-d') == $created_on->format('Y-m-d')) 
-					? 'Created by ' . $user->display_name . ' at ' . $created_on->format('H:i')
-					: 'Created by ' . $user->display_name . ' on ' . $created_on->format('d M') . ' at ' . $created_on->format('H:i');
+		$return = ($today->format('Y-m-d') == $created_on->format('Y-m-d'))
+					? sprintf( __( 'Created by %s at %s today', 'zephyr-project-manager' ), $user->display_name, $created_on->format('H:i') )
+					: sprintf( __( 'Created by %s on %s at %s', 'zephyr-project-manager' ), $user->display_name, $created_on->format('d M'), $created_on->format('H:i') );
 		return $return;
 	}
 
@@ -271,17 +271,17 @@ class Projects extends Tasks {
 						<i class="zpm_project_grid_options_icon dashicons dashicons-menu"></i>
 						<div class="zpm_dropdown_menu">
 							<ul class="zpm_dropdown_list">
-								<li id="zpm_delete_project">Delete Project</li>
-								<li id="zpm_copy_project">Copy Project</li>
-								<li id="zpm_export_project" class="zpm_dropdown_subdropdown">Export Project
+								<li id="zpm_delete_project"><?php _e( 'Delete Project', 'zephyr-project-manager' ); ?></li>
+								<li id="zpm_copy_project"><?php _e( 'Copy Project', 'zephyr-project-manager' ); ?></li>
+								<li id="zpm_export_project" class="zpm_dropdown_subdropdown"><?php _e( 'Export Project', 'zephyr-project-manager' ); ?>
 									<div class="zpm_export_dropdown zpm_submenu_item">
 										<ul>
-											<li id="zpm_export_project_to_csv" class="zpm_project_option_sub">Export to CSV</li>
-											<li id="zpm_export_project_to_json" class="zpm_project_option_sub">Export to JSON</li>
+											<li id="zpm_export_project_to_csv" class="zpm_project_option_sub"><?php _e( 'Export to CSV', 'zephyr-project-manager' ); ?></li>
+											<li id="zpm_export_project_to_json" class="zpm_project_option_sub"><?php _e( 'Export to JSON', 'zephyr-project-manager' ); ?></li>
 										</ul>
 									</div>
 								</li>
-								<li id="zpm_add_project_to_dashboard">Add to Dashboard</li>
+								<li id="zpm_add_project_to_dashboard"><?php _e( 'Add to Dashboard', 'zephyr-project-manager' ); ?></li>
 							</ul>
 						</div>
 					</span>
@@ -292,15 +292,15 @@ class Projects extends Tasks {
 					<div id="zpm_project_progress">
 						<span class="zpm_project_stat">
 							<p class="zpm_stat_number"><?php echo $completed_tasks; ?></p>
-							<p>Completed Tasks</p>
+							<p><?php _e( 'Completed Tasks', 'zephyr-project-manager' ); ?></p>
 						</span>
 						<span class="zpm_project_stat">
 							<p class="zpm_stat_number"><?php echo $active_tasks; ?></p>
-							<p>Active Tasks</p>
+							<p><?php _e( 'Active Tasks', 'zephyr-project-manager' ); ?></p>
 						</span>
 						<span class="zpm_project_stat">
 							<p class="zpm_stat_number"><?php echo $message_count; ?></p>
-							<p>Messages</p>
+							<p><?php _e( 'Messages', 'zephyr-project-manager' ); ?></p>
 						</span>
 					</div>
 					<div class="zpm_project_progress_bar_background">
@@ -330,7 +330,7 @@ class Projects extends Tasks {
 								foreach ( (array) $team as $member ) :
 									$member = BaseController::get_project_manager_user($member);
 									if (!isset($member['name'])) : ?>
-										<p class="zpm_friendly_notice">There are no members assigned to this project.</p>
+										<p class="zpm_friendly_notice"><?php _e( 'There are no members assigned to this project.', 'zephyr-project-manager' ); ?></p>
 										<?php continue; ?>
 									<?php endif; ?>
 
@@ -356,7 +356,7 @@ class Projects extends Tasks {
 	/**
 	* Returns the HTML for a project item
 	*/
-	public function frontend_project_item( $project ) {
+	public static function frontend_project_item( $project ) {
 		ob_start();
 		?>
 		<li class="zpm-project-item col-md-12" data-project-id="<?php echo $project->id; ?>">
@@ -375,7 +375,7 @@ class Projects extends Tasks {
 	public static function project_select( $id = null, $default = null ) {
 		$projects = Projects::get_projects();
 		$html = !is_null($id) ? '<select id="' . $id . '" class="zpm_input">' : '<select class="zpm_input">';
-		$html .= '<option>None</option>';
+		$html .= '<option>' . __( 'None', 'zephyr-project-manager' ) . '</option>';
 		foreach ($projects as $project) {
 			if (!is_null($default) && $default == $project->id) {
 				$html .= '<option value="' . $project->id . '" selected>' . $project->name . '</option>';
@@ -386,13 +386,13 @@ class Projects extends Tasks {
 		$html .= '</select>';
 
 		if (empty($projects)) {
-			$html = '<p class="zpm_error">There are no projects yet.</p>';
+			$html = '<p class="zpm_error">' . __( 'There are no projects yet.', 'zephyr-project-manager' ) . '</p>';
 		}
 
 		echo $html;
 	}
 
-	public function update_project_status($id, $status, $color) {
+	public static function update_project_status($id, $status, $color) {
 		global $wpdb;
 		$table_name = ZPM_PROJECTS_TABLE;
 
@@ -428,7 +428,7 @@ class Projects extends Tasks {
 	/**
 	* Marks a task as complete
 	*/
-	public function mark_complete( $id, $complete ) {
+	public static function mark_complete( $id, $complete ) {
 		global $wpdb;
 		$table_name = ZPM_PROJECTS_TABLE;
 
@@ -446,7 +446,7 @@ class Projects extends Tasks {
 	/**
 	* Updates the progress of a project
 	*/
-	public function update_progress( $id = null ) {
+	public static function update_progress( $id = null ) {
 		$chart_data = array();
 		$current_chart_data = get_option('zpm_chart_data');
 
@@ -702,9 +702,9 @@ class Projects extends Tasks {
 		?>
 		<div id="zpm_project_modal" class="zpm-modal">
 			<div class="zpm_modal_body">
-				<h2>New Project</h2>
-				<h3>Create a new project</h3><span class="zpm_close_modal">+</span>
-				<input class="zpm_project_name_input" name="zpm_project_name" placeholder="Add a project name" />
+				<h2><?php _e( 'New Project', 'zephyr-project-manager' ); ?></h2>
+				<h3><?php _e( 'Create a new project', 'zephyr-project-manager' ); ?></h3><span class="zpm_close_modal">+</span>
+				<input class="zpm_project_name_input" name="zpm_project_name" placeholder="<?php _e( 'Add a project name', 'zephyr-project-manager' ); ?>" />
 				<div class="zpm_modal_content">
 					<div class="zpm_col_container">
 						
@@ -715,8 +715,8 @@ class Projects extends Tasks {
 							<img class="zpm_selected_image" src="<?php echo ZPM_PLUGIN_URL . "/assets/img/project_list_selected.png"; ?>" />
 							<img src="<?php echo ZPM_PLUGIN_URL . "/assets/img/project_list.png"; ?>" />
 							</div>
-							<h4 class="title">List</h4>
-							<p class="description">Organize your work in an itemized list.</p>
+							<h4 class="title"><?php _e( 'List', 'zephyr-project-manager' ); ?></h4>
+							<p class="description"><?php _e( 'Organize your work in an itemized list.', 'zephyr-project-manager' ); ?></p>
 						</div>
 
 						<?php
@@ -728,10 +728,10 @@ class Projects extends Tasks {
 
 				<input id="zpm-project-type" type="hidden" value="list"> 
 				<div class="zpm_modal_buttons">
-					<button id="zpm_modal_add_project" class="button zpm_button">Create Project</button>
+					<button id="zpm_modal_add_project" class="button zpm_button"><?php _e( 'Create Project', 'zephyr-project-manager' ); ?></button>
 
 					<?php if (!BaseController::is_pro()) : ?>
-						<p class="zpm-pro-upselling">Create Kanban style board projects with the <a class="zpm-pro-link" href="https://zephyr-one.com/purchase-pro" target="_blank">Pro version</a>.</p>
+						<p class="zpm-pro-upselling"><?php _e( 'Create Kanban-style board projects with the ', 'zephyr-project-manager' ); ?> <a class="zpm-pro-link" href="https://zephyr-one.com/purchase-pro" target="_blank"><?php _e( 'Pro Version', 'zephyr-project-manager' ); ?></a>.</p>
 					<?php endif; ?>
 				</div>
 			</div>

@@ -77,7 +77,6 @@
 
 		update_option( 'zpm_general_settings', wp_parse_args( $args, $defaults ) );
 	}
-	
 
 	$user_settings_option = get_option('zpm_user_' . $user_id . '_settings');
 	$general_settings = Utillities::general_settings();
@@ -115,7 +114,7 @@
 					<div class="zpm_tab_panel <?php echo $action == 'profile' || $action == '' ? 'zpm_tab_active' : ''; ?>" data-zpm-tab="1">
 						<!-- Profile Settings -->
 						<form id="zpm_profile_settings" method="post">
-							<label class="zpm_label">Profile Picture</label>
+							<label class="zpm_label"><?php _e( 'Profile Picture', 'zephyr-project-manager' ); ?></label>
 							<div class="zpm_settings_profile_picture">
 								<span class="zpm_settings_profile_background"></span>
 								<span class="zpm_settings_profile_image" style="background-image: url(<?php echo $settings_profile_picture; ?>);"></span>
@@ -124,16 +123,16 @@
 							<input type="hidden" id="zpm_profile_picture_hidden" name="zpm_profile_picture" value="<?php echo $settings_profile_picture; ?>" />
 							<input type="hidden" id="zpm_gravatar" value="<?php echo get_avatar_url($user_id); ?>" />
 					
-							<label class="zpm_label">Name</label>
-							<input type="text" class="zpm_input" name="zpm_settings_name" value="<?php echo $settings_name; ?>" placeholder="Name" />
+							<label class="zpm_label"><?php _e( 'Name', 'zephyr-project-manager' ); ?></label>
+							<input type="text" class="zpm_input" name="zpm_settings_name" value="<?php echo $settings_name; ?>" placeholder="<?php _e( 'Name', 'zephyr-project-manager' ); ?>" />
 
-							<label class="zpm_label">Description</label>
-								<textarea name="zpm_settings_description" class="zpm_input" placeholder="Description"><?php echo $settings_description; ?></textarea>
+							<label class="zpm_label"><?php _e( 'Bio', 'zephyr-project-manager' ); ?></label>
+								<textarea name="zpm_settings_description" class="zpm_input" placeholder="<?php _e( 'Bio', 'zephyr-project-manager' ); ?>"><?php echo $settings_description; ?></textarea>
 
-							<label class="zpm_label">Email Address</label>
-							<input type="text" class="zpm_input" name="zpm_settings_email" value="<?php echo $settings_email; ?>" placeholder="Email"/>
+							<label class="zpm_label"><?php _e( 'Email Address', 'zephyr-project-manager' ); ?></label>
+							<input type="text" class="zpm_input" name="zpm_settings_email" value="<?php echo $settings_email; ?>" placeholder="<?php _e( 'Email Address', 'zephyr-project-manager' ); ?>"/>
 
-							<label class="zpm_label">Hide WordPress Dashboard Widgets</label>
+							<label class="zpm_label"><?php _e( 'Hide WordPress Dashboard Widgets', 'zephyr-project-manager' ); ?></label>
 							<div class="zpm_settings_notification">
 								<label for="zpm-hide-dashboard-widgets" class="zpm_checkbox_label">
 									<input type="checkbox" id="zpm-hide-dashboard-widgets" name="zpm-hide-dashboard-widgets" class="zpm_toggle invisible" value="1" <?php echo isset( $settings['hide_dashboard_widgets'] ) && $settings['hide_dashboard_widgets'] == true ? 'checked' : '';  ?>>
@@ -143,11 +142,11 @@
 											<polyline points="4 11 8 15 16 6"></polyline>
 										</svg>
 									</div>
-									Hidden
+									<?php _e( 'Hidden', 'zephyr-project-manager' ); ?>
 							    </label>
 							</div>
 
-							<label class="zpm_label">Email Notifications</label>
+							<label class="zpm_label"><?php _e( 'Email Notifications', 'zephyr-project-manager' ); ?></label>
 								<div class="zpm_settings_notification">
 									<label for="zpm_notifications_activity" class="zpm_checkbox_label">
 										<input type="checkbox" id="zpm_notifications_activity" name="zpm_notify_activity" class="zpm_project_edit_categories zpm_toggle invisible" value="1" <?php echo $settings_notifications['activity']; ?>>
@@ -157,7 +156,7 @@
 												<polyline points="4 11 8 15 16 6"></polyline>
 											</svg>
 										</div>
-										All Activity
+										<?php _e( 'All Activity', 'zephyr-project-manager' ); ?>
 								    </label>
 								</div>
 
@@ -170,7 +169,7 @@
 												<polyline points="4 11 8 15 16 6"></polyline>
 											</svg>
 										</div>
-										Task Reminders
+										<?php _e( 'Task Reminders', 'zephyr-project-manager' ); ?>
 								    </label>
 								</div>
 
@@ -183,7 +182,7 @@
 												<polyline points="4 11 8 15 16 6"></polyline>
 											</svg>
 										</div>
-										Task Assigned
+										<?php _e( 'Tasks Assigned', 'zephyr-project-manager' ); ?>
 								    </label>
 								</div>
 
@@ -196,49 +195,49 @@
 												<polyline points="4 11 8 15 16 6"></polyline>
 											</svg>
 										</div>
-										Weekly Updates
+										<?php _e( 'Weekly Updates', 'zephyr-project-manager' ); ?>
 								    </label>
 								</div>
 						
 								<?php 
 									if (current_user_can('administrator')) :
 								?>
-								<label class="zpm_label">Lowest Level of Access to the Zephyr Project Manager</label>
+								<label class="zpm_label"><?php _e( 'Lowest Level of Access to Zephyr Project Manager', 'zephyr-project-manager' ); ?></label>
 								<select id="zpm-access-level" class="zpm_input" name="zpm-access-level">
-										<option value="manage_options" <?php echo $access_level == 'manage_options' ? 'selected' : ''; ?>>Admin</option>
-										<option value="edit_pages" <?php echo $access_level == 'edit_pages' ? 'selected' : ''; ?>>Editor</option>
-										<option value="edit_published_posts" <?php echo $access_level == 'edit_published_posts' ? 'selected' : ''; ?>>Author</option>
-										<option value="edit_posts" <?php echo $access_level == 'edit_posts' ? 'selected' : ''; ?>>Contributor</option>
-										<option value="read" <?php echo $access_level == 'read' ? 'selected' : ''; ?>>Subscriber</option>
+										<option value="manage_options" <?php echo $access_level == 'manage_options' ? 'selected' : ''; ?>><?php _e( 'Administrator', 'zephyr-project-manager' ); ?></option>
+										<option value="edit_pages" <?php echo $access_level == 'edit_pages' ? 'selected' : ''; ?>><?php _e( 'Editor', 'zephyr-project-manager' ); ?></option>
+										<option value="edit_published_posts" <?php echo $access_level == 'edit_published_posts' ? 'selected' : ''; ?>><?php _e( 'Author', 'zephyr-project-manager' ); ?></option>
+										<option value="edit_posts" <?php echo $access_level == 'edit_posts' ? 'selected' : ''; ?>><?php _e( 'Contributor', 'zephyr-project-manager' ); ?></option>
+										<option value="read" <?php echo $access_level == 'read' ? 'selected' : ''; ?>><?php _e( 'Subscriber', 'zephyr-project-manager' ); ?></option>
 								</select>
 								<?php
 									endif;
 								?>
 								<?php wp_nonce_field('zpm_save_project_settings'); ?>
-							<button type="submit" class="zpm_button" name="zpm_profile_settings" id="zpm_profile_settings">Save Settings</button>
+							<button type="submit" class="zpm_button" name="zpm_profile_settings" id="zpm_profile_settings"><?php _e( 'Save Settings', 'zephyr-project-manager' ); ?></button>
 						</form>
 					</div>
 
 					<div class="zpm_tab_panel <?php echo $action == 'general' ? 'zpm_tab_active' : ''; ?>" data-zpm-tab="0">
 						<!-- Profile Settings -->
 						<form id="zpm_profile_settings" method="post">
-							<label class="zpm_label">Who can view projects</label>
+							<label class="zpm_label"><?php _e( 'Who can view projects', 'zephyr-project-manager' ); ?></label>
 							<select class="zpm_input" name="zpm_view_projects">
-								<option value="0" <?php echo isset($general_settings['project_access']) && $general_settings['project_access'] == '0' ? 'selected' : ''; ?>>Anyone</option>
-								<option value="1" <?php echo isset($general_settings['project_access']) && $general_settings['project_access'] == '1' ? 'selected' : ''; ?>>Project Members</option>
-								<option value="2" <?php echo isset($general_settings['project_access'])  && $general_settings['project_access'] == '2' ? 'selected' : ''; ?>>Author Only</option>
+								<option value="0" <?php echo isset($general_settings['project_access']) && $general_settings['project_access'] == '0' ? 'selected' : ''; ?>><?php _e( 'Anyone', 'zephyr-project-manager' ); ?></option>
+								<option value="1" <?php echo isset($general_settings['project_access']) && $general_settings['project_access'] == '1' ? 'selected' : ''; ?>><?php _e( 'Project Members', 'zephyr-project-manager' ); ?></option>
+								<option value="2" <?php echo isset($general_settings['project_access'])  && $general_settings['project_access'] == '2' ? 'selected' : ''; ?>><?php _e( 'Author Only', 'zephyr-project-manager' ); ?></option>
 							</select>
 
-							<label class="zpm_label" for="zpm_colorpicker_primary">Primary Color</label>
+							<label class="zpm_label" for="zpm_colorpicker_primary"><?php _e( 'Primary Color', 'zephyr-project-manager' ); ?></label>
 							<input type="text" name="zpm_backend_primary_color" id="zpm_colorpicker_primary" class="zpm_input" value="<?php echo $general_settings['primary_color']; ?>">
 
-							<label class="zpm_label" for="zpm_colorpicker_primary_dark">Primary Dark Color</label>
+							<label class="zpm_label" for="zpm_colorpicker_primary_dark"><?php _e( 'Primary Dark Color', 'zephyr-project-manager' ); ?></label>
 							<input type="text" name="zpm_backend_primary_color_dark" id="zpm_colorpicker_primary_dark" class="zpm_input" value="<?php echo $general_settings['primary_color_dark']; ?>">
-							<label class="zpm_label" for="zpm_colorpicker_primary_light">Primary Light Color</label>
+							<label class="zpm_label" for="zpm_colorpicker_primary_light"><?php _e( 'Primary Light Color', 'zephyr-project-manager' ); ?></label>
 							<input type="text" name="zpm_backend_primary_color_light" id="zpm_colorpicker_primary_light" class="zpm_input" value="<?php echo $general_settings['primary_color_light']; ?>">
 
 								<?php wp_nonce_field('zpm_save_general_settings'); ?>
-							<button type="submit" class="zpm_button" name="zpm_save_general_settings" id="zpm_save_general_settings">Save Settings</button>
+							<button type="submit" class="zpm_button" name="zpm_save_general_settings" id="zpm_save_general_settings"><?php _e( 'Save Settings', 'zephyr-project-manager' ); ?></button>
 						</form>
 					</div>
 

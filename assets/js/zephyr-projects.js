@@ -76,7 +76,7 @@
 			dataType: 'json',
 			data: data,
 			error: function(response) {
-				alert('There was a problem loading the tasks for this project.');
+				alert( zpm_localized.strings.error_loading_tasks );
 			},
 			success: function(response) {
 				callback(response);	
@@ -93,7 +93,7 @@
 			type: 'post',
 			data: data,
 			error: function(response) {
-				alert('There was a problem loading the tasks for this project.');
+				alert( zpm_localized.strings.error_loading_tasks );
 			},
 			success: function(response) {
 				callback(response);	
@@ -102,7 +102,7 @@
 	}
 
 	ZephyrProjects.create_task = function(data, callback) {
-		ZephyrProjects.notification('Creating task...');
+		ZephyrProjects.notification( zpm_localized.strings.creating_task );
 
 		data.action = 'zpm_new_task';
 		data.wp_nonce = zpm_localized.wp_nonce;
@@ -118,11 +118,11 @@
 			dataType: 'json',
 			data: data,
 			error: function(response) {
-				ZephyrProjects.notification('There was a problem creating the task');
+				ZephyrProjects.notification( zpm_localized.strings.error_creating_task );
 				callback(response);
 			},
 			success: function(response) {
-				ZephyrProjects.notification('Task successfully created: ' + response.name);
+				ZephyrProjects.notification( zpm_localized.strings.task_created + ': ' + response.name);
 				callback(response);
 			}
 		});
@@ -142,11 +142,11 @@
 			dataType: 'json',
 			data: data,
 			error: function(response) {
-				ZephyrProjects.notification('Task updated successfully.');
+				ZephyrProjects.notification( zpm_localized.strings.task_updated );
 				callback(response);
 			},
 			success: function(response) {
-				ZephyrProjects.notification('Task updated successfully.');
+				ZephyrProjects.notification( zpm_localized.strings.task_updated );
 				callback(response);
 			}
 		});	
@@ -161,7 +161,7 @@
 			type: 'post',
 			data: data,
 			error: function(response) {
-				ZephyrProjects.notification('There was a problem loading the task');
+				ZephyrProjects.notification( zpm_localized.strings.error_viewing_task );
 			},
 			success: function(response) {
 				callback(response);
@@ -175,7 +175,7 @@
 	ZephyrProjects.copy_project = function(data, callback) {
 		data.action = 'zpm_copy_project';
 		data.wp_nonce = zpm_localized.wp_nonce;
-		ZephyrProjects.notification('Copying project...');
+		ZephyrProjects.notification( zpm_localized.strings.copying_project );
 
 		$.ajax({
 			url: zpm_localized.ajaxurl,
@@ -183,10 +183,10 @@
 			dataType: 'json',
 			data: data,
 			error: function(response) {
-				ZephyrProjects.notification('There was an unexpected problem while copying the project');
+				ZephyrProjects.notification( zpm_localized.strings.error_copying_project );
 			},
 			success: function(response) {
-				ZephyrProjects.notification('Project successfully copied: "' + data.project_name + '"');
+				ZephyrProjects.notification( zpm_localized.strings.project_copied + ': "' + data.project_name + '"');
 				callback(response);
 			}
 		});	
@@ -253,11 +253,11 @@
 					if ((mydate.getFullYear() == now.getFullYear()) &&
 						(mydate.getMonth() == now.getMonth()) &&
 						(mydate.getDay() == now.getDay()) && !localStorage.getItem('task' + id)) {
-							ZephyrProjects.task_notification('You have a task that is due today: ' + name, id, 'task');
+							ZephyrProjects.task_notification( zpm_localized.strings.task_due_today + ': ' + name, id, 'task');
 					} else if ((mydate.getFullYear() == now.getFullYear()) &&
 						(mydate.getMonth() == now.getMonth()) &&
 						(mydate.getDay() == now.getDay()+1) && !localStorage.getItem('taskReminder' + id)) {
-						ZephyrProjects.task_notification('You have a task that is due tomorrow - "' + name + '"', id, 'taskReminder');
+						ZephyrProjects.task_notification( zpm_localized.strings.task_due_tomorrow + ': "' + name + '"', id, 'taskReminder');
 					}
 				}
 			});
@@ -287,7 +287,7 @@
 		var notification_holder = $('body').find('#zpm_notifcation_holder');
 
 		setTimeout(function(){
-			notification_holder.prepend('<div class="zpm_floating_notification" style="margin-bottom: ' + offset + 'px;" data-id="' + id + '" data-item="' + item + '">Hi ' + zpm_localized.user_name + '<br/>' + message + '<button class="zpm_floating_notification_button">Dismiss Notice</button></div>');
+			notification_holder.prepend('<div class="zpm_floating_notification" style="margin-bottom: ' + offset + 'px;" data-id="' + id + '" data-item="' + item + '">Hi ' + zpm_localized.user_name + '<br/>' + message + '<button class="zpm_floating_notification_button">' + zpm_localized.strings.dismiss_notice + '</button></div>');
 		},500);
 	}
 
@@ -304,11 +304,11 @@
 			dataType: 'json',
 			data: data,
 			error: function(response) {
-				ZephyrProjects.notification('There was a problem saving the task.');
+				ZephyrProjects.notification( zpm_localized.strings.error_saving_task );
 				callback(response);
 			},
 			success: function(response) {
-				ZephyrProjects.notification('Changes updated successfully.');
+				ZephyrProjects.notification( zpm_localized.strings.changes_saved );
 				callback(response);
 			}
 		});	
@@ -336,8 +336,8 @@
 	};
 
 	ZephyrProjects.project_modal = function(subject, header, content, buttons, modal_id) {
-		var project_navigation = '<nav class="zpm_nav"><ul class="zpm_nav_list"><li class="zpm_nav_item zpm_nav_item_selected" data-zpm-tab="1">Overview</li><li class="zpm_nav_item" data-zpm-tab="2">Tasks</li><li class="zpm_nav_item" data-zpm-tab="3">Discussion</li></ul></nav>';
-		var selectAssignee = '<div id="zpm_quicktask_assignee"><select id="zpm_quicktask_select_assignee" class="zpm_dropdown"><option value="-1">Select Assignee</option>'; 
+		var project_navigation = '<nav class="zpm_nav"><ul class="zpm_nav_list"><li class="zpm_nav_item zpm_nav_item_selected" data-zpm-tab="1">' + zpm_localized.strings.overview + '</li><li class="zpm_nav_item" data-zpm-tab="2">' + zpm_localized.strings.tasks + '</li><li class="zpm_nav_item" data-zpm-tab="3">' + zpm_localized.strings.discussion + '</li></ul></nav>';
+		var selectAssignee = '<div id="zpm_quicktask_assignee"><select id="zpm_quicktask_select_assignee" class="zpm_dropdown"><option value="-1">' + zpm_localized.strings.select_assignee + '</option>'; 
 
 		for (var i = 0; i < zpm_localized.users.length; i++) {
 			selectAssignee = selectAssignee + '<option value="' + zpm_localized.users[i].data.ID + '" class="zpm_select_option">' + zpm_localized.users[i].data.display_name + '</option>';
@@ -348,18 +348,18 @@
 		var newTask = 	'<div class="zpm_quicktask_container">' +
 							'<div>' +
 								'<div class="zpm_quicktask_content">'+
-									'<input id="zpm_quicktask_name" class="zpm_input" type="text" placeholder="Name"/>' +
-									'<textarea id="zpm_quicktask_description" class="zpm_input" type="text" placeholder="Description"></textarea>' +
-									'<input id="zpm_quicktask_date" class="zpm_input" type="text" placeholder="Due Date" />' +
+									'<input id="zpm_quicktask_name" class="zpm_input" type="text" placeholder="' + zpm_localized.strings.name + '"/>' +
+									'<textarea id="zpm_quicktask_description" class="zpm_input" type="text" placeholder="' + zpm_localized.strings.description + '"></textarea>' +
+									'<input id="zpm_quicktask_date" class="zpm_input" type="text" placeholder="' + zpm_localized.strings.due_date + '" />' +
 									selectAssignee +
 								'</div>' +
-								'<div class="zpm_quicktask_actions"><button id="zpm_create_quicktask" class="zpm_button_outline">Save Task</button></div>' +
+								'<div class="zpm_quicktask_actions"><button id="zpm_create_quicktask" class="zpm_button_outline">' + zpm_localized.strings.save_task + '</button></div>' +
 							'</div>' +
 						'</div>';
 
-		var tab_1 = '<div id="zpm-project-modal-overview" class="zpm_tab_pane zpm_tab_active" data-zpm-tab="1">Loading...</div>';
+		var tab_1 = '<div id="zpm-project-modal-overview" class="zpm_tab_pane zpm_tab_active" data-zpm-tab="1">' + zpm_localized.strings.loading + '</div>';
 
-		var tab_2 = '<div class="zpm_tab_pane" data-zpm-tab="2" id="zpm_tasks_tab"><button id="zpm_quick_task_add" class="zpm_button_outline">Add Task</button>' + 
+		var tab_2 = '<div class="zpm_tab_pane" data-zpm-tab="2" id="zpm_tasks_tab"><button id="zpm_quick_task_add" class="zpm_button_outline">' + zpm_localized.strings.add_task + '</button>' + 
 					newTask +
 					'<div class="zpm_modal_content"><div class="zpm_task_loader"></div></div></div>';
 		var tab_3 = '<div class="zpm_tab_pane" data-zpm-tab="3" id="zpm-project-modal-discussion">' +
@@ -380,7 +380,7 @@
 		$('body').append(modal);
 		$('body').find('.zpm_quicktask_content #zpm_quicktask_select_assignee').chosen({
 		    disable_search_threshold: 10,
-		    no_results_text: "Oops, no users found!",
+		    no_results_text: zpm_localized.strings.no_users_found,
 		    width: "100%"
 		});
 		$('body').find('.zpm_quicktask_content #zpm_quicktask_date').datepicker({dateFormat: 'yy-mm-dd' });
@@ -391,7 +391,7 @@
 		data.action = 'zpm_new_project';
 		data.wp_nonce = zpm_localized.wp_nonce;
 
-		ZephyrProjects.notification('Creating project...', true);
+		ZephyrProjects.notification( zpm_localized.strings.creating_project, true);
 
 		$.ajax({
 			url: zpm_localized.ajaxurl,
@@ -399,11 +399,11 @@
 			dataType: 'json',
 			data: data,
 			error: function(response) {
-				ZephyrProjects.notification('There was a problem adding the project.');
+				ZephyrProjects.notification( zpm_localized.strings.error_creating_project );
 				callback(response);
 			},
 			success: function(response) {
-				ZephyrProjects.notification('Project created successfully: "' + data.project_name + '"');
+				ZephyrProjects.notification( zpm_localized.strings.project_created + ': "' + data.project_name + '"' );
 				callback(response);
 			}
 		});
@@ -419,7 +419,7 @@
 			type: 'post',
 			data: data,
 			error: function(response) {
-				ZephyrProjects.notification('Problem removing.');
+				ZephyrProjects.notification( zpm_localized.strings.error_removing_message );
 			},
 			success: function(response) {
 				callback(response);
@@ -454,7 +454,7 @@
 			dataType: 'json',
 			data: data,
 			error: function(response) {
-				ZephyrProjects.notification('There was a problem copying the task. Please try again.');
+				ZephyrProjects.notification( zpm_localized.strings.error_copying_task );
 			},
 			success: function(response) {
 				callback(response);
@@ -467,7 +467,7 @@
 		data.action = 'zpm_convert_to_project';
 		data.wp_nonce = zpm_localized.wp_nonce;
 
-		ZephyrProjects.notification('Converting task to project...');
+		ZephyrProjects.notification( zpm_localized.strings.converting_to_project );
 
 		$.ajax({
 			url: zpm_localized.ajaxurl,
@@ -475,10 +475,10 @@
 			dataType: 'json',
 			data: data,
 			error: function(response) {
-				ZephyrProjects.notification('There was a problem converting the task');
+				ZephyrProjects.notification( zpm_localized.strings.error_converting_task );
 			},
 			success: function(response) {
-				ZephyrProjects.notification('New project created: ' + data.project_name);
+				ZephyrProjects.notification( zpm_localized.strings.new_project_created + ': ' + data.project_name );
 				callback(response);
 			}
 		});	
@@ -532,7 +532,7 @@
 			dataType: 'json',
 			data: data,
 			error: function(response) {
-				ZephyrProjects.notification('There was a problem exporting the task. Please try again.');
+				ZephyrProjects.notification( zpm_localized.strings.error_exporting_task );
 			},
 			success: function(response) {
 				callback(response);
@@ -551,7 +551,7 @@
 			dataType: 'json',
 			data: data,
 			error: function(response) {
-				ZephyrProjects.notification('There was a problem exporting the tasks. Please try again.');
+				ZephyrProjects.notification( zpm_localized.strings.error_exporting_tasks );
 			},
 			success: function(response) {
 				callback(response);
@@ -585,17 +585,17 @@
 			type: 'post',
 			data: data,
 			error: function(response) {
-				ZephyrProjects.notification('There was a problem adding the project to the dashboard.');
+				ZephyrProjects.notification( zpm_localized.strings.error_adding_to_dashboard );
 			},
 			success: function(response) {
-				ZephyrProjects.notification('Project added to the dashboard.');
+				ZephyrProjects.notification( zpm_localized.strings.added_to_dashboard );
 			}
 		});
 	}
 
 	// Remove project from dashboard
 	ZephyrProjects.remove_from_dashboard = function(data) {
-		ZephyrProjects.notification('Removing project from dashboard.');
+		ZephyrProjects.notification( zpm_localized.strings.adding_to_dashboard );
 		data.action = 'zpm_remove_project_from_dashboard';
 		data.wp_nonce = zpm_localized.wp_nonce;
 
@@ -604,10 +604,10 @@
 			type: 'post',
 			data: data,
 			error: function(response) {
-				ZephyrProjects.notification('There was a problem. Please reload and try again.');
+				ZephyrProjects.notification( zpm_localized.strings.problem_occurred );
 			},
 			success: function(response) {
-				ZephyrProjects.notification('Project removed from the dashboard.');
+				ZephyrProjects.notification( zpm_localized.strings.removed_from_dashboard );
 			}
 		});
 	}
@@ -640,7 +640,7 @@
 			dataType: 'json',
 			data: data,
 			error: function(response) {
-				ZephyrProjects.notification('There was a problem loading the tasks for this project.');
+				ZephyrProjects.notification( zpm_localized.strings.error_loading_project_tasks );
 			},
 			success: function(response) {
 				callback(response);
@@ -658,10 +658,10 @@
 			type: 'post',
 			data: data,
 			error: function(response) {
-				ZephyrProjects.notification('Problem deleting task');
+				ZephyrProjects.notification( zpm_localized.strings.error_deleting_task );
 			},
 			success: function(response) {
-				ZephyrProjects.notification('Task deleted');
+				ZephyrProjects.notification( zpm_localized.strings.task_deleted );
 			}
 		});	
 	}
@@ -676,10 +676,10 @@
 			type: 'post',
 			data: data,
 			error: function(response) {
-				ZephyrProjects.notification('There was a problem adding the category. Please try again.');
+				ZephyrProjects.notification( zpm_localized.strings.error_saving_category );
 			},
 			success: function(response) {
-				ZephyrProjects.notification( 'Category changes saved.' );
+				ZephyrProjects.notification( zpm_localized.strings.category_saved );
 				callback(response);
 			}
 		});
@@ -695,10 +695,10 @@
 			type: 'post',
 			data: data,
 			error: function(response) {
-				ZephyrProjects.notification('There was a problem removing the category. Please try again.');
+				ZephyrProjects.notification( zpm_localized.strings.error_deleting_category );
 			},
 			success: function(response) {
-				ZephyrProjects.notification('Category deleted.');
+				ZephyrProjects.notification( zpm_localized.strings.category_deleted );
 				callback(response);
 			}
 		});	
@@ -715,7 +715,7 @@
 			dataType: 'json',
 			data: data,
 			error: function(response) {
-				ZephyrProjects.notification('There was a problem importing the file. Please try again.');
+				ZephyrProjects.notification( zpm_localized.strings.error_importing_file );
 			},
 			success: function(response) {
 				callback(response);
@@ -734,10 +734,10 @@
 			dataType: 'json',
 			data: data,
 			error: function(response) {
-				ZephyrProjects.notification('There was a problem deleting the project.');
+				ZephyrProjects.notification( zpm_localized.strings.error_deleting_project );
 			},
 			success: function(response) {
-				ZephyrProjects.notification( 'Project <i><b>\'' + data.project_name + '\'</b></i> deleted.' );
+				ZephyrProjects.notification( zpm_localized.strings.project + ' <i><b>\'' + data.project_name + '\'</b></i> ' + zpm_localized.strings.deleted + '.' );
 				callback(response);
 			}
 		});
@@ -754,7 +754,7 @@
 			dataType: 'json',
 			data: data,
 			error: function(response) {
-				ZephyrProjects.notification('There was a problem with the filtering.');
+				ZephyrProjects.notification( zpm_localized.strings.error_filtering );
 			},
 			success: function(response) {
 				callback(response);
@@ -772,10 +772,10 @@
 			type: 'post',
 			data: data,
 			error: function(response) {
-				ZephyrProjects.notification('There was a problem adding the category. Please try again.');
+				ZephyrProjects.notification( zpm_localized.strings.error_creating_category );
 			},
 			success: function(response) {
-				ZephyrProjects.notification('Category created.');
+				ZephyrProjects.notification( zpm_localized.strings.category_created );
 				callback(response);
 			}
 		});
@@ -809,7 +809,7 @@
 			dataType: 'json',
 			data: data,
 			error: function(response) {
-				ZephyrProjects.notification('There was a problem exporting the project to CSV.');
+				ZephyrProjects.notification( zpm_localized.strings.error_exporting_project_csv );
 			},
 			success: function(response) {
 				callback(response);
@@ -828,8 +828,8 @@
 			dataType: 'json',
 			data: data,
 			error: function(response) {
-				ZephyrProjects.notification('There was a problem sending your message. Please try again.');
-				$('#zpm_task_chat_comment').removeClass('zpm_message_sending').html('Comment');
+				ZephyrProjects.notification( zpm_localized.strings.error_sending_message );
+				$('#zpm_task_chat_comment').removeClass('zpm_message_sending').html( zpm_localized.strings.comment );
 			},
 			success: function(response) {
 				callback(response);
@@ -848,7 +848,7 @@
 			dataType: 'json',
 			data: data,
 			error: function(response) {
-				ZephyrProjects.notification('Problem occured.');
+				ZephyrProjects.notification( zpm_localized.strings.problem_occurred );
 			},
 			success: function(response) {
 				callback(response);
@@ -867,17 +867,17 @@
 			dataType: 'json',
 			data: data,
 			error: function(response) {
-				ZephyrProjects.notification('There was a problem printing the project.');
+				ZephyrProjects.notification( zpm_localized.strings.error_printing_tasks );
 			},
 			success: function(response) {
 
 				var projectPage = '<div id="zpm_print_project_page">' +
 					'<h2 class="zpm_print_project_heading">' +  response['project'].name + '</h2>' +
-					'<h3 class="zpm_print_subheading">Printed from WP Project Manager</h3>' +
+					'<h3 class="zpm_print_subheading">' + zpm_localized.strings.printed_from_zephyr + '</h3>' +
 					'<div class="zpm_print_project_tasks">' +
 						'<ul class="zpm_print_project_task_list">';
 								for (var i = 0; i < response['tasks'].length; i++) {
-									var due_date = (response['tasks'][i].date_due !== '0000-00-00') ? 'Due: ' + response['tasks'][i].date_due : 'No date set.'
+									var due_date = (response['tasks'][i].date_due !== '0000-00-00') ? 'Due: ' + response['tasks'][i].date_due : zpm_localized.strings.no_date_set
 									var checked = (response['tasks'][i].completed == '1') ? 'checked' : '';
 									projectPage = projectPage + '<li class="zpm_print_project_task">' +
 										'<input type="checkbox" class="zpm_print_project_check" value="1" ' + checked + ' />' +
@@ -917,7 +917,7 @@
 		}
 
 		var complete_tasks = {
-	    	label: "Completed Tasks",
+	    	label: zpm_localized.strings.completed_tasks,
 	        data: completed_data,
 	        borderColor: "rgba(20, 170, 245, .7)",
 	        backgroundColor: "rgba(20, 170, 245, .4)",
@@ -925,7 +925,7 @@
 	    };
 
 		var pending_tasks = {
-	    	label: "Pending Tasks",
+	    	label: zpm_localized.strings.pending_tasks,
 	        data: pending_data,
 	        borderColor: "rgba(110, 206, 252, .9)",
 	        backgroundColor: "rgba(110, 206, 252, .7)",
@@ -933,7 +933,7 @@
 	    };
 
 		var due_tasks = {
-	    	label: "Due Tasks",
+	    	label: zpm_localized.strings.due_tasks,
 	        data: overdue_data,
 	        borderColor: "rgba(250, 145, 145, .8)",
 	        backgroundColor: "rgba(250, 145, 145, .8)",
@@ -974,10 +974,10 @@
 			dataType: 'json',
 			data: data,
 			error: function(response) {
-				ZephyrProjects.notification('There was a problem updating the status.');
+				ZephyrProjects.notification( zpm_localized.strings.error_updating_status );
 			},
 			success: function(response) {
-				ZephyrProjects.notification('Project status saved');
+				ZephyrProjects.notification( zpm_localized.strings.project_status_saved );
 				callback(response);
 			}
 		});
@@ -994,7 +994,7 @@
 				callback(response);
 			},
 			success: function(response) {
-				ZephyrProjects.notification('Members saved');
+				ZephyrProjects.notification( zpm_localized.strings.members_saved );
 				callback(response);
 			}
 		});
@@ -1045,7 +1045,7 @@
 			}
 
 			var complete_tasks = {
-		    	label: "Completed Tasks",
+		    	label: zpm_localized.strings.completed_tasks,
 		        data: completed_data,
 		        borderColor: "rgba(20, 170, 245, .4)",
 		        backgroundColor: "rgba(20, 170, 245, .4)",
@@ -1053,7 +1053,7 @@
 		    };
 
 			var pending_tasks = {
-		    	label: "Pending Tasks",
+		    	label: zpm_localized.strings.pending_tasks,
 		        data: pending_data,
 		        borderColor: "rgba(110, 206, 252, .7)",
 		        backgroundColor: "rgba(110, 206, 252, .7)",
@@ -1061,7 +1061,7 @@
 		    };
 
 			var due_tasks = {
-		    	label: "Due Tasks",
+		    	label: zpm_localized.strings.due_tasks,
 		        data: overdue_data,
 		        borderColor: "rgba(250, 145, 145, .8)",
 		        backgroundColor: "rgba(250, 145, 145, .8)",

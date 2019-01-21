@@ -30,7 +30,7 @@
 			<?php if (isset($_GET['action']) && $_GET['action'] == 'edit_member') : ?>
 				<?php include('edit_members.php'); ?>
 			<?php else: ?>
-				<h1 class="zpm_page_title">Members</h1>
+				<h1 class="zpm_page_title"><?php _e( 'Members', 'zephyr-project-manager' ); ?></h1>
 				<div id="zpm_members">
 					
 					<?php foreach ($users as $user) : ?>
@@ -81,7 +81,7 @@
 													<polyline points="4 11 8 15 16 6"></polyline>
 												</svg>
 											</div>
-											Allow Access
+											<?php _e( 'Allow Access', 'zephyr-project-manager' ); ?>
 									    </label>
 									</div>
 								<?php endif; ?>
@@ -89,15 +89,15 @@
 								<div class="zpm_member_stats">
 									<div class="zpm_member_stat">
 										<h5 class="zpm_member_stat_number"><?php echo sizeof($user_projects); ?></h5>
-										<p class="zpm_member_stat_label">Projects</p>
+										<p class="zpm_member_stat_label"><?php _e( 'Projects', 'zephyr-project-manager' ); ?></p>
 									</div>
 									<div class="zpm_member_stat">
 										<h5 class="zpm_member_stat_number"><?php echo sizeof($completed_tasks); ?></h5>
-										<p class="zpm_member_stat_label">Completed Tasks</p>
+										<p class="zpm_member_stat_label"><?php _e( 'Completed Tasks', 'zephyr-project-manager' ); ?></p>
 									</div>
 									<div class="zpm_member_stat">
 										<h5 class="zpm_member_stat_number"><?php echo sizeof($remaining_tasks); ?></h5>
-										<p class="zpm_member_stat_label">Remaining Tasks</p>
+										<p class="zpm_member_stat_label"><?php _e( 'Remaining Tasks', 'zephyr-project-manager' ); ?></p>
 									</div>
 									<div class="zpm_member_progress">
 										<span class="zpm_member_progress_bar" style="width: <?php echo $percent_complete; ?>%"></span>
@@ -108,7 +108,7 @@
 					<?php endforeach; ?>
 				</div>
 
-				<h1 class="zpm_page_title">Teams <button id="zpm-create-team-btn" class="zpm_button" data-zpm-modal-trigger="zpm-new-team-modal">New Team</button></h1>
+				<h1 class="zpm_page_title"><?php _e( 'Teams', 'zephyr-project-manager' ); ?> <button id="zpm-create-team-btn" class="zpm_button" data-zpm-modal-trigger="zpm-new-team-modal"><?php _e( 'New Team', 'zephyr-project-manager' ); ?></button></h1>
 
 				<?php
 					$teams = Members::get_teams();
@@ -119,7 +119,7 @@
 						<?php echo Members::team_single_html( $team ) ?>
 					<?php endforeach; ?>
 					<?php if (sizeof( $teams ) <= 0) : ?>
-						<p id="zpm-no-teams-notice" class="zpm-no-results-error">There are no teams yet...</p>
+						<p id="zpm-no-teams-notice" class="zpm-no-results-error"><?php _e( 'There are no teams yet...', 'zephyr-project-manager' ); ?></p>
 					<?php endif; ?>
 				</div>
 
@@ -129,9 +129,9 @@
 </main>
 
 <div id="zpm-new-team-modal" class="zpm-modal">
-	<h3 class="zpm-modal-title">New Team</h3>
-	<input type="text" id="zpm-new-team-name" class="zpm_input" placeholder="Team Name">
-	<textarea id="zpm-new-team-description" class="zpm_input" placeholder="Team Description"></textarea>
+	<h3 class="zpm-modal-title"><?php _e( 'New Team', 'zephyr-project-manager' ); ?></h3>
+	<input type="text" id="zpm-new-team-name" class="zpm_input" placeholder="<?php _e( 'Team Name', 'zephyr-project-manager' ); ?>">
+	<textarea id="zpm-new-team-description" class="zpm_input" placeholder="<?php _e( 'Team Description', 'zephyr-project-manager' ); ?>"></textarea>
 
 	<ul class="zpm-new-team-member-list">
 		<?php foreach ($all_members as $member) : ?>
@@ -148,14 +148,19 @@
 	</ul>
 
 	<div class="zpm-buttons-right">
-		<button id="zpm-new-team" class="zpm_button">Create Team</button>
+		<button id="zpm-new-team" class="zpm_button"><?php _e( 'Create Team', 'zephyr-project-manager' ); ?></button>
 	</div>
 </div>
 
 <div id="zpm-edit-team-modal" class="zpm-modal">
-	<h3 class="zpm-modal-title">Edit Team</h3>
-	<input type="text" id="zpm-edit-team-name" class="zpm_input" placeholder="Team Name">
-	<textarea id="zpm-edit-team-description" class="zpm_input" placeholder="Team Description"></textarea>
+
+	<div id="zpm-modal-loader-edit-team" class="zpm-modal-preloader">
+		<div class="zpm-loader-holder"><div class="zpm-loader"></div></div>
+	</div>
+
+	<h3 class="zpm-modal-title"><?php _e( 'Edit Team', 'zephyr-project-manager' ); ?></h3>
+	<input type="text" id="zpm-edit-team-name" class="zpm_input" placeholder="<?php _e( 'Team Name', 'zephyr-project-manager' ); ?>">
+	<textarea id="zpm-edit-team-description" class="zpm_input" placeholder="<?php _e( 'Team Description', 'zephyr-project-manager' ); ?>"></textarea>
 
 	<input type="hidden" id="zpm-edit-team-id" />
 
@@ -173,7 +178,7 @@
 	</ul>
 
 	<div class="zpm-buttons-right">
-		<button id="zpm-edit-team" class="zpm_button">Save Changes</button>
+		<button id="zpm-edit-team" class="zpm_button"><?php _e( 'Save Changes', 'zephyr-project-manager' ); ?></button>
 	</div>
 </div>
 <?php $this->get_footer(); ?>

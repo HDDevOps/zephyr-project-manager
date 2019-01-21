@@ -46,13 +46,13 @@
 
 		<ul id="zpm_add_new_dropdown" class="zpm_fancy_dropdown">
 			<?php ob_start(); ?>
-				<li class="zpm_fancy_item zpm_fancy_divider" id="zpm_create_quickproject">New Project</li>
-				<li class="zpm_fancy_item" id="zpm_quickadd_task">New Task</li>
-				<li class="zpm_fancy_item" id="zpm_new_quick_category">New Category</li>
-				<li class="zpm_fancy_item" id="zpm_new_quick_file">New File</li>
-				<li class="zpm_fancy_item"><a href="<?php echo esc_url(admin_url('/admin.php?page=zephyr_project_manager_settings')); ?>" title="Settings">Settings</a></li>
+				<li class="zpm_fancy_item zpm_fancy_divider" id="zpm_create_quickproject"><?php _e( 'New Project', 'zephyr-project-manager' ); ?></li>
+				<li class="zpm_fancy_item" id="zpm_quickadd_task"><?php _e( 'New Task', 'zephyr-project-manager' ); ?></li>
+				<li class="zpm_fancy_item" id="zpm_new_quick_category"><?php _e( 'New Category', 'zephyr-project-manager' ); ?></li>
+				<li class="zpm_fancy_item" id="zpm_new_quick_file"><?php _e( 'New File', 'zephyr-project-manager' ); ?></li>
+				<li class="zpm_fancy_item"><a href="<?php echo esc_url(admin_url('/admin.php?page=zephyr_project_manager_settings')); ?>" title="<?php _e( 'Settings', 'zephyr-project-manager' ); ?>"><?php _e( 'Settings', 'zephyr-project-manager' ); ?></a></li>
 				<?php if (!BaseController::is_pro()) : ?>
-					<li id="zpm_premium_link" class="zpm_fancy_item zpm_fancy_divider_top"><a href="<?php echo esc_url(admin_url('/admin.php?page=zephyr_project_manager_purchase_premium')); ?>" title="Premium">Get Premium</a></li>
+					<li id="zpm_premium_link" class="zpm_fancy_item zpm_fancy_divider_top"><a href="<?php echo esc_url(admin_url('/admin.php?page=zephyr_project_manager_purchase_premium')); ?>" title="<?php _e( 'Premium', 'zephyr-project-manager' ); ?>"><?php _e( 'Get Premium', 'zephyr-project-manager' ); ?></a></li>
 				<?php endif; ?>
 			<?php
 			$html = ob_get_clean();

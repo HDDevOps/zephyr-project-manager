@@ -19,8 +19,8 @@ class SettingsLinks {
 	}
 
 	public function settings_links( $links ) {
-		$settings_link = '<a href="admin.php?page=zephyr_project_manager">Settings</a>';
-		$purchase_link = '<a href="https://zephyr-one.com/purchase-pro">Purchase Premium</a>';
+		$settings_link = sprintf( __( '%s Settings %s', 'zephyr-project-manager' ), '<a href="admin.php?page=zephyr_project_manager">', '</a>' );
+		$purchase_link = sprintf( __( '%s Purchase Premium %s', 'zephyr-project-manager' ), '<a href="https://zephyr-one.com/purchase-pro">', '</a>' );
 		array_push( $links, $settings_link );
 		if (!BaseController::is_pro()) {
 			array_push( $links, $purchase_link );

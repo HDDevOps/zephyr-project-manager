@@ -25,7 +25,7 @@
 	<div id="zpm_container" class="zpm_add_project">
 		<div class="zpm_body" style="display: none;">
 			<ul class="nav nav-tabs" >
-				<li class="active"><a href="#tab-1">New Project</a></li>
+				<li class="active"><a href="#tab-1"><?php _e( 'New Project', 'zephyr-project-manager' ); ?></a></li>
 			</ul>
 		</div>
 
@@ -36,20 +36,22 @@
 				<div id="zpm_project_manager_display" class="<?php echo ($project_count == '0') ? 'zpm_hide' : ''; ?>">
 					<div id="zpm_project_page_options">
 						<div id="zpm_filter_projects" class="zpm_custom_dropdown zpm_button" data-dropdown-id="zpm_filter_options">
-							<span class="zpm_selected_option">Filter Projects</span>
+							<span class="zpm_selected_option"><?php _e( 'Filter Projects', 'zephyr-project-manager' ); ?></span>
 							<ul id="zpm_filter_options" class="zpm_custom_dropdown_options">
-								<li class="zpm_selection_option" data-zpm-filter="-1">All Projects</li>
-								<li class="zpm_selection_option" data-zpm-filter="1">Incomplete Projects</li>
-								<li class="zpm_selection_option" data-zpm-filter="2">Complete Projects</li>
+								<li class="zpm_selection_option" data-zpm-filter="-1"><?php _e( 'All Projects', 'zephyr-project-manager' ); ?></li>
+								<li class="zpm_selection_option" data-zpm-filter="1"><?php _e( 'Incomplete Projects', 'zephyr-project-manager' ); ?></li>
+								<li class="zpm_selection_option" data-zpm-filter="2"><?php _e( 'Completed Projects', 'zephyr-project-manager' ); ?></li>
 							</ul>
 						</div>
-						<button id="zpm_create_new_project" class="zpm_button">New Project</button>
+						<button id="zpm_create_new_project" class="zpm_button"><?php _e( 'New Project', 'zephyr-project-manager' ); ?></button>
 					</div>
 				</div>
 
 				<!-- No projects yet -->
 				<?php if ($project_count == '0') : ?>
-					<div class="zpm_no_results_message">No projects created yet. To create a project, click on the 'Add' button at the top right of the screen or click <a id="zpm_first_project" class="zpm_button_link">here</a></div>
+					<div class="zpm_no_results_message">
+						<?php printf( __( 'No projects created yet. To create a project, click on the \'Add\' button at the top right of the screen or click %s here %s', 'zephyr-project-manager' ), '<a id="zpm_first_project" class="zpm_button_link">', '</a>' ); ?>
+					</div>
 				<?php endif; ?>
 
 				<!-- Project list/grid -->

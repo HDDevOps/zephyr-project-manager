@@ -36,6 +36,6 @@
 			?>
 		<?php endforeach; ?>
 	<?php else: ?>
-		<p class="zpm_message_center">There are no tasks yet.</p>
+		<p class="zpm_message_center"><?php _e( 'There are no tasks yet.', 'zephyr-project-manager' ); ?></p>
 	<?php endif; ?>
 </div>

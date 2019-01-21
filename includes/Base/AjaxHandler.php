@@ -268,9 +268,10 @@ class AjaxHandler extends BaseController {
 	public function remove_project() {
 		check_ajax_referer( 'zpm_nonce', 'wp_nonce' );
 		$project = Projects::get_project( $_POST['project_id'] );
-		Emails::deleted_project_email( $_POST['project_id'] );
 		Projects::delete_project( $_POST['project_id'] );
 		do_action( 'zpm_project_deleted', $project );
+
+		//Emails::deleted_project_email( $_POST['project_id'] );
 		$return = array( 
 			'project_count' => Projects::project_count()
 		);
@@ -489,12 +490,12 @@ class AjaxHandler extends BaseController {
 
 			<span id="zpm_project_modal_dates" class="zpm_project_overview_section">
 				<span id="zpm_project_modal_start_date">
-					<label class="zpm_label">Start Date:</label>
+					<label class="zpm_label"><?php _e( 'Start Date', 'zephyr-project-manager' ); ?>:</label>
 					<span class="zpm_project_date"><?php echo $start_date->format('d M'); ?></span>
 				</span>
 
 				<span id="zpm_project_modal_due_date">
-					<label class="zpm_label">Due Date:</label>
+					<label class="zpm_label"><?php _e( 'Due Date', 'zephyr-project-manager' ); ?>:</label>
 					<span class="zpm_project_date"><?php echo $due_date->format('d M'); ?></span>
 				</span>
 			</span>
@@ -502,25 +503,25 @@ class AjaxHandler extends BaseController {
 			<div id="zpm_project_progress">
 				<span class="zpm_project_stat">
 					<p class="zpm_stat_number"><?php echo $completed_tasks; ?></p>
-					<p>Completed Tasks</p>
+					<p><?php _e( 'Completed Tasks', 'zephyr-project-manager' ); ?></p>
 				</span>
 				<span class="zpm_project_stat">
 					<p class="zpm_stat_number"><?php echo $active_tasks; ?></p>
-					<p>Active Tasks</p>
+					<p><?php _e( 'Active Tasks', 'zephyr-project-manager' ); ?></p>
 				</span>
 				<span class="zpm_project_stat">
 					<p class="zpm_stat_number"><?php echo $message_count; ?></p>
-					<p>Messages</p>
+					<p><?php _e( 'Message', 'zephyr-project-manager' ); ?></p>
 				</span>
 			</div>
 
 			<span id="zpm_project_modal_description" class="zpm_project_overview_section">
-				<label class="zpm_label">Description:</label>
+				<label class="zpm_label"><?php _e( 'Description', 'zephyr-project-manager' ); ?>:</label>
 				<p class="zpm_description"><?php echo $project->description; ?></p>
 			</span>
 
 			<span id="zpm_project_modal_categories" class="zpm_project_overview_section">
-				<label class="zpm_label">Categories:</label>
+				<label class="zpm_label"><?php _e( 'Categories', 'zephyr-project-manager' ); ?>:</label>
 				<?php foreach ($categories as $category) : ?>
 					<?php $category = Categories::get_category($category); ?>
 					<span class="zpm_project_category"><?php echo $category->name; ?></span>
@@ -697,10 +698,10 @@ class AjaxHandler extends BaseController {
 				<span class="zpm-kanban-due"><?php echo $date->format('Y') !== '-0001' ? $date->format('d M') : ''; ?></span>
 			</div>
 			
-			<textarea class="zpm_kanban_title" placeholder="Task Name" data-task-id="<?php echo $task->id; ?>"><?php echo $task->name ?></textarea>
+			<textarea class="zpm_kanban_title" placeholder="<?php _e( 'Task Name', 'zephyr-project-manager' ); ?>" data-task-id="<?php echo $task->id; ?>"><?php echo $task->name ?></textarea>
 			
 			<div class="zpm-kanban-footer">
-				<a class="zpm-link" href="<?php echo !$frontend ? esc_url(admin_url('/admin.php?page=zephyr_project_manager_tasks&action=view_task&task_id=' . $task->id)) : get_page_link($frontend_settings['front_page']) . '?action=task&id=' . $task->id; ?>" target="_blank">View Task</a>
+				<a class="zpm-link" href="<?php echo !$frontend ? esc_url(admin_url('/admin.php?page=zephyr_project_manager_tasks&action=view_task&task_id=' . $task->id)) : get_page_link($frontend_settings['front_page']) . '?action=task&id=' . $task->id; ?>" target="_blank"><?php _e( 'View Task', 'zephyr-project-manager' ); ?></a>
 			</div>
 		</div>
 		<?php
@@ -1033,7 +1034,8 @@ class AjaxHandler extends BaseController {
 		$task = Tasks::get_task($task_id);
 		$completed_project_tasks = Tasks::get_project_completed_tasks( $task->project );
 		$project_tasks = Projects::get_project_tasks( $task->project );
-		if (sizeof($completed_project_tasks == $project_tasks)) {
+
+		if ( sizeof( $completed_project_tasks ) == $project_tasks ) {
 			$completed = '1';
 		} else {
 			$completed = '0';
@@ -1056,11 +1058,10 @@ class AjaxHandler extends BaseController {
 		$settings = array(
 			'id' => $_POST['task_id']
 		);
-
 		Emails::delete_task_email( $_POST['task_id'] );
-
 		$wpdb->delete( $table_name, $settings, [ '%d' ] );
 
+		
 		Activity::log_activity($this->get_user_id(), $_POST['task_id'], '', $task->name, 'task', 'task_deleted', $date);
 
 		echo 'Success';
@@ -1352,7 +1353,7 @@ class AjaxHandler extends BaseController {
 		}
 
 		if (empty($tasks)) {
-			$html = '<p class="zpm_error_message">No results found...</p>';
+			$html = '<p class="zpm_error_message">' . __( 'No results found...', 'zephyr-project-manager' ) . '</p>';
 		}
 
 		$response = array(
@@ -1401,7 +1402,7 @@ class AjaxHandler extends BaseController {
 		}
 
 		if (empty($tasks)) {
-			$html = '<p class="zpm_error_message">No results found...</p>';
+			$html = '<p class="zpm_error_message">' . __( 'No results found...', 'zephyr-project-manager' ) . '</p>';
 		}
 
 		$response = array(

@@ -420,10 +420,9 @@ class Tasks {
 		$user = get_user_by('ID', $data->user_id);
 		$today = new DateTime(date('Y-m-d H:i:s'));
 		$created_on = new DateTime($data->date_created);
-		
 		$return = ($today->format('Y-m-d') == $created_on->format('Y-m-d')) 
-					? 'Created by ' . $user->display_name . ' at ' . $created_on->format('H:i') . ' today'
-					: 'Created by ' . $user->display_name . ' on ' . $created_on->format('d M') . ' at ' . $created_on->format('H:i');
+					? sprintf( __( 'Created by %s at %s today', 'zephyr-project-manager' ), $user->display_name, $created_on->format('H:i') )
+					: sprintf( __( 'Created by %s on %s at %s', 'zephyr-project-manager' ), $user->display_name, $created_on->format('d M'), $created_on->format('H:i') );
 		return $return;
 	}
 
@@ -774,7 +773,7 @@ class Tasks {
 		?>
 		<div class="zpm-custom-task-template" data-template-id="<?php echo $template['id']; ?>">
 
-			<span class="zpm-task-template-name"><?php echo $template['name']; ?> <?php echo Tasks::get_default_template() == $template['id'] ? '<span class="zpm-task-template-default-notice">Default</span>' : ''; ?></span>
+			<span class="zpm-task-template-name"><?php echo $template['name']; ?> <?php echo Tasks::get_default_template() == $template['id'] ? '<span class="zpm-task-template-default-notice">' . __( 'Default', 'zephyr-project-manager' ) . '</span>' : ''; ?></span>
 
 			<label for="zpm-task-template-checkbox-<?php echo $template['id']; ?>" class="zpm_checkbox_label">
 

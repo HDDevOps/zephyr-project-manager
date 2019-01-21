@@ -138,7 +138,7 @@
 		</div>
 
 		<div id="zpm_after_email" style="text-align: center;">
-			<a class="zpm_after_email_link" href="<?php echo esc_url(admin_url('/admin.php?page=zephyr_project_manager_settings')); ?>">Unfollow</a>
+			<a class="zpm_after_email_link" href="<?php echo esc_url(admin_url('/admin.php?page=zephyr_project_manager_settings')); ?>"><?php _e( 'Unfollow', 'zephyr-project-manager' ); ?></a>
 		</div>
 	</body>
 </html>

@@ -29,12 +29,12 @@
 <main id="zpm_file_page" class="zpm_settings_wrap">
 	<?php $this->get_header(); ?>
 	<div id="zpm_container">
-		<h1 class="zpm_page_title">Files</h1>
-		<button data-task-id="no-task" id="zpm_upload_file_btn" class="zpm_task_chat_files zpm_button">Upload Files</button>
+		<h1 class="zpm_page_title"><?php _e( 'Files', 'zephyr-project-manager' ); ?></h1>
+		<button data-task-id="no-task" id="zpm_upload_file_btn" class="zpm_task_chat_files zpm_button"><?php _e( 'Upload Files', 'zephyr-project-manager' ); ?></button>
 		<div class="zpm_body">
 			<div class="zpm_side_navigation">
 				<ul>
-					<li data-project-id="-1" class="zpm_filter_file zpm_selected_link">All Files</li>
+					<li data-project-id="-1" class="zpm_filter_file zpm_selected_link"><?php _e( 'All Files', 'zephyr-project-manager' ); ?></li>
 					<?php foreach($projects as $project) : ?>
 						<li data-project-id="<?php echo $project->id; ?>" class="zpm_filter_file"><?php echo $project->name; ?></li>
 					<?php endforeach; ?>
@@ -46,7 +46,7 @@
 					<?php
 						if ($attachment['subject'] == 'task') {
 							$task = (is_object(Tasks::get_task($attachment['subject_id']))) ? Tasks::get_task($attachment['subject_id']) : false;
-							$subject_name = ($task) ? stripslashes($task->name) : 'No task';
+							$subject_name = ($task) ? stripslashes($task->name) : __( 'No Task', 'zephyr-project-manager' );
 						}
 						if ($attachment['subject'] == 'project') {
 							$task = (is_object(Projects::get_task($attachment['subject_id']))) ? Projects::get_task($attachment['subject_id']) : false;
@@ -84,7 +84,7 @@
 						</div>
 					</div>
 				<?php endforeach; ?>
-				<p id="zpm_no_files" class="zpm_error_message" style="display: none;">No files.</p>
+				<p id="zpm_no_files" class="zpm_error_message" style="display: none;"><?php _e( 'No Files', 'zephyr-project-manager' ); ?></p>
 			</div>
 		</div>
 	</div>

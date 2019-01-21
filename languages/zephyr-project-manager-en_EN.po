@@ -1,0 +1,1307 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: zephyr-project-manager\n"
+"POT-Creation-Date: 2019-01-19 21:28+0200\n"
+"PO-Revision-Date: 2019-01-21 11:38+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.1\n"
+"X-Poedit-Basepath: ../..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;_e;esc_attr_e\n"
+"X-Poedit-SearchPath-0: zephyr-project-manager\n"
+"X-Poedit-SearchPath-1: zephyr-project-manager-pro\n"
+
+#: zephyr-project-manager-pro/views/custom_fields.php:23
+msgid "New Custom Field"
+msgstr ""
+
+#: zephyr-project-manager-pro/views/settings-frontend.php:50
+#: zephyr-project-manager-pro/views/settings-frontend.php:59
+msgid "Enable Frontend Project Manager"
+msgstr ""
+
+#: zephyr-project-manager-pro/views/settings-frontend.php:61
+msgid "Frontend Project Manager Page"
+msgstr ""
+
+#: zephyr-project-manager-pro/views/settings-frontend.php:68
+msgid "Who can create projects"
+msgstr ""
+
+#: zephyr-project-manager-pro/views/settings-frontend.php:70
+#: zephyr-project-manager-pro/views/settings-frontend.php:77
+#: zephyr-project-manager-pro/views/settings-frontend.php:85
+#: zephyr-project-manager-pro/views/settings-frontend.php:93
+#: zephyr-project-manager-pro/views/settings-frontend.php:100
+#: zephyr-project-manager-pro/views/settings-frontend.php:108
+msgid "Everyone"
+msgstr ""
+
+#: zephyr-project-manager-pro/views/settings-frontend.php:71
+#: zephyr-project-manager-pro/views/settings-frontend.php:78
+#: zephyr-project-manager-pro/views/settings-frontend.php:86
+#: zephyr-project-manager-pro/views/settings-frontend.php:94
+#: zephyr-project-manager-pro/views/settings-frontend.php:109
+msgid "Project Manager"
+msgstr ""
+
+#: zephyr-project-manager-pro/views/settings-frontend.php:72
+#: zephyr-project-manager-pro/views/settings-frontend.php:79
+#: zephyr-project-manager-pro/views/settings-frontend.php:87
+#: zephyr-project-manager-pro/views/settings-frontend.php:95
+msgid "Project Managers & Users"
+msgstr ""
+
+#: zephyr-project-manager-pro/views/settings-frontend.php:75
+#: zephyr-project-manager/templates/settings.php:224
+msgid "Who can view projects"
+msgstr ""
+
+#: zephyr-project-manager-pro/views/settings-frontend.php:80
+#: zephyr-project-manager-pro/views/settings-frontend.php:88
+#: zephyr-project-manager-pro/views/settings-frontend.php:103
+#: zephyr-project-manager-pro/views/settings-frontend.php:111
+#: zephyr-project-manager/templates/settings.php:228
+msgid "Author Only"
+msgstr ""
+
+#: zephyr-project-manager-pro/views/settings-frontend.php:83
+#: zephyr-project-manager-pro/views/settings-frontend.php:106
+msgid "Who can edit tasks"
+msgstr ""
+
+#: zephyr-project-manager-pro/views/settings-frontend.php:91
+msgid "Who can create new tasks"
+msgstr ""
+
+#: zephyr-project-manager-pro/views/settings-frontend.php:98
+msgid "Who can view tasks"
+msgstr ""
+
+#: zephyr-project-manager-pro/views/settings-frontend.php:101
+msgid "Project Managers"
+msgstr ""
+
+#: zephyr-project-manager-pro/views/settings-frontend.php:102
+#: zephyr-project-manager-pro/views/settings-frontend.php:110
+msgid "Project Users & Managers"
+msgstr ""
+
+#: zephyr-project-manager-pro/views/settings-frontend.php:114
+msgid "Site Logo"
+msgstr ""
+
+#: zephyr-project-manager-pro/views/settings-frontend.php:119
+msgid "Reset"
+msgstr ""
+
+#: zephyr-project-manager-pro/views/settings-frontend.php:122
+#: zephyr-project-manager/templates/settings.php:231
+msgid "Primary Color"
+msgstr ""
+
+#: zephyr-project-manager-pro/views/settings-frontend.php:125
+msgid "Secondary Color"
+msgstr ""
+
+#: zephyr-project-manager-pro/views/settings-frontend.php:128
+msgid "Login Page"
+msgstr ""
+
+#: zephyr-project-manager-pro/views/settings-frontend.php:134
+msgid "Normal"
+msgstr ""
+
+#: zephyr-project-manager-pro/views/settings-frontend.php:140
+msgid "Zephyr Features"
+msgstr ""
+
+#: zephyr-project-manager-pro/views/settings-frontend.php:147
+msgid "Frontend Theme"
+msgstr ""
+
+#: zephyr-project-manager-pro/views/settings-frontend.php:152
+#: zephyr-project-manager/includes/Core/Tasks.php:776
+msgid "Default"
+msgstr ""
+
+#: zephyr-project-manager-pro/views/settings-frontend.php:158
+msgid "Ultimate"
+msgstr ""
+
+#: zephyr-project-manager-pro/views/settings-frontend.php:166
+#: zephyr-project-manager/templates/edit_members.php:151
+#: zephyr-project-manager/templates/settings.php:217
+#: zephyr-project-manager/templates/settings.php:240
+msgid "Save Settings"
+msgstr ""
+
+#: zephyr-project-manager-pro/zephyr-project-manager-pro.php:70
+msgid ""
+"Please install Zephyr Project Manager (Basic) from the WordPress plugin "
+"repository to use the Pro version and the Extensions."
+msgstr ""
+
+#: zephyr-project-manager/includes/Api/Emails.php:141
+#: zephyr-project-manager/includes/Api/Emails.php:180
+#: zephyr-project-manager/templates/edit_members.php:116
+#: zephyr-project-manager/templates/settings.php:198
+msgid "Weekly Updates"
+msgstr ""
+
+#: zephyr-project-manager/includes/Api/Emails.php:158
+#: zephyr-project-manager/includes/Pages/Admin.php:196
+#: zephyr-project-manager/templates/parts/project-single.php:73
+msgid "Tasks"
+msgstr ""
+
+#: zephyr-project-manager/includes/Api/Emails.php:162
+#: zephyr-project-manager/includes/Pages/Admin.php:330
+msgid "Completed"
+msgstr ""
+
+#: zephyr-project-manager/includes/Api/Emails.php:166
+#: zephyr-project-manager/includes/Pages/Admin.php:334
+msgid "Pending"
+msgstr ""
+
+#: zephyr-project-manager/includes/Api/Emails.php:170
+msgid "Complete"
+msgstr ""
+
+#: zephyr-project-manager/includes/Api/Emails.php:177
+msgid "View in WordPress"
+msgstr ""
+
+#: zephyr-project-manager/includes/Api/Emails.php:201
+msgid "Tasks due this week"
+msgstr ""
+
+#: zephyr-project-manager/includes/Api/Emails.php:202
+msgid "You have the following due tasks this week"
+msgstr ""
+
+#: zephyr-project-manager/includes/Api/Emails.php:211
+msgid "No date set"
+msgstr ""
+
+#: zephyr-project-manager/includes/Api/Emails.php:225
+#: zephyr-project-manager/templates/email_templates/task_notifications_email.php:141
+msgid "View Tasks in WordPress"
+msgstr ""
+
+#: zephyr-project-manager/includes/Api/Emails.php:294
+msgid "New task created by"
+msgstr ""
+
+#: zephyr-project-manager/includes/Api/Emails.php:295
+#: zephyr-project-manager/includes/Api/Emails.php:305
+#: zephyr-project-manager/templates/email_templates/task_email.php:26
+#: zephyr-project-manager/templates/parts/new_task.php:21
+#: zephyr-project-manager/templates/parts/page_header.php:50
+#: zephyr-project-manager/templates/parts/project-single.php:139
+msgid "New Task"
+msgstr ""
+
+#: zephyr-project-manager/includes/Api/Emails.php:300
+#: zephyr-project-manager/includes/Api/Emails.php:301
+#: zephyr-project-manager/includes/Api/Emails.php:304
+msgid "New Task Assigned to You"
+msgstr ""
+
+#: zephyr-project-manager/includes/Api/Emails.php:302
+msgid "has assigned a new task to you"
+msgstr ""
+
+#: zephyr-project-manager/includes/Api/Emails.php:306
+msgid "has created and assigned a new task to"
+msgstr ""
+
+#: zephyr-project-manager/includes/Api/Emails.php:312
+#: zephyr-project-manager/templates/email_templates/task_email.php:169
+msgid "View Task in WordPress"
+msgstr ""
+
+#: zephyr-project-manager/includes/Api/Emails.php:466
+#: zephyr-project-manager/includes/Api/Emails.php:467
+msgid "Task Date Changed"
+msgstr ""
+
+#: zephyr-project-manager/includes/Base/AjaxHandler.php:492
+#: zephyr-project-manager/templates/parts/new_task.php:58
+#: zephyr-project-manager/templates/parts/new_task.php:59
+#: zephyr-project-manager/templates/parts/project-single.php:90
+#: zephyr-project-manager/templates/parts/project-single.php:91
+#: zephyr-project-manager/templates/parts/task-single.php:65
+#: zephyr-project-manager/templates/parts/task-single.php:66
+#: zephyr-project-manager/templates/parts/task_view.php:84
+msgid "Start Date"
+msgstr ""
+
+#: zephyr-project-manager/includes/Base/AjaxHandler.php:497
+#: zephyr-project-manager/templates/email_templates/task_email.php:149
+#: zephyr-project-manager/templates/parts/new_task.php:62
+#: zephyr-project-manager/templates/parts/new_task.php:63
+#: zephyr-project-manager/templates/parts/project-single.php:92
+#: zephyr-project-manager/templates/parts/project-single.php:93
+#: zephyr-project-manager/templates/parts/task-single.php:69
+#: zephyr-project-manager/templates/parts/task-single.php:70
+#: zephyr-project-manager/templates/parts/task_view.php:88
+msgid "Due Date"
+msgstr ""
+
+#: zephyr-project-manager/includes/Base/AjaxHandler.php:505
+#: zephyr-project-manager/includes/Core/Projects.php:295
+#: zephyr-project-manager/templates/dashboard.php:91
+#: zephyr-project-manager/templates/parts/project-single.php:240
+#: zephyr-project-manager/templates/teams_and_members.php:96
+msgid "Completed Tasks"
+msgstr ""
+
+#: zephyr-project-manager/includes/Base/AjaxHandler.php:509
+#: zephyr-project-manager/includes/Core/Projects.php:299
+msgid "Active Tasks"
+msgstr ""
+
+#: zephyr-project-manager/includes/Base/AjaxHandler.php:513
+msgid "Message"
+msgstr ""
+
+#: zephyr-project-manager/includes/Base/AjaxHandler.php:518
+#: zephyr-project-manager/includes/Core/Categories.php:127
+#: zephyr-project-manager/includes/Core/Categories.php:128
+#: zephyr-project-manager/templates/categories.php:33
+#: zephyr-project-manager/templates/edit_members.php:74
+#: zephyr-project-manager/templates/edit_members.php:75
+#: zephyr-project-manager/templates/email_templates/task_email.php:154
+#: zephyr-project-manager/templates/parts/task_view.php:115
+msgid "Description"
+msgstr ""
+
+#: zephyr-project-manager/includes/Base/AjaxHandler.php:523
+#: zephyr-project-manager/includes/Pages/Admin.php:228
+#: zephyr-project-manager/templates/categories.php:20
+#: zephyr-project-manager/templates/parts/project-single.php:96
+msgid "Categories"
+msgstr ""
+
+#: zephyr-project-manager/includes/Base/AjaxHandler.php:700
+#: zephyr-project-manager/templates/parts/new_task.php:27
+#: zephyr-project-manager/templates/parts/new_task.php:28
+#: zephyr-project-manager/templates/parts/task-single.php:54
+#: zephyr-project-manager/templates/parts/task-single.php:55
+msgid "Task Name"
+msgstr ""
+
+#: zephyr-project-manager/includes/Base/AjaxHandler.php:703
+msgid "View Task"
+msgstr ""
+
+#: zephyr-project-manager/includes/Base/AjaxHandler.php:1355
+#: zephyr-project-manager/includes/Base/AjaxHandler.php:1404
+msgid "No results found..."
+msgstr ""
+
+#: zephyr-project-manager/includes/Base/SettingsLinks.php:22
+#, php-format
+msgid "%s Settings %s"
+msgstr ""
+
+#: zephyr-project-manager/includes/Base/SettingsLinks.php:23
+#, php-format
+msgid "%s Purchase Premium %s"
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Activity.php:91
+#, php-format
+msgid "%s created a new project called %s"
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Activity.php:96
+#, php-format
+msgid "%s deleted the project %s"
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Activity.php:104
+#, php-format
+msgid "%s changed the name of the project %s to %s"
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Activity.php:113
+#, php-format
+msgid "%s changed the name of the task %s to %s"
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Activity.php:126
+#, php-format
+msgid "%s changed the due date of the task %s to %s"
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Activity.php:134
+#, php-format
+msgid "%s changed the description of the project %s"
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Activity.php:140
+#, php-format
+msgid "%s created a new task called %s"
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Activity.php:149
+#, php-format
+msgid "%s assigned the task %s to %s"
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Activity.php:154
+#, php-format
+msgid "%s deleted the task %s"
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Categories.php:124
+#: zephyr-project-manager/templates/categories.php:19
+#: zephyr-project-manager/templates/parts/page_header.php:51
+msgid "New Category"
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Categories.php:125
+#: zephyr-project-manager/includes/Core/Categories.php:126
+#: zephyr-project-manager/templates/categories.php:31
+#: zephyr-project-manager/templates/edit_members.php:71
+#: zephyr-project-manager/templates/edit_members.php:72
+#: zephyr-project-manager/templates/settings.php:126
+#: zephyr-project-manager/templates/settings.php:127
+msgid "Name"
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Categories.php:129
+#: zephyr-project-manager/templates/categories.php:35
+msgid "Color"
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Categories.php:132
+msgid "Create Category"
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Members.php:129
+#: zephyr-project-manager/templates/parts/project-single.php:75
+#: zephyr-project-manager/templates/parts/project-single.php:175
+#: zephyr-project-manager/templates/teams_and_members.php:33
+msgid "Members"
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Members.php:141
+msgid "No members have been added to this team"
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Members.php:146
+#: zephyr-project-manager/templates/teams_and_members.php:156
+msgid "Edit Team"
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Members.php:163
+msgid "Select Team"
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Projects.php:241
+#: zephyr-project-manager/includes/Core/Tasks.php:424
+#, php-format
+msgid "Created by %s at %s today"
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Projects.php:242
+#: zephyr-project-manager/includes/Core/Tasks.php:425
+#, php-format
+msgid "Created by %s on %s at %s"
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Projects.php:274
+msgid "Delete Project"
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Projects.php:275
+msgid "Copy Project"
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Projects.php:276
+msgid "Export Project"
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Projects.php:279
+#: zephyr-project-manager/templates/parts/task_view.php:61
+#: zephyr-project-manager/templates/tasks.php:46
+msgid "Export to CSV"
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Projects.php:280
+#: zephyr-project-manager/templates/parts/task_view.php:62
+#: zephyr-project-manager/templates/tasks.php:47
+msgid "Export to JSON"
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Projects.php:284
+msgid "Add to Dashboard"
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Projects.php:303
+msgid "Messages"
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Projects.php:333
+msgid "There are no members assigned to this project."
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Projects.php:378
+msgid "None"
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Projects.php:389
+msgid "There are no projects yet."
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Projects.php:705
+#: zephyr-project-manager/templates/parts/page_header.php:49
+#: zephyr-project-manager/templates/projects.php:28
+#: zephyr-project-manager/templates/projects.php:46
+msgid "New Project"
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Projects.php:706
+msgid "Create a new project"
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Projects.php:707
+msgid "Add a project name"
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Projects.php:718
+msgid "List"
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Projects.php:719
+msgid "Organize your work in an itemized list."
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Projects.php:731
+msgid "Create Project"
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Projects.php:734
+msgid "Create Kanban-style board projects with the "
+msgstr ""
+
+#: zephyr-project-manager/includes/Core/Projects.php:734
+msgid "Pro Version"
+msgstr ""
+
+#: zephyr-project-manager/includes/Pages/Admin.php:169
+#: zephyr-project-manager/includes/Pages/Admin.php:170
+msgid "Zephyr Project Manager"
+msgstr ""
+
+#: zephyr-project-manager/includes/Pages/Admin.php:187
+msgid "Zephyr Projects"
+msgstr ""
+
+#: zephyr-project-manager/includes/Pages/Admin.php:188
+#: zephyr-project-manager/includes/Pages/Admin.php:326
+#: zephyr-project-manager/templates/dashboard.php:83
+#: zephyr-project-manager/templates/email_templates/project_email.php:141
+#: zephyr-project-manager/templates/teams_and_members.php:92
+msgid "Projects"
+msgstr ""
+
+#: zephyr-project-manager/includes/Pages/Admin.php:195
+#: zephyr-project-manager/includes/Pages/Admin.php:300
+msgid "Zephyr Tasks"
+msgstr ""
+
+#: zephyr-project-manager/includes/Pages/Admin.php:203
+msgid "Zephyr File Manager"
+msgstr ""
+
+#: zephyr-project-manager/includes/Pages/Admin.php:204
+#: zephyr-project-manager/templates/files.php:32
+msgid "Files"
+msgstr ""
+
+#: zephyr-project-manager/includes/Pages/Admin.php:211
+msgid "Zephyr Activity"
+msgstr ""
+
+#: zephyr-project-manager/includes/Pages/Admin.php:212
+msgid "Activity"
+msgstr ""
+
+#: zephyr-project-manager/includes/Pages/Admin.php:219
+msgid "Zephyr Calendar"
+msgstr ""
+
+#: zephyr-project-manager/includes/Pages/Admin.php:220
+#: zephyr-project-manager/templates/calendar.php:14
+msgid "Calendar"
+msgstr ""
+
+#: zephyr-project-manager/includes/Pages/Admin.php:227
+msgid "Zephyr Categories"
+msgstr ""
+
+#: zephyr-project-manager/includes/Pages/Admin.php:235
+msgid "Zephyr Settings"
+msgstr ""
+
+#: zephyr-project-manager/includes/Pages/Admin.php:236
+#: zephyr-project-manager/templates/parts/page_header.php:53
+msgid "Settings"
+msgstr ""
+
+#: zephyr-project-manager/includes/Pages/Admin.php:243
+msgid "Zephyr Teams & Members"
+msgstr ""
+
+#: zephyr-project-manager/includes/Pages/Admin.php:244
+msgid "Teams & Members"
+msgstr ""
+
+#: zephyr-project-manager/includes/Pages/Admin.php:253
+msgid "Zephyr Pro"
+msgstr ""
+
+#: zephyr-project-manager/includes/Pages/Admin.php:254
+#: zephyr-project-manager/templates/parts/page_header.php:55
+msgid "Get Premium"
+msgstr ""
+
+#: zephyr-project-manager/includes/Pages/Admin.php:292
+msgid "Zephyr Latest Projects"
+msgstr ""
+
+#: zephyr-project-manager/includes/Pages/Admin.php:359
+msgid "View All Projects"
+msgstr ""
+
+#: zephyr-project-manager/includes/Pages/Admin.php:379
+msgid "There are no tasks to view at the moment."
+msgstr ""
+
+#: zephyr-project-manager/includes/Pages/Admin.php:382
+msgid "My Tasks Due This Weeks"
+msgstr ""
+
+#: zephyr-project-manager/includes/Pages/Admin.php:390
+#: zephyr-project-manager/templates/dashboard.php:117
+msgid "You have no tasks due this week"
+msgstr ""
+
+#: zephyr-project-manager/includes/Pages/Admin.php:393
+msgid "My Overdue Tasks"
+msgstr ""
+
+#: zephyr-project-manager/includes/Pages/Admin.php:403
+#: zephyr-project-manager/templates/dashboard.php:129
+msgid "You have no overdue tasks."
+msgstr ""
+
+#: zephyr-project-manager/includes/Pages/Admin.php:407
+msgid "See All Tasks"
+msgstr ""
+
+#: zephyr-project-manager/includes/Pages/Admin.php:443
+#, php-format
+msgid "Get started with Zephyr Project Manager now from %s here %s"
+msgstr ""
+
+#: zephyr-project-manager/includes/Pages/Admin.php:455
+msgid ""
+"Thanks for using Zephyr Project Manager. If you enjoy it, could you please "
+"consider leaving a review? It would really mean the world to me!"
+msgstr ""
+
+#: zephyr-project-manager/includes/Pages/Admin.php:456
+msgid "Leave a Review"
+msgstr ""
+
+#: zephyr-project-manager/includes/Pages/Admin.php:468
+#: zephyr-project-manager/templates/welcome.php:12
+msgid "Welcome to Zephyr Project Manager"
+msgstr ""
+
+#: zephyr-project-manager/includes/Pages/Admin.php:470
+msgid ""
+"Thanks for using Zephyr Project Manager. If should experience any problems "
+"or have any feature requests, I would be more than happy to add them. Please "
+"contact me at dylanjkotze@gmail.com for any queries."
+msgstr ""
+
+#: zephyr-project-manager/templates/activity.php:28
+msgid ""
+"There is no activity yet. Once there is, the activities will be displayed "
+"here."
+msgstr ""
+
+#: zephyr-project-manager/templates/activity.php:34
+msgid "Load More"
+msgstr ""
+
+#: zephyr-project-manager/templates/categories.php:38
+#: zephyr-project-manager/templates/parts/project-single.php:126
+#: zephyr-project-manager/templates/parts/task-single.php:106
+#: zephyr-project-manager/templates/parts/task-single.php:128
+#: zephyr-project-manager/templates/tasks.php:103
+#: zephyr-project-manager/templates/teams_and_members.php:176
+msgid "Save Changes"
+msgstr ""
+
+#: zephyr-project-manager/templates/dashboard.php:31
+msgid "Dashboard"
+msgstr ""
+
+#: zephyr-project-manager/templates/dashboard.php:37
+msgid "What's new?"
+msgstr ""
+
+#: zephyr-project-manager/templates/dashboard.php:51
+msgid "Get the Android App"
+msgstr ""
+
+#: zephyr-project-manager/templates/dashboard.php:52
+msgid "Get the Pro Add-On"
+msgstr ""
+
+#: zephyr-project-manager/templates/dashboard.php:53
+#: zephyr-project-manager/templates/dashboard.php:173
+msgid "Dismiss Notice"
+msgstr ""
+
+#: zephyr-project-manager/templates/dashboard.php:73
+#: zephyr-project-manager/templates/parts/project-single.php:72
+#: zephyr-project-manager/templates/parts/task_view.php:74
+msgid "Overview"
+msgstr ""
+
+#: zephyr-project-manager/templates/dashboard.php:87
+#: zephyr-project-manager/templates/email_templates/project_email.php:145
+#: zephyr-project-manager/templates/projects.php:43
+msgid "Completed Projects"
+msgstr ""
+
+#: zephyr-project-manager/templates/dashboard.php:97
+msgid "Tasks Due This Week"
+msgstr ""
+
+#: zephyr-project-manager/templates/dashboard.php:120
+#: zephyr-project-manager/templates/parts/project-single.php:246
+msgid "Overdue Tasks"
+msgstr ""
+
+#: zephyr-project-manager/templates/dashboard.php:160
+#, php-format
+msgid ""
+"Welcome to the Dashboard. To add projects to the dashboard and keep track of "
+"important projects, navigate to the %s Projects %s page and click on the "
+"options button for the project, then select the option %s Add to Dashboard "
+"%s."
+msgstr ""
+
+#: zephyr-project-manager/templates/dashboard.php:169
+#: zephyr-project-manager/templates/dashboard.php:174
+msgid "Support me on Patreon"
+msgstr ""
+
+#: zephyr-project-manager/templates/dashboard.php:170
+msgid ""
+"If you like the plugin and what I do and would like to help me improve the "
+"plugin more, please consider supporting me on Patreon. This would help a lot "
+"in being able to work on the plugin full-time and focus more on it to make "
+"it better and add new features. Thank you so much."
+msgstr ""
+
+#: zephyr-project-manager/templates/edit_members.php:58
+msgid "Edit Member"
+msgstr ""
+
+#: zephyr-project-manager/templates/edit_members.php:62
+#: zephyr-project-manager/templates/settings.php:117
+msgid "Profile Picture"
+msgstr ""
+
+#: zephyr-project-manager/templates/edit_members.php:77
+#: zephyr-project-manager/templates/edit_members.php:78
+#: zephyr-project-manager/templates/settings.php:132
+#: zephyr-project-manager/templates/settings.php:133
+msgid "Email Address"
+msgstr ""
+
+#: zephyr-project-manager/templates/edit_members.php:80
+#: zephyr-project-manager/templates/settings.php:149
+msgid "Email Notifications"
+msgstr ""
+
+#: zephyr-project-manager/templates/edit_members.php:90
+#: zephyr-project-manager/templates/settings.php:159
+msgid "All Activity"
+msgstr ""
+
+#: zephyr-project-manager/templates/edit_members.php:103
+#: zephyr-project-manager/templates/settings.php:172
+msgid "Task Reminders"
+msgstr ""
+
+#: zephyr-project-manager/templates/edit_members.php:123
+msgid "Allow access to Zephyr"
+msgstr ""
+
+#: zephyr-project-manager/templates/edit_members.php:135
+#: zephyr-project-manager/templates/teams_and_members.php:84
+msgid "Allow Access"
+msgstr ""
+
+#: zephyr-project-manager/templates/edit_members.php:139
+#: zephyr-project-manager/templates/settings.php:205
+msgid "Lowest Level of Access to Zephyr Project Manager"
+msgstr ""
+
+#: zephyr-project-manager/templates/edit_members.php:141
+#: zephyr-project-manager/templates/settings.php:207
+msgid "Administrator"
+msgstr ""
+
+#: zephyr-project-manager/templates/edit_members.php:142
+#: zephyr-project-manager/templates/settings.php:208
+msgid "Editor"
+msgstr ""
+
+#: zephyr-project-manager/templates/edit_members.php:143
+#: zephyr-project-manager/templates/settings.php:209
+msgid "Author"
+msgstr ""
+
+#: zephyr-project-manager/templates/edit_members.php:144
+#: zephyr-project-manager/templates/settings.php:210
+msgid "Contributor"
+msgstr ""
+
+#: zephyr-project-manager/templates/edit_members.php:145
+#: zephyr-project-manager/templates/settings.php:211
+msgid "Subscriber"
+msgstr ""
+
+#: zephyr-project-manager/templates/email_templates/email_template.php:141
+#: zephyr-project-manager/templates/email_templates/project_email.php:163
+#: zephyr-project-manager/templates/email_templates/task_email.php:170
+#: zephyr-project-manager/templates/email_templates/task_notifications_email.php:142
+msgid "Unfollow"
+msgstr ""
+
+#: zephyr-project-manager/templates/email_templates/project_email.php:135
+msgid "Weekly Progress Update"
+msgstr ""
+
+#: zephyr-project-manager/templates/email_templates/project_email.php:149
+msgid "Pending Projects"
+msgstr ""
+
+#: zephyr-project-manager/templates/email_templates/project_email.php:156
+msgid "View Projects"
+msgstr ""
+
+#: zephyr-project-manager/templates/email_templates/project_email.php:162
+msgid "View Projects in WordPress"
+msgstr ""
+
+#: zephyr-project-manager/templates/email_templates/task_email.php:139
+#: zephyr-project-manager/templates/parts/new_task.php:45
+#: zephyr-project-manager/templates/parts/task-single.php:73
+msgid "Assignee"
+msgstr ""
+
+#: zephyr-project-manager/templates/email_templates/task_email.php:144
+#: zephyr-project-manager/templates/parts/new_task.php:34
+#: zephyr-project-manager/templates/parts/page_footer.php:20
+#: zephyr-project-manager/templates/parts/task-single.php:87
+msgid "Project"
+msgstr ""
+
+#: zephyr-project-manager/templates/email_templates/task_email.php:163
+#: zephyr-project-manager/templates/parts/task_view.php:174
+msgid "Go to Task"
+msgstr ""
+
+#: zephyr-project-manager/templates/email_templates/task_email.php:173
+#, php-format
+msgid "Reply with %s to mark as complete | %s to comment"
+msgstr ""
+
+#: zephyr-project-manager/templates/email_templates/task_notifications_email.php:129
+msgid "Due Tasks"
+msgstr ""
+
+#: zephyr-project-manager/templates/files.php:33
+#: zephyr-project-manager/templates/parts/project-single.php:164
+#: zephyr-project-manager/templates/parts/task-single.php:159
+msgid "Upload Files"
+msgstr ""
+
+#: zephyr-project-manager/templates/files.php:37
+msgid "All Files"
+msgstr ""
+
+#: zephyr-project-manager/templates/files.php:49
+msgid "No Task"
+msgstr ""
+
+#: zephyr-project-manager/templates/files.php:87
+msgid "No Files"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/new_task.php:30
+#: zephyr-project-manager/templates/parts/new_task.php:31
+#: zephyr-project-manager/templates/parts/task-single.php:60
+#: zephyr-project-manager/templates/parts/task-single.php:61
+msgid "Task Description"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/new_task.php:36
+#: zephyr-project-manager/templates/parts/task-single.php:89
+msgid "Select Project"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/new_task.php:47
+#: zephyr-project-manager/templates/parts/task-single.php:75
+msgid "Select Assignee"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/new_task.php:53
+#: zephyr-project-manager/templates/parts/task-single.php:83
+msgid "Team"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/new_task.php:77
+#: zephyr-project-manager/templates/parts/task-single.php:101
+msgid "This option is only available in the Pro version."
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/new_task.php:77
+#: zephyr-project-manager/templates/parts/task-single.php:101
+msgid "Purchase the Pro Add-On Now"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/new_task.php:79
+#: zephyr-project-manager/templates/parts/task-single.php:103
+msgid "Add Custom Field"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/new_task.php:85
+msgid "Create Task"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/page_footer.php:18
+msgid "New Attachment"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/page_footer.php:23
+msgid "Select File"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/page_footer.php:24
+msgid "Upload Attachment"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/page_header.php:52
+msgid "New File"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/page_header.php:55
+msgid "Premium"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/project-single.php:43
+#: zephyr-project-manager/templates/parts/project-single.php:52
+msgid "Sorry, you do not have access to this project."
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/project-single.php:74
+#: zephyr-project-manager/templates/parts/task-single.php:139
+#: zephyr-project-manager/templates/parts/task_view.php:75
+msgid "Discussion"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/project-single.php:76
+#: zephyr-project-manager/templates/parts/project-single.php:233
+#: zephyr-project-manager/templates/progress.php:17
+msgid "Progress"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/project-single.php:85
+msgid "Project Name"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/project-single.php:87
+msgid "Project Description"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/project-single.php:105
+#, php-format
+msgid "There are no categories yet. You can create categories %s here %s."
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/project-single.php:127
+msgid "Back to Projects"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/project-single.php:146
+msgid "Comments"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/project-single.php:156
+#: zephyr-project-manager/templates/parts/task-single.php:151
+#: zephyr-project-manager/templates/parts/task_view.php:158
+msgid "Write comment..."
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/project-single.php:165
+#: zephyr-project-manager/templates/parts/task-single.php:160
+msgid "Comment"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/project-single.php:187
+msgid "Save Members"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/project-single.php:195
+#: zephyr-project-manager/templates/parts/project-single.php:203
+msgid "Project Status"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/project-single.php:207
+msgid "Update Status"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/project-single.php:217
+msgid "No description"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/project-single.php:243
+msgid "Pending Tasks"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/project-single.php:249
+msgid "Percent Complete"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/task-list.php:39
+msgid "There are no tasks yet."
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/task-single.php:107
+msgid "Back to Tasks"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/task-single.php:121
+#: zephyr-project-manager/templates/parts/task_view.php:120
+msgid "Subtasks"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/task-single.php:129
+msgid "Delete"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/task-single.php:133
+msgid "New Subtask"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/task_view.php:56
+msgid "Delete Task"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/task_view.php:57
+msgid "Copy Task"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/task_view.php:58
+msgid "Export Task"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/task_view.php:66
+msgid "Convert to Project"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/task_view.php:67
+msgid "Print"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/task_view.php:94
+msgid "Assigned To"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/task_view.php:100
+msgid "Not assigned to any members"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/task_view.php:105
+msgid "Assigned Team"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/task_view.php:110
+msgid "Not assigned to any teams"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/task_view.php:117
+msgid "No description added"
+msgstr ""
+
+#: zephyr-project-manager/templates/parts/task_view.php:130
+msgid "No subtasks created."
+msgstr ""
+
+#: zephyr-project-manager/templates/premium.php:12
+msgid "Zephyr Project Manager Pro"
+msgstr ""
+
+#: zephyr-project-manager/templates/premium.php:19
+msgid "Asana Integration"
+msgstr ""
+
+#: zephyr-project-manager/templates/premium.php:20
+msgid ""
+"View your Asana projects and tasks in WordPress and import them into Zephyr "
+"to manage all your projects and tasks in one place."
+msgstr ""
+
+#: zephyr-project-manager/templates/premium.php:28
+msgid "Custom Fields"
+msgstr ""
+
+#: zephyr-project-manager/templates/premium.php:29
+msgid ""
+"Create more detailed and personalized tasks by creating your own custom "
+"fields and assiging them to any tasks."
+msgstr ""
+
+#: zephyr-project-manager/templates/premium.php:37
+msgid "Kanban Boards"
+msgstr ""
+
+#: zephyr-project-manager/templates/premium.php:38
+msgid ""
+"View your tasks in a Kanban board style and drag and drop them into "
+"different columns to keep them organized."
+msgstr ""
+
+#: zephyr-project-manager/templates/premium.php:47
+msgid "Beautiful & Customizable Frontend"
+msgstr ""
+
+#: zephyr-project-manager/templates/premium.php:48
+msgid ""
+"Includes a beautiful Frontend Project Manager that is customizable and easy "
+"to use to allow users or yourself to manage projects from the frontend with "
+"the dedicated user interface."
+msgstr ""
+
+#: zephyr-project-manager/templates/premium.php:57
+msgid "Reporting and Advanced Search"
+msgstr ""
+
+#: zephyr-project-manager/templates/premium.php:58
+msgid ""
+"Create detailed project progress reports for any project and customize which "
+"data should be shown in the report. You can then print or save the reports."
+msgstr ""
+
+#: zephyr-project-manager/templates/premium.php:67
+msgid "Task Templates"
+msgstr ""
+
+#: zephyr-project-manager/templates/premium.php:68
+msgid ""
+"Create reusable and useful templates for your tasks with your custom fields, "
+"to add to your tasks in a single click and customize your projects and tasks "
+"to your needs."
+msgstr ""
+
+#: zephyr-project-manager/templates/premium.php:77
+msgid "Mobile App"
+msgstr ""
+
+#: zephyr-project-manager/templates/premium.php:78
+msgid ""
+"Manage your projects and tasks on the go and stay up to date from anywhere. "
+"Increase your productivity now with this beautifully designed Android app "
+"and get more work done, wherever you are."
+msgstr ""
+
+#: zephyr-project-manager/templates/premium.php:93
+msgid "And much more..."
+msgstr ""
+
+#: zephyr-project-manager/templates/premium.php:94
+msgid ""
+"Plus many more features. If you have any feature suggestions I would be more "
+"than happy to hear them. You can contact me at dylanjkotze@gmail.com."
+msgstr ""
+
+#: zephyr-project-manager/templates/premium.php:98
+msgid "Get Zephyr Pro Now"
+msgstr ""
+
+#: zephyr-project-manager/templates/progress.php:21
+msgid "Select a project to display the progress for."
+msgstr ""
+
+#: zephyr-project-manager/templates/projects.php:39
+msgid "Filter Projects"
+msgstr ""
+
+#: zephyr-project-manager/templates/projects.php:41
+msgid "All Projects"
+msgstr ""
+
+#: zephyr-project-manager/templates/projects.php:42
+msgid "Incomplete Projects"
+msgstr ""
+
+#: zephyr-project-manager/templates/projects.php:53
+#, php-format
+msgid ""
+"No projects created yet. To create a project, click on the 'Add' button at "
+"the top right of the screen or click %s here %s"
+msgstr ""
+
+#: zephyr-project-manager/templates/settings.php:129
+#: zephyr-project-manager/templates/settings.php:130
+msgid "Bio"
+msgstr ""
+
+#: zephyr-project-manager/templates/settings.php:135
+msgid "Hide WordPress Dashboard Widgets"
+msgstr ""
+
+#: zephyr-project-manager/templates/settings.php:145
+msgid "Hidden"
+msgstr ""
+
+#: zephyr-project-manager/templates/settings.php:185
+msgid "Tasks Assigned"
+msgstr ""
+
+#: zephyr-project-manager/templates/settings.php:226
+msgid "Anyone"
+msgstr ""
+
+#: zephyr-project-manager/templates/settings.php:227
+msgid "Project Members"
+msgstr ""
+
+#: zephyr-project-manager/templates/settings.php:234
+msgid "Primary Dark Color"
+msgstr ""
+
+#: zephyr-project-manager/templates/settings.php:236
+msgid "Primary Light Color"
+msgstr ""
+
+#: zephyr-project-manager/templates/tasks.php:33
+#, php-format
+msgid ""
+"No tasks created yet. To create a task, click on the 'Add' button at the top "
+"right of the screen or click %s here %s"
+msgstr ""
+
+#: zephyr-project-manager/templates/tasks.php:43
+msgid "Export Tasks"
+msgstr ""
+
+#: zephyr-project-manager/templates/tasks.php:55
+msgid "Import from CSV"
+msgstr ""
+
+#: zephyr-project-manager/templates/tasks.php:56
+msgid "Import from JSON"
+msgstr ""
+
+#: zephyr-project-manager/templates/tasks.php:68
+msgid "My Tasks"
+msgstr ""
+
+#: zephyr-project-manager/templates/tasks.php:69
+msgid "All Tasks"
+msgstr ""
+
+#: zephyr-project-manager/templates/tasks.php:70
+msgid "Incomplete Tasks"
+msgstr ""
+
+#: zephyr-project-manager/templates/tasks.php:71
+msgid "Complete Tasks"
+msgstr ""
+
+#: zephyr-project-manager/templates/tasks.php:74
+msgid "Add New"
+msgstr ""
+
+#: zephyr-project-manager/templates/tasks.php:94
+#: zephyr-project-manager/templates/tasks.php:95
+#: zephyr-project-manager/templates/tasks.php:101
+#: zephyr-project-manager/templates/tasks.php:102
+msgid "Subtask Name"
+msgstr ""
+
+#: zephyr-project-manager/templates/tasks.php:96
+msgid "Create Subtask"
+msgstr ""
+
+#: zephyr-project-manager/templates/teams_and_members.php:100
+msgid "Remaining Tasks"
+msgstr ""
+
+#: zephyr-project-manager/templates/teams_and_members.php:111
+msgid "Teams"
+msgstr ""
+
+#: zephyr-project-manager/templates/teams_and_members.php:111
+#: zephyr-project-manager/templates/teams_and_members.php:132
+msgid "New Team"
+msgstr ""
+
+#: zephyr-project-manager/templates/teams_and_members.php:122
+msgid "There are no teams yet..."
+msgstr ""
+
+#: zephyr-project-manager/templates/teams_and_members.php:133
+#: zephyr-project-manager/templates/teams_and_members.php:157
+msgid "Team Name"
+msgstr ""
+
+#: zephyr-project-manager/templates/teams_and_members.php:134
+#: zephyr-project-manager/templates/teams_and_members.php:158
+msgid "Team Description"
+msgstr ""
+
+#: zephyr-project-manager/templates/teams_and_members.php:151
+msgid "Create Team"
+msgstr ""
+
+#: zephyr-project-manager/templates/welcome.php:19
+msgid "Get Things Done"
+msgstr ""
+
+#: zephyr-project-manager/templates/welcome.php:20
+msgid ""
+"Create unlimited projects, tasks and subtasks and manage them easily and get "
+"work done all inside WordPress."
+msgstr ""
+
+#: zephyr-project-manager/templates/welcome.php:28
+msgid "Communicate and collaborate"
+msgstr ""
+
+#: zephyr-project-manager/templates/welcome.php:29
+msgid ""
+"Manage user roles, receive updates and notifications via email and add "
+"comments and discussions to tasks and projects."
+msgstr ""

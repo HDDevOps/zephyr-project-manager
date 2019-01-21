@@ -6,9 +6,7 @@ jQuery(document).ready(function($) {
 	// Initialize
 	function cct_initialize() {
 		var task_loading_ajax = null;
-
 		ZephyrProjects.initialize_calendar();
-
 		$('#zpm_project_color').wpColorPicker();
 		$('#zpm_category_color').wpColorPicker();
 		$('#zpm_colorpicker_primary, #zpm_colorpicker_primary_dark, #zpm_colorpicker_primary_light').wpColorPicker();
@@ -21,7 +19,6 @@ jQuery(document).ready(function($) {
 		$('#zpm_edit_project_end_date').datepicker({dateFormat: 'yy-mm-dd' });
 		$("#zpm_project_due_date").datepicker({dateFormat: 'yy-mm-dd' });
 		$("#zpm_task_due_date").datepicker({dateFormat: 'yy-mm-dd' });
-
 		$('body').append('<div id="zpm_notifcation_holder"></div>');
 	}
 
@@ -65,7 +62,6 @@ jQuery(document).ready(function($) {
 		$('body').find('[data-zpm-tab="' + tab + '"]').addClass('zpm_tab_active');
 	});
 
-
 	/* Upload Profile Picture */
 	var mediaUploader;
 
@@ -76,9 +72,9 @@ jQuery(document).ready(function($) {
 		}
 
 		mediaUploader = wp.media.frames.file_frame = wp.media({
-			title: 'Choose Image',
+			title: zpm_localized.strings.choose_image,
 			button: {
-			text: 'Choose Image'
+			text: zpm_localized.strings.choose_image
 		}, multiple: false });
 
 	    var image_holder = $('.zpm_settings_profile_image');
@@ -103,9 +99,9 @@ jQuery(document).ready(function($) {
 		}
 
 		csvFileUploader = wp.media.frames.file_frame = wp.media({
-			title: 'Select a CSV File',
+			title: zpm_localized.strings.select_csv,
 			button: {
-			text: 'Choose File'
+			text: zpm_localized.strings.choose_file
 		}, multiple: false });
 	  
 		csvFileUploader.on('select', function() {
@@ -125,9 +121,9 @@ jQuery(document).ready(function($) {
 		}
 
 		jsonFileUploader = wp.media.frames.file_frame = wp.media({
-			title: 'Select a JSON File',
+			title: zpm_localized.strings.select_json,
 			button: {
-			text: 'Choose File'
+			text: zpm_localized.strings.choose_file
 		}, multiple: false });
 	  
 		jsonFileUploader.on('select', function() {
@@ -146,13 +142,6 @@ jQuery(document).ready(function($) {
 
 	    image_holder.css('background-image', 'url(' + default_image + ')');
 		image_input.val(default_image);
-	});
-
-
-	/* Modal */
-	// Open modal for user info
-	$('.zpm_avatar_image').on('click', function() {
-		//ZephyrProjects.open_modal('zpm_user_info_modal');
 	});
 
 	/* Charts and Data Vizualization */
@@ -181,7 +170,7 @@ jQuery(document).ready(function($) {
 			    data: {
 			        labels: labels,
 			        datasets: [{
-			            label: 'Tasks Completed',
+			            label: zpm_localized.strings.tasks_completed,
 			            data: [12, 19, 3, 5],
 			            backgroundColor: [
 			                'rgba(255, 99, 132, 0.2)',
@@ -197,7 +186,7 @@ jQuery(document).ready(function($) {
 			            ],
 			            borderWidth: 1
 			        }, {
-			            label: 'Tasks Remaining',
+			            label: zpm_localized.strings.tasks_remaining,
 			            data: [10, 5, 9, 17],
 			            backgroundColor: [
 			                'rgba(255, 99, 132, 0.2)',
@@ -378,7 +367,7 @@ jQuery(document).ready(function($) {
 		var description = $(this).closest('.zpm_project_grid_cell').find('.zpm_project_description').text();
 		var project_link = $(this).attr('href');
 		var project_id = $(this).data('project_id');
-		var buttons = '<a class="zpm_button" href="' + project_link + '">Go to Project</a>';
+		var buttons = '<a class="zpm_button" href="' + project_link + '">' + zpm_localized.strings.go_to_project + '</a>';
 		var data = {
 			project_id: project_id
 		};
@@ -409,7 +398,7 @@ jQuery(document).ready(function($) {
 		$('body').find('#zpm-new-task-template-select').trigger('change');
 		$('body').find('select#zpm_new_task_project').chosen({
 		    disable_search_threshold: 10,
-		    no_results_text: "Oops, no projects found!",
+		    no_results_text: zpm_localized.strings.no_projects_found,
 		    width: "100%"
 		});
 	});
@@ -420,7 +409,7 @@ jQuery(document).ready(function($) {
 		$('body').find('#zpm-new-task-template-select').trigger('change');
 		$('body').find('select#zpm_new_task_project').chosen({
 		    disable_search_threshold: 10,
-		    no_results_text: "Oops, no projects found!",
+		    no_results_text: zpm_localized.strings.no_projects_found,
 		    width: "100%"
 		});
 	});
@@ -459,7 +448,7 @@ jQuery(document).ready(function($) {
 		});
 
 		if (name == '') { 
-			alert('Please enter a name for the task.');
+			alert( zpm_localized.strings.enter_task_name );
 			return; 
 		}
 
@@ -536,7 +525,7 @@ jQuery(document).ready(function($) {
 			});
 		});
 
-		$(this).html('Saving...');
+		$(this).html( zpm_localized.strings.saving );
 
 		ZephyrProjects.update_task({
 			task_id: taskId,
@@ -550,7 +539,7 @@ jQuery(document).ready(function($) {
 			task_project: project_id,
 			team: team
 		}, function(response){
-			$('#zpm_save_changes_task').html('Save Changes');
+			$('#zpm_save_changes_task').html( zpm_localized.strings.save_changes );
 		});
 	});
 
@@ -577,8 +566,6 @@ jQuery(document).ready(function($) {
 
 			ZephyrProjects.complete_task(data, function(response){});
 		}
-		
-		
 	});
 
 	/* Mark a task as complete */
@@ -614,7 +601,7 @@ jQuery(document).ready(function($) {
 		var type = $('body').find('#zpm-project-type').val();
 
 		if (name == '') {
-			$(this).closest('#zpm_project_modal').find('.zpm_project_name_input').after('<span class="zpm_validation_error">Please enter a project name.</span>');
+			$(this).closest('#zpm_project_modal').find('.zpm_project_name_input').after('<span class="zpm_validation_error">' + zpm_localized.strings.enter_project_name + '</span>');
 		} else {
 			ZephyrProjects.close_modal();
 			ZephyrProjects.create_project({
@@ -670,7 +657,7 @@ jQuery(document).ready(function($) {
 		var taskAssignee = quickTaskDataHolder.find('#zpm_quicktask_select_assignee');
 		quickTaskDataHolder.removeClass('active');
 
-		$('body').find('#zpm_quick_task_add').html('Saving task...').addClass('saving');
+		$('body').find('#zpm_quick_task_add').html( zpm_localized.strings.saving ).addClass('saving');
 
 		var data = {
 			task_project: taskProject,
@@ -682,7 +669,7 @@ jQuery(document).ready(function($) {
 
 		ZephyrProjects.create_task(data, function(response){
 			$('body').find('.zpm_task_list').prepend(response.new_task_html);
-			$('body').find('#zpm_quick_task_add').html('Add Task').removeClass('saving');
+			$('body').find('#zpm_quick_task_add').html( zpm_localized.strings.add_task ).removeClass('saving');
 			taskName.val(''); taskDescription.val(''); taskDueDate.val(''); taskAssignee.val('');
 		});
 	});
@@ -702,15 +689,15 @@ jQuery(document).ready(function($) {
 		}
 		if (action == 'show_info') {
 			var file_data = target.data();
-			var html = '<div><label class="zpm_label">File Link</label><p><a class="wppm_link" href="' + file_data.attachmentUrl + '">' + file_data.attachmentUrl + '</a></p><label class="zpm_label">Task</label><p>' + file_data.taskName + '</p><label class="zpm_label">Date Uploaded</label><p>' + file_data.attachmentDate + '</p></div>';
-			zpmNewModal('File Info', file_data.attachmentName, html, '', 'zpm_file_info_modal');
+			var html = '<div><label class="zpm_label">' + zpm_localized.strings.file_link + '</label><p><a class="wppm_link" href="' + file_data.attachmentUrl + '">' + file_data.attachmentUrl + '</a></p><label class="zpm_label">' + zpm_localized.strings.task + '</label><p>' + file_data.taskName + '</p><label class="zpm_label">' + zpm_localized.strings.date_uploaded + '</label><p>' + file_data.attachmentDate + '</p></div>';
+			zpmNewModal( zpm_localized.strings.file_info, file_data.attachmentName, html, '', 'zpm_file_info_modal');
 		}
 		if (action == 'remove_file') {
-			if (confirm('Are you sure you want to delete this file?')) {
+			if (confirm( zpm_localized.strings.delete_file_notice )) {
 				ZephyrProjects.remove_comment({
 					comment_id: target.data('attachment-id'),
 				}, function(){
-					ZephyrProjects.notification('File removed.');
+					ZephyrProjects.notification( zpm_localized.strings.file_removed );
 				});
 				$(this).closest('.zpm_file_item_container').remove();
 			}
@@ -750,31 +737,31 @@ jQuery(document).ready(function($) {
 	// Custom Dropdown
 	$('body').find('#zpm_new_task_assignee').chosen({
 	    disable_search_threshold: 10,
-	    no_results_text: "Oops, no users found.",
+	    no_results_text: zpm_localized.strings.no_users_found,
 	    width: "50%"
 	});
 
 	$('body').find('#zpm_edit_task_assignee').chosen({
 	    disable_search_threshold: 10,
-	    no_results_text: "Oops, no users found.",
+	    no_results_text: zpm_localized.strings.no_users_found,
 	    width: "50%"
 	});
 
 	$('body').find('#zpm_edit_task_assignee').addClass('visible').chosen({
 	    disable_search_threshold: 10,
-	    no_results_text: "Oops, no users found.",
+	    no_results_text: zpm_localized.strings.no_users_found,
 	    width: "100%"
 	});
 
 	$('body').find('#zpm-edit-task-team-selection').addClass('visible').chosen({
 	    disable_search_threshold: 10,
-	    no_results_text: "Oops, no teams found.",
+	    no_results_text: zpm_localized.strings.no_teams_found,
 	    width: "100%"
 	});
 
 	$('body').find('#zpm_edit_task_project').addClass('visible').chosen({
 	    disable_search_threshold: 10,
-	    no_results_text: "Oops, no projects found.",
+	    no_results_text: zpm_localized.strings.no_projects_found,
 	    width: "100%"
 	});
 
@@ -828,7 +815,7 @@ jQuery(document).ready(function($) {
 
     // Task Subtasks
     $('body').on('click', '#zpm_task_add_subtask', function(){
-    	var newSubTask = '<span class="zpm_task_subtask"><input type="text" class="zpm_task_subtask_item" placeholder="New Subtask" value=""/><i class="zpm_delete_subtask_icon dashicons dashicons-no-alt"></i></span>';
+    	var newSubTask = '<span class="zpm_task_subtask"><input type="text" class="zpm_task_subtask_item" placeholder="' + zpm_localized.strings.new_subtask + '" value=""/><i class="zpm_delete_subtask_icon dashicons dashicons-no-alt"></i></span>';
     	$('body').find('#zpm_task_subtasks').append(newSubTask);
     	var lastSubTask = $('body').find('.zpm_task_subtask:last-of-type');
     	var scrollParent = $('body').find('.zpm_modal_content');
@@ -853,31 +840,31 @@ jQuery(document).ready(function($) {
 		var taskId = $(this).closest('.zpm-modal').data('task-id');
 		var baseModal = $(this).closest('.zpm-modal');
 		var taskName = baseModal.find('.zpm_modal_task_name').html();
-		var buttons = '<button id="zpm_copy_task_btn" class="zpm_button">Create New Task</button>';
+		var buttons = '<button id="zpm_copy_task_btn" class="zpm_button">' + zpm_localized.strings.create_new_task + '</button>';
 		
 		var optionsList = [
 			{
-				name: 'Task Description',
+				name: zpm_localized.strings.task_description,
 				default: 'checked',
 				value: 'description'
 			},{
-				name: 'Assignee',
+				name: zpm_localized.strings.assignee,
 				default: 'checked',
 				value: 'assignee'
 			},{
-				name: 'Subtasks',
+				name: zpm_localized.strings.subtasks,
 				default: 'checked',
 				value: 'subtasks'
 			},{
-				name: 'Attachments',
+				name: zpm_localized.strings.attachments,
 				default: '',
 				value: 'attachments'
 			},{
-				name: 'Start Date',
+				name: zpm_localized.strings.start_date,
 				default: 'checked',
 				value: 'start_date'
 			},{
-				name: 'Due Date',
+				name: zpm_localized.strings.due_date,
 				default: 'checked',
 				value: 'due_date',
 			}
@@ -900,10 +887,10 @@ jQuery(document).ready(function($) {
 				'</li>';
 		}
 		var options = options + '</ul>';
-		var content = '<p id="zpm_copy_task_body"><h5 class="zpm_copy_project_title">Include: </h5>' + options + '</p>';
+		var content = '<p id="zpm_copy_task_body"><h5 class="zpm_copy_project_title">' + zpm_localized.strings.include + ': </h5>' + options + '</p>';
 
 		ZephyrProjects.close_modal();
-		zpmNewModal('Copy Task', '<input id="zpm_copy_task_name" value="Copy of ' + $.trim(taskName) + '" placeholder="Task Name" />', content, buttons, 'zpm_copy_task_modal', taskId);
+		zpmNewModal( zpm_localized.strings.copy_task, '<input id="zpm_copy_task_name" value="' + zpm_localized.strings.copy_of + ' ' + $.trim(taskName) + '" placeholder="' + zpm_localized.strings.task_name + '" />', content, buttons, 'zpm_copy_task_modal', taskId);
     	ZephyrProjects.open_modal('zpm_copy_task_modal');
 	}); 
 
@@ -938,27 +925,27 @@ jQuery(document).ready(function($) {
 	$('body').on('click', '#zpm_copy_project', function(){
 		var projectId = $(this).closest('.zpm_project_item').data('project-id');
 		var projectName = $(this).closest('.zpm_project_item').find('.zpm_project_grid_name').html();
-		var buttons = '<button id="zpm_copy_project_btn" class="zpm_button">Create New Project</button>';
+		var buttons = '<button id="zpm_copy_project_btn" class="zpm_button">' + zpm_localized.strings.create_new_project + '</button>';
 		
 		var optionsList = [
 			{
-				name: 'Description',
+				name: zpm_localized.strings.description,
 				default: 'checked',
 				value: 'description'
 			},{
-				name: 'Tasks',
+				name: zpm_localized.strings.tasks,
 				default: 'checked',
 				value: 'tasks'
 			},{
-				name: 'Attachments',
+				name: zpm_localized.strings.attachments,
 				default: 'checked',
 				value: 'attachments'
 			},{
-				name: 'Start Date',
+				name: zpm_localized.strings.start_date,
 				default: 'checked',
 				value: 'start_date'
 			},{
-				name: 'Due Date',
+				name: zpm_localized.strings.due_date,
 				default: 'checked',
 				value: 'due_date',
 			}
@@ -981,10 +968,10 @@ jQuery(document).ready(function($) {
 						'</li>';
 		}
 		var options = options + '</ul>';
-		var content = '<p id="zpm_copy_project_body"><h5>Include: </h5>' + options + '</p>';
+		var content = '<p id="zpm_copy_project_body"><h5>' + zpm_localized.strings.include + ': </h5>' + options + '</p>';
 
 		ZephyrProjects.close_modal();
-		zpmNewModal('Copy Project', '<input id="zpm_copy_project_name" value="Copy of ' + $.trim(projectName) + '" placeholder="Project Name" />', content, buttons, 'zpm_copy_project_modal', projectId, '', projectId);
+		zpmNewModal( zpm_localized.strings.copy_project, '<input id="zpm_copy_project_name" value="' + zpm_localized.strings.copy_of + ' ' + $.trim(projectName) + '" placeholder="' + zpm_localized.strings.project_name + '" />', content, buttons, 'zpm_copy_project_modal', projectId, '', projectId);
     	ZephyrProjects.open_modal('zpm_copy_project_modal');
 	}); 
 
@@ -1019,19 +1006,19 @@ jQuery(document).ready(function($) {
 		var taskId = $(this).closest('.zpm-modal').data('task-id');
 		var baseModal = $(this).closest('.zpm-modal');
 		var taskName = baseModal.find('.zpm_modal_task_name').html();
-		var buttons = '<button id="zpm_convert_task_btn" class="zpm_button">Convert Task</button>';
+		var buttons = '<button id="zpm_convert_task_btn" class="zpm_button">' + zpm_localized.strings.convert_task + '</button>';
 		
 		var optionsList = [
 			{
-				name: 'Task Description as Project Description',
+				name: zpm_localized.strings.task_description_as_description,
 				default: 'checked',
 				value: 'description'
 			},{
-				name: 'Subtasks as Project Tasks',
+				name: zpm_localized.strings.subtasks_as_tasks,
 				default: 'checked',
 				value: 'subtasks'
 			},{
-				name: 'Assignee as Project creator',
+				name: zpm_localized.strings.assignee_as_creator,
 				default: 'checked',
 				value: 'assignee'
 			}
@@ -1054,10 +1041,10 @@ jQuery(document).ready(function($) {
 						'</li>';
 		}
 		var options = options + '</ul>';
-		var content = '<p id="zpm_convert_task_body"><h5>Include: </h5>' + options + '</p>';
+		var content = '<p id="zpm_convert_task_body"><h5>' + zpm_localized.strings.include + ': </h5>' + options + '</p>';
 
 		ZephyrProjects.close_modal();
-		zpmNewModal('Convert Task to Project', '<input id="zpm_convert_task_name" value="Project: ' + $.trim(taskName) + '" placeholder="Project Name" />', content, buttons, 'zpm_convert_task_modal', taskId);
+		zpmNewModal( zpm_localized.strings.convert_to_project, '<input id="zpm_convert_task_name" value="' + zpm_localized.strings.project + ': ' + $.trim(taskName) + '" placeholder="' + zpm_localized.strings.project_name + '" />', content, buttons, 'zpm_convert_task_modal', taskId);
     	ZephyrProjects.open_modal('zpm_convert_task_modal');
 	}); 
 
@@ -1187,7 +1174,7 @@ jQuery(document).ready(function($) {
 		}
 
 		$(this).closest('.zpm_custom_dropdown').find('.zpm_selected_option').html(option);
-		zpm_loader_modal('Loading tasks...');
+		zpm_loader_modal( zpm_localized.strings.loading_tasks );
 
 		var data = {
 			zpm_filter: filter,
@@ -1210,7 +1197,7 @@ jQuery(document).ready(function($) {
 	function zpm_import_tasks(attachment) {
 		if (attachment.mime == 'text/csv') {
 			ZephyrProjects.close_modal();
-			zpmNewModal('Import Tasks', 'Importing via CSV', '<div id="zpm_csv_task_import_data"></div>', '<button data-zpm-trigger="close_modal" class="zpm_button zpm_button_borderless" id="zpm_import_csv_data_btn">Close</button>', 'zpm_import_csv_data_modal');
+			zpmNewModal( zpm_localized.strings.import_tasks, zpm_localized.strings.importing_via_csv, '<div id="zpm_csv_task_import_data"></div>', '<button data-zpm-trigger="close_modal" class="zpm_button zpm_button_borderless" id="zpm_import_csv_data_btn">' + zpm_localized.strings.close + '</button>', 'zpm_import_csv_data_modal');
 	    	ZephyrProjects.open_modal('zpm_import_csv_data_modal');
 
 			var data = {
@@ -1220,10 +1207,10 @@ jQuery(document).ready(function($) {
 
 			ZephyrProjects.upload_tasks(data, function(response){
 				var length = (response.tasks.length - 1);
-				var output = '<h5>Imported ' + length + ' tasks:</h5><ul id="zpm_csv_task_list">';
+				var output = '<h5>' + zpm_localized.strings.importing + ' ' + length + ' ' + zpm_localized.strings.tasks + ':</h5><ul id="zpm_csv_task_list">';
 				for (var i = 1; i < response.tasks.length; i++) {
 					var uploaded = (response.tasks[i].already_uploaded) ? 'zpm_task_exists' : '';
-					var task_exists = (response.tasks[i].already_uploaded) ? 'Task already exists: ' : '';
+					var task_exists = (response.tasks[i].already_uploaded) ? zpm_localized.strings.task_exists + ': ' : '';
 					output = output + '<li  class="zpm_imported_task ' + uploaded + '">' + task_exists + response.tasks[i].name + ' ' + response.tasks[i].description + ' (' + response.tasks[i].project + ')</li>';
 				}
 				output = output + '</ul>';
@@ -1233,7 +1220,7 @@ jQuery(document).ready(function($) {
 
 		} else if (attachment.mime == 'application/json') {
 			ZephyrProjects.close_modal();
-			zpmNewModal('Import Tasks', 'Importing via JSON', '<div id="zpm_json_task_import_data"></div>', '<button data-zpm-trigger="close_modal" class="zpm_button zpm_button_borderless" id="zpm_import_json_data_btn">Close</button>', 'zpm_import_json_data_modal');
+			zpmNewModal( zpm_localized.strings.import_tasks, zpm_localized.strings.importing_via_json, '<div id="zpm_json_task_import_data"></div>', '<button data-zpm-trigger="close_modal" class="zpm_button zpm_button_borderless" id="zpm_import_json_data_btn">' + zpm_localized.strings.close + '</button>', 'zpm_import_json_data_modal');
 	    	ZephyrProjects.open_modal('zpm_import_json_data_modal');
 
 	    	var data = {
@@ -1243,10 +1230,10 @@ jQuery(document).ready(function($) {
 
 			ZephyrProjects.upload_tasks(data, function(response){
 				var length = (response.tasks.length - 1);
-				var output = '<h5>Imported ' + length + ' tasks:</h5><ul id="zpm_json_task_list">';
+				var output = '<h5>' + zpm_localized.strings.importing + ' ' + length + ' ' + zpm_localized.strings.tasks + ':</h5><ul id="zpm_json_task_list">';
 				for (var i = 0; i < response.tasks.length; i++) {
 					var uploaded = (response.tasks[i].already_uploaded) ? 'zpm_task_exists' : '';
-					var task_exists = (response.tasks[i].already_uploaded) ? 'Task already exists: ' : '';
+					var task_exists = (response.tasks[i].already_uploaded) ? zpm_localized.strings.task_exists + ': ' : '';
 					output = output + '<li class="zpm_imported_task ' + uploaded + '">' + task_exists + response.tasks[i].name + ' ' + response.tasks[i].description + ' (' + response.tasks[i].project + ')</li>';
 				}
 				output = output + '</ul>';
@@ -1254,7 +1241,7 @@ jQuery(document).ready(function($) {
 				$('.zpm_task_list').prepend(response.html);
 			});
 		} else {
-			alert('It appears that you have not uploaded a CSV file or a JSON file. Please make sure that the file format is correct and try again.');
+			alert( zpm_localized.strings.incorrect_import );
 		}
 	}
 
@@ -1279,7 +1266,7 @@ jQuery(document).ready(function($) {
 			var checked = $(this).is(':checked');
 			var category_id = $(this).data('category-id');
 			if (checked) {
-				categories.push(category_id);
+				categories.push( category_id );
 			}
 		});
 
@@ -1293,14 +1280,14 @@ jQuery(document).ready(function($) {
 		}
 
 		ZephyrProjects.update_project(data, function(response){
-			$('#zpm_project_name_title').html(name);
-			$('#zpm_project_save_settings').html('Save Changes');
+			$('#zpm_project_name_title').html( name );
+			$('#zpm_project_save_settings').html( zpm_localized.strings.save_changes );
 		});
 	});
 
 	// Delete project
 	$('body').on('click', '#zpm_delete_project', function(){
-		if (confirm('Are you sure you want to permanently delete this project and all its tasks?')) {
+		if (confirm( zpm_localized.strings.delete_project_notice )) {
 			$(this).closest('.zpm_project_grid_cell').remove();
 			var project_id = $(this).closest('.zpm_project_item').data('project-id');
 			var project_name = $(this).closest('.zpm_project_title').find('.zpm_project_grid_name').text();
@@ -1311,7 +1298,7 @@ jQuery(document).ready(function($) {
 			}, function(response){
 				if (response.project_count == 0) {
 					$('body').find('#zpm_project_manager_display').addClass('zpm_hide');
-					$('body').find('#zpm_projects_holder').append('<div class="zpm_no_results_message">No projects created yet. To create a project, click on the \'Add\' button at the top right of the screen or click <a id="zpm_first_project" class="zpm_button_link">here</a></div>');
+					$('body').find('#zpm_projects_holder').append('<div class="zpm_no_results_message">' + zpm_localized.strings.no_projects_created + '</div>');
 				}
 			});
 		}
@@ -1419,8 +1406,8 @@ jQuery(document).ready(function($) {
 			});
 		});
 
-		if ($(this).text() == 'Comment') {
-			$(this).html('Sending...');
+		if ($(this).text() == zpm_localized.strings.comment) {
+			$(this).html(zpm_localized.strings.sending);
 		}
 		
 		$(this).addClass('zpm_message_sending');
@@ -1435,8 +1422,8 @@ jQuery(document).ready(function($) {
 		};
 
 		ZephyrProjects.send_comment(data, function(response){
-			if ($('#zpm_task_chat_comment').text() == 'Sending...') {
-				$('#zpm_task_chat_comment').html('Comment');
+			if ($('#zpm_task_chat_comment').text() == zpm_localized.strings.sending) {
+				$('#zpm_task_chat_comment').html( zpm_localized.strings.comment );
 			}
 			$('#zpm_task_chat_comment').removeClass('zpm_message_sending');
 			$('body').find('.zpm_task_comments').prepend(response.html);
@@ -1455,9 +1442,9 @@ jQuery(document).ready(function($) {
 		}
 
 		zpm_file_uploader = wp.media.frames.file_frame = wp.media({
-			title: 'Files',
+			title: zpm_localized.strings.files,
 			button: {
-			text: 'Upload Files'
+			text: zpm_localized.strings.upload_file
 		}, multiple: false });
 
 		zpm_file_uploader.on('select', function() {
@@ -1479,9 +1466,9 @@ jQuery(document).ready(function($) {
 		}
 
 		file_uploader = wp.media.frames.file_frame = wp.media({
-			title: 'Files',
+			title: zpm_localized.strings.files,
 			button: {
-			text: 'Upload Files'
+			text: zpm_localized.strings.upload_file
 		}, multiple: false });
 
 		file_uploader.on('select', function() {
@@ -1511,12 +1498,12 @@ jQuery(document).ready(function($) {
 		}
 
 		ZephyrProjects.remove_comment(data, function(){
-			ZephyrProjects.notification('Message removed.');
+			ZephyrProjects.notification( zpm_localized.strings.message_removed );
 		});
 	});
 
 	function upload_attachment( attachment_id, attachment_type, subject_id ) {
-		ZephyrProjects.notification( 'Uploading file...' );
+		ZephyrProjects.notification( zpm_localized.strings.uploading_file );
 		var attachment_type = (typeof attachment_type !== 'undefined') ? attachment_type : '';
 		var subject_id = (typeof subject_id !== 'undefined') ? subject_id : '';
 		var attachments = [{
@@ -1530,7 +1517,7 @@ jQuery(document).ready(function($) {
 
 		ZephyrProjects.send_comment(data, function(response){
 			$('body').find('.zpm_files_container').prepend(response.html);
-			ZephyrProjects.notification( 'File uploaded.' );
+			ZephyrProjects.notification( zpm_localized.strings.file_uploaded );
 		});
 	}
 
@@ -1549,15 +1536,15 @@ jQuery(document).ready(function($) {
 		}
 		$('body').find('#zpm_new_subtask_name').val('');
 		ZephyrProjects.close_modal();
-		ZephyrProjects.notification('Creating subtask...');
+		ZephyrProjects.notification( zpm_localized.strings.creating_subtask );
 
 		ZephyrProjects.update_subtasks(data, function(response){
-			ZephyrProjects.notification('Subtask saved');
+			ZephyrProjects.notification( zpm_localized.strings.subtask_saved );
 			var new_subtask = '<li class="zpm_subtask_item" data-zpm-subtask="' + response.id + '">' +
 								'<input type="checkbox" class="zpm_subtask_is_done" data-task-id="' + response.id + '"/>' +
 								'<span class="zpm_subtask_name">' + response.name + '</span>' +
-								'<span data-zpm-subtask-id="' + response.id + '" class="zpm_update_subtask">Save Changes</span>' +
-								'<span data-zpm-subtask-id="' + response.id + '" class="zpm_delete_subtask">Delete</span>' +
+								'<span data-zpm-subtask-id="' + response.id + '" class="zpm_update_subtask">' + zpm_localized.strings.save_changes + '</span>' +
+								'<span data-zpm-subtask-id="' + response.id + '" class="zpm_delete_subtask">' + zpm_localized.strings.delete + '</span>' +
 							'</li>';
 			var subtask_list = $('body').find('#zpm_subtask_list');
 			subtask_list.append(new_subtask);
@@ -1575,7 +1562,7 @@ jQuery(document).ready(function($) {
 		}
 
 		ZephyrProjects.update_subtasks(data, function(response){
-			ZephyrProjects.notification('Subtask deleted');
+			ZephyrProjects.notification( zpm_localized.strings.subtask_deleted );
 		});
 	});
 
@@ -1606,7 +1593,7 @@ jQuery(document).ready(function($) {
 		$(this).removeClass('is_active');
 
 		ZephyrProjects.update_subtasks(data, function(response){
-			ZephyrProjects.notification('Changes saved successfully.');
+			ZephyrProjects.notification( zpm_localized.strings.changes_saved );
 		});
 	});
 
@@ -1646,7 +1633,7 @@ jQuery(document).ready(function($) {
 		var color = $(this).closest('#zpm_new_category_modal').find('#zpm_category_color').val();
 		if (name == '') { return; }
 
-		ZephyrProjects.notification( 'Creating category.' );
+		ZephyrProjects.notification( zpm_localized.strings.creating_category );
 		ZephyrProjects.close_modal();
 		$(this).closest('#zpm_new_category_modal').find('#zpm_category_name').val('');
 		$(this).closest('#zpm_new_category_modal').find('#zpm_category_description').val('');
@@ -1666,8 +1653,8 @@ jQuery(document).ready(function($) {
 	$('body').on('click', '.zpm_delete_category', function(){
 		var category_id = $(this).data('category-id');
 
-		if (confirm('Are you sure you want to permanently delete this category?')) {
-			ZephyrProjects.notification('Deleting category...');
+		if (confirm( zpm_localized.strings.delete_category_notice )) {
+			ZephyrProjects.notification( zpm_localized.strings.deleting_category );
 			ZephyrProjects.remove_category({
 				id: category_id
 			}, function(response){
@@ -1712,7 +1699,7 @@ jQuery(document).ready(function($) {
 			return;
 		}
 
-		ZephyrProjects.notification( 'Saving changes...' );
+		ZephyrProjects.notification( zpm_localized.string.saving_changes );
 		ZephyrProjects.close_modal();
 		ZephyrProjects.update_category(data, function(response){
 			$('.zpm_category_list').html(response);
@@ -1802,8 +1789,8 @@ jQuery(document).ready(function($) {
 
     var zpm_chart_data = {
 	    labels: [
-	        "Completed Projects",
-	        "Pending Projects"
+	        zpm_localized.strings.completed_projects,
+	        zpm_localized.strings.pending_projects
 	    ],
 	    datasets: [
 	        {
@@ -1835,7 +1822,7 @@ jQuery(document).ready(function($) {
 		});
 	}
 
-	function zpm_loader_modal(message) {
+	function zpm_loader_modal( message ) {
 		var html = '<div id="zpm_loader_modal" class="zpm-modal active">' + message + '</div>';
 		if ($('body').find('#zpm_loader_modal').length > 0) {
 			zpm_close_loader_modal();
@@ -1908,7 +1895,7 @@ jQuery(document).ready(function($) {
 	project_selector.on('change', function(){
 		var project_id = $(this).val();
 		zpm_update_project_progress( project_id );
-		zpm_loader_modal('Loading progress...');
+		zpm_loader_modal(zpm_localized.strings.loading_progress);
 	});
 
 	// Quick Menu
@@ -2124,9 +2111,11 @@ jQuery(document).ready(function($) {
 
 		ZephyrProjects.open_modal('zpm-edit-team-modal');
 
+		$('body').find('#zpm-modal-loader-edit-team').show();
 		ZephyrProjects.getTeam({ 
 			id: id
 		}, function(res) {
+			$('body').find('#zpm-modal-loader-edit-team').hide();
 			teamName.val(res.name);
 			teamDescription.val(res.description);
 			$.each(res.members, function(key, val) {
@@ -2141,7 +2130,7 @@ jQuery(document).ready(function($) {
 		let id = $(this).data('team-id');
 		let container = $(this).closest('.zpm_team_member');
 
-		ZephyrProjects.confirm('Are you sure you want to delete this team? This action cannot be undone.', function(){
+		ZephyrProjects.confirm(zpm_localized.strings.delete_team_notice, function(){
 			container.remove();
 			ZephyrProjects.deleteTeam({ 
 				id: id

@@ -126,7 +126,7 @@
 		<div id="zpm_email_container">
 			
 			<div id="zpm_email_title">
-				<h2 class="zpm_email_header">Due Tasks</h2>
+				<h2 class="zpm_email_header"><?php _e( 'Due Tasks', 'zephyr-project-manager' ); ?></h2>
 			</div>
 
 			<div id="zpm_email_body">
@@ -138,8 +138,8 @@
 			</div>
 
 		<div id="zpm_after_email">
-			<a class="zpm_after_email_link" href="">View tasks in WordPress</a> | 
-			<a class="zpm_after_email_link" href="">Unfollow</a>
+			<a class="zpm_after_email_link" href=""><?php _e( 'View Tasks in WordPress', 'zephyr-project-manager' ); ?></a> | 
+			<a class="zpm_after_email_link" href=""><?php _e( 'Unfollow', 'zephyr-project-manager' ); ?></a>
 		</div>
 	</body>
 </html>
