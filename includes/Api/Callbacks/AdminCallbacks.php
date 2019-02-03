@@ -61,6 +61,15 @@ class AdminCallbacks extends Projects {
 		return require_once( ZPM_PLUGIN_PATH . '/templates/premium.php' );
 	}
 
+	public function devicesPage() {
+		return require_once( ZPM_PLUGIN_PATH . '/templates/devices.php' );
+	}
+
+	public function ganttPage() {
+		return require_once( ZPM_PLUGIN_PATH . '/templates/gantt.php' );
+	}
+
+
 	/**
 	* Loads the template file for the ZPM header
 	* @param string $page_title The main title for the page

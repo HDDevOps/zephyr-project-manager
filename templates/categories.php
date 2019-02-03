@@ -28,10 +28,17 @@
 <!-- Edit Category modal -->
 <div id="zpm_edit_category_modal" class="zpm-modal">
 	<div class="zpm_edit_category" data-category-id="">
-		<label class="zpm_label" for="zpm_edit_category_name"><?php _e( 'Name', 'zephyr-project-manager' ); ?></label>
-		<input type="text" id="zpm_edit_category_name" class="zpm_input">
-		<label class="zpm_label" for="zpm_edit_category_description"><?php _e( 'Description', 'zephyr-project-manager' ); ?></label>
-		<textarea type="text" id="zpm_edit_category_description" class="zpm_input"></textarea>
+	
+		<div class="zpm-form__group">
+			<input type="text" name="zpm_edit_category_name" id="zpm_edit_category_name" class="zpm-form__field" placeholder="<?php _e( 'Name', 'zephyr-project-manager' ); ?>">
+			<label for="zpm_edit_category_name" class="zpm-form__label"><?php _e( 'Name', 'zephyr-project-manager' ); ?></label>
+		</div>
+
+		<div class="zpm-form__group">
+			<textarea type="text" name="zpm_edit_category_description" id="zpm_edit_category_description" class="zpm-form__field" placeholder="<?php _e( 'Description', 'zephyr-project-manager' ); ?>"></textarea>
+			<label for="zpm_edit_category_description" class="zpm-form__label"><?php _e( 'Description', 'zephyr-project-manager' ); ?></label>
+		</div>
+		
 		<label class="zpm_label" for="zpm_edit_category_color"><?php _e( 'Color', 'zephyr-project-manager' ); ?></label>
 		<input type="text" id="zpm_edit_category_color" class="zpm_input">
 	</div>

@@ -62,7 +62,7 @@
 						<?php $edit_url = esc_url(admin_url('/admin.php?page=zephyr_project_manager_teams_members')) . '&action=edit_member&user_id=' . $user->data->ID; ?>
 
 						<a class="zpm_team_member <?php echo $can_zephyr == "true" ? 'zpm-user-can-zephyr' : ''; ?>" <?php echo current_user_can( 'administrator' ) ? "href='" . $edit_url . "'" : ''; ?>>
-							<div class="zpm_member_details">
+							<div class="zpm_member_details" data-ripple="rgba(0,0,0,0.1)">
 								
 								<span class="zpm_avatar_image" style="background-image: url(<?php echo $avatar; ?>);"></span>
 								<span class="zpm_member_name"><?php echo $user->data->display_name; ?></span>
@@ -130,8 +130,16 @@
 
 <div id="zpm-new-team-modal" class="zpm-modal">
 	<h3 class="zpm-modal-title"><?php _e( 'New Team', 'zephyr-project-manager' ); ?></h3>
-	<input type="text" id="zpm-new-team-name" class="zpm_input" placeholder="<?php _e( 'Team Name', 'zephyr-project-manager' ); ?>">
-	<textarea id="zpm-new-team-description" class="zpm_input" placeholder="<?php _e( 'Team Description', 'zephyr-project-manager' ); ?>"></textarea>
+
+	<div class="zpm-form__group">
+		<input type="text" name="zpm-new-team-name" id="zpm-new-team-name" class="zpm-form__field" placeholder="<?php _e( 'Team Name', 'zephyr-project-manager' ); ?>">
+		<label for="zpm-new-team-name" class="zpm-form__label"><?php _e( 'Team Name', 'zephyr-project-manager' ); ?></label>
+	</div>
+
+	<div class="zpm-form__group">
+		<textarea type="text" name="zpm-new-team-description" id="zpm-new-team-description" class="zpm-form__field" placeholder="<?php _e( 'Team Description', 'zephyr-project-manager' ); ?>"></textarea>
+		<label for="zpm-new-team-description" class="zpm-form__label"><?php _e( 'Team Description', 'zephyr-project-manager' ); ?></label>
+	</div>
 
 	<ul class="zpm-new-team-member-list">
 		<?php foreach ($all_members as $member) : ?>
@@ -159,8 +167,16 @@
 	</div>
 
 	<h3 class="zpm-modal-title"><?php _e( 'Edit Team', 'zephyr-project-manager' ); ?></h3>
-	<input type="text" id="zpm-edit-team-name" class="zpm_input" placeholder="<?php _e( 'Team Name', 'zephyr-project-manager' ); ?>">
-	<textarea id="zpm-edit-team-description" class="zpm_input" placeholder="<?php _e( 'Team Description', 'zephyr-project-manager' ); ?>"></textarea>
+
+	<div class="zpm-form__group">
+		<input type="text" name="zpm-edit-team-name" id="zpm-edit-team-name" class="zpm-form__field" placeholder="<?php _e( 'Team Name', 'zephyr-project-manager' ); ?>">
+		<label for="zpm-edit-team-name" class="zpm-form__label"><?php _e( 'Team Name', 'zephyr-project-manager' ); ?></label>
+	</div>
+
+	<div class="zpm-form__group">
+		<input type="text" name="zpm-edit-team-description" id="zpm-edit-team-description" class="zpm-form__field" placeholder="<?php _e( 'Team Description', 'zephyr-project-manager' ); ?>">
+		<label for="zpm-edit-team-description" class="zpm-form__label"><?php _e( 'Team Description', 'zephyr-project-manager' ); ?></label>
+	</div>
 
 	<input type="hidden" id="zpm-edit-team-id" />
 

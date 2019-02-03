@@ -82,15 +82,26 @@
 <div id="zpm_project_editor" class="zpm_body <?php echo 'project-type-' . $project->type; ?>" data-project-id="<?php echo $project->id; ?>">
 	<!-- Project Overview / Editing -->
 	<div class="zpm_tab_pane zpm_tab_active" data-zpm-tab="1">
-		<label class="zpm_label" for="zpm_edit_project_name"><?php _e( 'Project Name', 'zephyr-project-manager' ); ?></label>
-		<input type="text" id="zpm_edit_project_name" class="zpm_input" name="zpm_edit_project_name" value="<?php echo $project->name; ?>" />
-		<label class="zpm_label" for="zpm_edit_project_description"><?php _e( 'Project Description', 'zephyr-project-manager' ); ?></label>
-		<textarea id="zpm_edit_project_description" class="zpm_input" name="zpm_edit_project_description"><?php echo $project->description; ?></textarea>
 
-		<label class="zpm_label" for="zpm_edit_project_start_date"><?php _e( 'Start Date', 'zephyr-project-manager' ); ?></label>
-		<input type="text" id="zpm_edit_project_start_date" placeholder="<?php _e( 'Start Date', 'zephyr-project-manager' ); ?>"  class="zpm_input" value="<?php echo $project->date_start; ?>"/>
-		<label class="zpm_label" for="zpm_edit_project_due_date"><?php _e( 'Due Date', 'zephyr-project-manager' ); ?></label>
-		<input type="text" id="zpm_edit_project_due_date" placeholder="<?php _e( 'Due Date', 'zephyr-project-manager' ); ?>" class="zpm_input" value="<?php echo $project->date_due; ?>"/>
+		<div class="zpm-form__group">
+			<input type="text" name="zpm_edit_project_name" id="zpm_edit_project_name" class="zpm-form__field" placeholder="<?php _e( 'Project Name', 'zephyr-project-manager' ); ?>" value="<?php echo $project->name; ?>">
+			<label for="zpm_edit_project_name" class="zpm-form__label"><?php _e( 'Project Name', 'zephyr-project-manager' ); ?></label>
+		</div>
+
+		<div class="zpm-form__group">
+			<textarea name="zpm_edit_project_description" id="zpm_edit_project_description" class="zpm-form__field" placeholder="<?php _e( 'Project Description', 'zephyr-project-manager' ); ?>"><?php echo $project->description; ?></textarea>
+			<label for="zpm_edit_project_description" class="zpm-form__label"><?php _e( 'Project Description', 'zephyr-project-manager' ); ?></label>
+		</div>
+
+		<div class="zpm-form__group">
+			<input type="text" name="zpm_edit_project_start_date" id="zpm_edit_project_start_date" class="zpm-form__field" placeholder="<?php _e( 'Start Date', 'zephyr-project-manager' ); ?>" value="<?php echo $project->date_start; ?>">
+			<label for="zpm_edit_project_start_date" class="zpm-form__label"><?php _e( 'Start Date', 'zephyr-project-manager' ); ?></label>
+		</div>
+
+		<div class="zpm-form__group">
+			<input type="text" name="zpm_edit_project_due_date" id="zpm_edit_project_due_date" class="zpm-form__field" placeholder="<?php _e( 'Due Date', 'zephyr-project-manager' ); ?>" value="<?php echo $project->date_due; ?>">
+			<label for="zpm_edit_project_due_date" class="zpm-form__label"><?php _e( 'Due Date', 'zephyr-project-manager' ); ?></label>
+		</div>
 
 		<div class="zpm_project_editor_categories">
 			<label class="zpm_label"><?php _e( 'Categories', 'zephyr-project-manager' ); ?></label>
@@ -108,7 +119,7 @@
 			<?php foreach ($categories as $category) : ?>
 				<?php $checked = (is_array($assigned_categories) && in_array($category->id, $assigned_categories) ? 'checked' : ''); ?>
 				<div class="zpm_category_item">
-					<label for="category-edit-<?php echo $category->id; ?>" class="zpm_checkbox_label">
+					<!-- <label for="category-edit-<?php echo $category->id; ?>" class="zpm_checkbox_label">
 						<input type="checkbox" id="category-edit-<?php echo $category->id; ?>" name="zpm_project_edit_category[]" class="zpm_project_edit_categories zpm_toggle" data-category-id="<?php echo $category->id; ?>" value="1" <?php echo $checked; ?>/>
 						<div class="zpm_main_checkbox">
 							<svg width="20px" height="20px" viewBox="0 0 20 20">
@@ -116,7 +127,13 @@
 								<polyline points="4 11 8 15 16 6"></polyline>
 							</svg>
 						</div>
+					</label> -->
+
+					<label for="category-edit-<?php echo $category->id; ?>" class="zpm-material-checkbox">
+						<input type="checkbox" id="category-edit-<?php echo $category->id; ?>" name="category-edit-<?php echo $category->id; ?>" class="zpm_project_edit_categories zpm_toggle invisible" data-category-id="<?php echo $category->id; ?>" value="1" <?php echo $checked; ?>>
+						<span class="zpm-material-checkbox-label"></span>
 					</label>
+
 					<div class="zpm_category_name"><?php echo $category->name; ?></div>
 				</div>
 				<?php $i++; ?>
@@ -144,7 +161,7 @@
 
 	<div id="zpm_project_view_discussion" class="zpm_tab_pane" data-zpm-tab="3">
 		<h4 class="zpm_panel_heading"><?php _e( 'Comments', 'zephyr-project-manager' ); ?></h4>
-		<div class="zpm_task_comments">
+		<div class="zpm_task_comments" data-project-id="<?php echo $project->id; ?>">
 			<?php $comments = Projects::get_comments( $project->id ); ?>
 			<?php foreach($comments as $comment) : ?>
 				<?php echo Projects::new_comment($comment); ?>

@@ -73,86 +73,58 @@
 				<input type="hidden" id="zpm_profile_picture_hidden" name="zpm_profile_picture" value="<?php echo $settings_profile_picture; ?>" />
 				<input type="hidden" id="zpm_gravatar" value="<?php echo get_avatar_url($user_id); ?>" />
 
-				<label class="zpm_label"><?php _e( 'Name', 'zephyr-project-manager' ); ?></label>
-				<input type="text" class="zpm_input" name="zpm_settings_name" value="<?php echo $settings_name; ?>" placeholder="<?php _e( 'Name', 'zephyr-project-manager' ); ?>" />
+				<div class="zpm-form__group">
+					<input type="text" name="zpm_settings_name" id="zpm_settings_name" class="zpm-form__field" placeholder="<?php _e( 'Name', 'zephyr-project-manager' ); ?>" value="<?php echo $settings_name; ?>">
+					<label for="zpm_settings_name" class="zpm-form__label"><?php _e( 'Name', 'zephyr-project-manager' ); ?></label>
+				</div>
 
-				<label class="zpm_label"><?php _e( 'Description', 'zephyr-project-manager' ); ?></label>
-					<textarea name="zpm_settings_description" class="zpm_input" placeholder="<?php _e( 'Description', 'zephyr-project-manager' ); ?>"><?php echo $settings_description; ?></textarea>
+				<div class="zpm-form__group">
+					<textarea type="text" name="zpm_settings_description" id="zpm_settings_description" class="zpm-form__field" placeholder="<?php _e( 'Description', 'zephyr-project-manager' ); ?>"><?php echo $settings_description; ?></textarea>
+					<label for="zpm_settings_description" class="zpm-form__label"><?php _e( 'Description', 'zephyr-project-manager' ); ?></label>
+				</div>
 
-				<label class="zpm_label"><?php _e( 'Email Address', 'zephyr-project-manager' ); ?></label>
-				<input type="text" class="zpm_input" name="zpm_settings_email" value="<?php echo $settings_email; ?>" placeholder="<?php _e( 'Email Address', 'zephyr-project-manager' ); ?>"/>
+				<div class="zpm-form__group">
+					<input type="text" name="zpm_settings_email" id="zpm_settings_email" class="zpm-form__field" placeholder="<?php _e( 'Email Address', 'zephyr-project-manager' ); ?>" value="<?php echo $settings_email; ?>">
+					<label for="zpm_settings_email" class="zpm-form__label"><?php _e( 'Email Address', 'zephyr-project-manager' ); ?></label>
+				</div>
+
+				<label class="zpm_label"><?php _e( 'Hide WordPress Dashboard Widgets', 'zephyr-project-manager' ); ?></label>
+
+				<label for="zpm-hide-dashboard-widgets" class="zpm-material-checkbox">
+					<input type="checkbox" id="zpm-hide-dashboard-widgets" name="zpm-hide-dashboard-widgets" class="zpm_toggle invisible" value="1" <?php echo isset( $settings['hide_dashboard_widgets'] ) && $settings['hide_dashboard_widgets'] == true ? 'checked' : '';  ?>>
+					<span class="zpm-material-checkbox-label"><?php _e( 'Hidden', 'zephyr-project-manager' ); ?></span>
+				</label>
 
 				<label class="zpm_label"><?php _e( 'Email Notifications', 'zephyr-project-manager' ); ?></label>
-					<div class="zpm_settings_notification">
-						<label for="zpm_notifications_activity" class="zpm_checkbox_label">
-							<input type="checkbox" id="zpm_notifications_activity" name="zpm_notify_activity" class="zpm_project_edit_categories zpm_toggle invisible" value="1" <?php echo $settings_notifications['activity']; ?>>
-							<div class="zpm_main_checkbox">
-								<svg width="20px" height="20px" viewBox="0 0 20 20">
-									<path d="M3,1 L17,1 L17,1 C18.1045695,1 19,1.8954305 19,3 L19,17 L19,17 C19,18.1045695 18.1045695,19 17,19 L3,19 L3,19 C1.8954305,19 1,18.1045695 1,17 L1,3 L1,3 C1,1.8954305 1.8954305,1 3,1 Z"></path>
-									<polyline points="4 11 8 15 16 6"></polyline>
-								</svg>
-							</div>
-							<?php _e( 'All Activity', 'zephyr-project-manager' ); ?>
-					    </label>
-					</div>
 
-					<div class="zpm_settings_notification">
-						<label for="zpm_notifications_reminders" class="zpm_checkbox_label">
-							<input type="checkbox" id="zpm_notifications_reminders" name="zpm_notify_tasks" class="zpm_project_edit_categories zpm_toggle invisible" value="1" <?php echo $settings_notifications['tasks']; ?>>
-							<div class="zpm_main_checkbox">
-								<svg width="20px" height="20px" viewBox="0 0 20 20">
-									<path d="M3,1 L17,1 L17,1 C18.1045695,1 19,1.8954305 19,3 L19,17 L19,17 C19,18.1045695 18.1045695,19 17,19 L3,19 L3,19 C1.8954305,19 1,18.1045695 1,17 L1,3 L1,3 C1,1.8954305 1.8954305,1 3,1 Z"></path>
-									<polyline points="4 11 8 15 16 6"></polyline>
-								</svg>
-							</div>
-							<?php _e( 'Task Reminders', 'zephyr-project-manager' ); ?>
-					    </label>
-					</div>
+				<label for="zpm_notify_activity" class="zpm-material-checkbox">
+					<input type="checkbox" id="zpm_notify_activity" name="zpm_notify_activity" class="zpm_toggle invisible" value="1" <?php echo $settings_notifications['activity']; ?> >
+					<span class="zpm-material-checkbox-label"><?php _e( 'All Activity', 'zephyr-project-manager' ); ?></span>
+				</label>
 
-					<div class="zpm_settings_notification">
-						<label for="zpm_notifications_task_assigned" class="zpm_checkbox_label">
-							<input type="checkbox" id="zpm_notifications_task_assigned" name="zpm_notify_task_assigned" class="zpm_project_edit_categories zpm_toggle invisible" value="1" <?php echo $settings_notifications['task_assigned']; ?>>
-							<div class="zpm_main_checkbox">
-								<svg width="20px" height="20px" viewBox="0 0 20 20">
-									<path d="M3,1 L17,1 L17,1 C18.1045695,1 19,1.8954305 19,3 L19,17 L19,17 C19,18.1045695 18.1045695,19 17,19 L3,19 L3,19 C1.8954305,19 1,18.1045695 1,17 L1,3 L1,3 C1,1.8954305 1.8954305,1 3,1 Z"></path>
-									<polyline points="4 11 8 15 16 6"></polyline>
-								</svg>
-							</div>
-							<?php _e( 'Tasks Assigned', 'zephyr-project-manager' ); ?>
-					    </label>
-					</div>
+				<label for="zpm_notify_tasks" class="zpm-material-checkbox">
+					<input type="checkbox" id="zpm_notify_tasks" name="zpm_notify_tasks" class="zpm_toggle invisible" value="1" <?php echo $settings_notifications['tasks']; ?> >
+					<span class="zpm-material-checkbox-label"><?php _e( 'Task Reminders', 'zephyr-project-manager' ); ?></span>
+				</label>
 
-					<div class="zpm_settings_notification">
-						<label for="zpm_notifications_updates" class="zpm_checkbox_label">
-							<input type="checkbox" id="zpm_notifications_updates" name="zpm_notify_updates" class="zpm_project_edit_categories zpm_toggle invisible" value="1" <?php echo $settings_notifications['updates']; ?>>
-							<div class="zpm_main_checkbox">
-								<svg width="20px" height="20px" viewBox="0 0 20 20">
-									<path d="M3,1 L17,1 L17,1 C18.1045695,1 19,1.8954305 19,3 L19,17 L19,17 C19,18.1045695 18.1045695,19 17,19 L3,19 L3,19 C1.8954305,19 1,18.1045695 1,17 L1,3 L1,3 C1,1.8954305 1.8954305,1 3,1 Z"></path>
-									<polyline points="4 11 8 15 16 6"></polyline>
-								</svg>
-							</div>
-							<?php _e( 'Weekly Updates', 'zephyr-project-manager' ); ?>
-					    </label>
-					</div>
+				<label for="zpm_notify_task_assigned" class="zpm-material-checkbox">
+					<input type="checkbox" id="zpm_notify_task_assigned" name="zpm_notify_task_assigned" class="zpm_toggle invisible" value="1" <?php echo $settings_notifications['task_assigned']; ?> >
+					<span class="zpm-material-checkbox-label"><?php _e( 'Task Assigned', 'zephyr-project-manager' ); ?></span>
+				</label>
+
+				<label for="zpm_notify_updates" class="zpm-material-checkbox">
+					<input type="checkbox" id="zpm_notify_updates" name="zpm_notify_updates" class="zpm_toggle invisible" value="1" <?php echo $settings_notifications['updates']; ?> >
+					<span class="zpm-material-checkbox-label"><?php _e( 'Weekly Updates', 'zephyr-project-manager' ); ?></span>
+				</label>
 
 					<?php 
 						if (current_user_can('administrator')) :
 					?>
 					<label class="zpm_label"><?php _e( 'Allow access to Zephyr', 'zephyr-project-manager' ); ?></label>
-					<div class="zpm_settings_notification">
-						<label for="zpm-can-zephyr-<?php echo $user_id; ?>" class="zpm_checkbox_label">
-
-							<input type="checkbox" id="zpm-can-zephyr-<?php echo $user_id; ?>" name="zpm_can_zephyr" class="zpm-can-zephyr zpm_toggle invisible" value="1" data-user-id="<?php echo $user->data->ID; ?>" <?php echo $can_zephyr == "true" ? 'checked' : ''; ?>>
-
-							<div class="zpm_main_checkbox">
-								<svg width="20px" height="20px" viewBox="0 0 20 20">
-									<path d="M3,1 L17,1 L17,1 C18.1045695,1 19,1.8954305 19,3 L19,17 L19,17 C19,18.1045695 18.1045695,19 17,19 L3,19 L3,19 C1.8954305,19 1,18.1045695 1,17 L1,3 L1,3 C1,1.8954305 1.8954305,1 3,1 Z"></path>
-									<polyline points="4 11 8 15 16 6"></polyline>
-								</svg>
-							</div>
-							<?php _e( 'Allow Access', 'zephyr-project-manager' ); ?>
-					    </label>
-					</div>
+					<label for="zpm-can-zephyr-<?php echo $user_id; ?>" class="zpm-material-checkbox">
+							<input type="checkbox" id="zpm-can-zephyr-<?php echo $user_id; ?>" name="zpm_can_zephyr" class="zpm_toggle invisible" data-user-id="<?php echo $user->data->ID; ?>" <?php echo $can_zephyr == "true" ? 'checked' : ''; ?> value="1">
+							<span class="zpm-material-checkbox-label"><?php _e( 'Allow Access', 'zephyr-project-manager' ); ?></span>
+						</label>
 
 					<label class="zpm_label"><?php _e( 'Lowest Level of Access to Zephyr Project Manager', 'zephyr-project-manager' ); ?></label>
 					<select id="zpm-access-level" class="zpm_input" name="zpm-access-level">

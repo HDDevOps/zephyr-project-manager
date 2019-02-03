@@ -154,6 +154,30 @@ For more information and documentation, please visit [the website](https://zephy
 * Fix: Tasks due this week email being sent if no tasks are due
 * Fix: Added check for the rest URL to see if it is available to fix a Calendar issue
 
+= 2.82.0 =
+* Fix: Fixed issue with tasks loading on Calendar on some pages due to incorrect rest URL
+* Improvement: Added deactivation survey to the plugin to pinpoint if there are any major problems or features that people are needing
+* Improvement: Added missing English strings in the PO file
+
+= 2.83.0 =
+* Improvement: Styling overhaul - fixed many small styling issues and revamped the styling with some more modern styling
+* Improvement: Automatically show changes made to task and projects name in the header of the edit page
+* Fix: Added fallback for viewing tasks when there is a JS error
+* Improvemnet: Added notifications sent to Android App
+* Other: Removed the deactivation survey and the Patreon request notice and some other notices to provide less clutter
+
+= 2.84.0 =
+* Fixed PHP error on Devices page
+
+= 2.85.0 =
+* Added localization for sidebar menu titles and page titles
+* Fixed issue with project selection not updating after saving more than one task
+* Styling improvements and enhancements
+
+= 2.86.0 =
+* Added validation for new tasks to check if start date is earlier than the due date
+* Various styling fixes and improvements
+
 == Upgrade Notice ==
 
 == Feature Requests ==

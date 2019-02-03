@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2019-01-21 12:12+0200\n"
-"PO-Revision-Date: 2019-01-21 12:12+0200\n"
+"POT-Creation-Date: 2019-01-22 06:51+0200\n"
+"PO-Revision-Date: 2019-01-22 06:51+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -51,13 +51,13 @@ msgstr "Título"
 
 #: zephyr-project-manager-pro/views/asana-project.php:61
 #: zephyr-project-manager-pro/views/reports.php:52
-#: zephyr-project-manager/includes/Base/AjaxHandler.php:519
+#: zephyr-project-manager/includes/Base/AjaxHandler.php:526
 #: zephyr-project-manager/includes/Base/EnqueueScripts.php:116
 #: zephyr-project-manager/includes/Core/Categories.php:127
 #: zephyr-project-manager/includes/Core/Categories.php:128
 #: zephyr-project-manager/templates/categories.php:33
-#: zephyr-project-manager/templates/edit_members.php:74
-#: zephyr-project-manager/templates/edit_members.php:75
+#: zephyr-project-manager/templates/edit_members.php:79
+#: zephyr-project-manager/templates/edit_members.php:80
 #: zephyr-project-manager/templates/email_templates/task_email.php:154
 #: zephyr-project-manager/templates/parts/task_view.php:117
 msgid "Description"
@@ -86,7 +86,7 @@ msgstr "Seleccionar Asignado"
 
 #: zephyr-project-manager-pro/views/asana-project.php:73
 #: zephyr-project-manager-pro/views/reports.php:54
-#: zephyr-project-manager/includes/Base/AjaxHandler.php:498
+#: zephyr-project-manager/includes/Base/AjaxHandler.php:505
 #: zephyr-project-manager/includes/Base/EnqueueScripts.php:107
 #: zephyr-project-manager/templates/email_templates/task_email.php:149
 #: zephyr-project-manager/templates/parts/new_task.php:62
@@ -246,8 +246,8 @@ msgstr "Añadir Campo Personalizado"
 #: zephyr-project-manager/includes/Core/Categories.php:125
 #: zephyr-project-manager/includes/Core/Categories.php:126
 #: zephyr-project-manager/templates/categories.php:31
-#: zephyr-project-manager/templates/edit_members.php:71
-#: zephyr-project-manager/templates/edit_members.php:72
+#: zephyr-project-manager/templates/edit_members.php:76
+#: zephyr-project-manager/templates/edit_members.php:77
 #: zephyr-project-manager/templates/settings.php:126
 #: zephyr-project-manager/templates/settings.php:127
 msgid "Name"
@@ -318,7 +318,7 @@ msgid "Unassigned"
 msgstr "Asignado a"
 
 #: zephyr-project-manager-pro/views/kanban.php:79
-#: zephyr-project-manager/includes/Base/AjaxHandler.php:701
+#: zephyr-project-manager/includes/Base/AjaxHandler.php:708
 #: zephyr-project-manager/includes/Base/EnqueueScripts.php:109
 #: zephyr-project-manager/templates/parts/new_task.php:27
 #: zephyr-project-manager/templates/parts/new_task.php:28
@@ -328,7 +328,7 @@ msgid "Task Name"
 msgstr "Nombre de la Tarea"
 
 #: zephyr-project-manager-pro/views/kanban.php:82
-#: zephyr-project-manager/includes/Base/AjaxHandler.php:704
+#: zephyr-project-manager/includes/Base/AjaxHandler.php:711
 msgid "View Task"
 msgstr "Ver Tarea"
 
@@ -377,7 +377,7 @@ msgid "Include"
 msgstr "Incluir"
 
 #: zephyr-project-manager-pro/views/reports.php:53
-#: zephyr-project-manager/includes/Base/AjaxHandler.php:493
+#: zephyr-project-manager/includes/Base/AjaxHandler.php:500
 #: zephyr-project-manager/includes/Base/EnqueueScripts.php:106
 #: zephyr-project-manager/templates/parts/new_task.php:58
 #: zephyr-project-manager/templates/parts/new_task.php:59
@@ -424,7 +424,7 @@ msgstr "Espacios de trabajo"
 
 #: zephyr-project-manager-pro/views/settings-asana.php:46
 #: zephyr-project-manager-pro/views/settings-frontend.php:166
-#: zephyr-project-manager/templates/edit_members.php:151
+#: zephyr-project-manager/templates/edit_members.php:169
 #: zephyr-project-manager/templates/settings.php:217
 #: zephyr-project-manager/templates/settings.php:240
 msgid "Save Settings"
@@ -547,7 +547,7 @@ msgstr ""
 
 #: zephyr-project-manager/includes/Api/Emails.php:141
 #: zephyr-project-manager/includes/Api/Emails.php:180
-#: zephyr-project-manager/templates/edit_members.php:116
+#: zephyr-project-manager/templates/edit_members.php:134
 #: zephyr-project-manager/templates/settings.php:198
 msgid "Weekly Updates"
 msgstr "Actualizaciones Semanales"
@@ -630,7 +630,7 @@ msgstr "% s ha cambiado la fecha de la tarea %s a %s."
 msgid "View Task in WordPress."
 msgstr "Ver Tarea en WordPress."
 
-#: zephyr-project-manager/includes/Base/AjaxHandler.php:506
+#: zephyr-project-manager/includes/Base/AjaxHandler.php:513
 #: zephyr-project-manager/includes/Base/EnqueueScripts.php:151
 #: zephyr-project-manager/includes/Core/Projects.php:295
 #: zephyr-project-manager/templates/dashboard.php:102
@@ -640,25 +640,25 @@ msgstr "Ver Tarea en WordPress."
 msgid "Completed Tasks"
 msgstr "Tareas completadas"
 
-#: zephyr-project-manager/includes/Base/AjaxHandler.php:510
+#: zephyr-project-manager/includes/Base/AjaxHandler.php:517
 #: zephyr-project-manager/includes/Core/Projects.php:299
 #: zephyr-project-manager/templates/dashboard.php:106
 msgid "Active Tasks"
 msgstr "Tareas Activas"
 
-#: zephyr-project-manager/includes/Base/AjaxHandler.php:514
+#: zephyr-project-manager/includes/Base/AjaxHandler.php:521
 msgid "Message"
 msgstr "Mensaje"
 
-#: zephyr-project-manager/includes/Base/AjaxHandler.php:524
+#: zephyr-project-manager/includes/Base/AjaxHandler.php:531
 #: zephyr-project-manager/includes/Pages/Admin.php:228
 #: zephyr-project-manager/templates/categories.php:20
 #: zephyr-project-manager/templates/parts/project-single.php:96
 msgid "Categories"
 msgstr "Categorías"
 
-#: zephyr-project-manager/includes/Base/AjaxHandler.php:1356
-#: zephyr-project-manager/includes/Base/AjaxHandler.php:1405
+#: zephyr-project-manager/includes/Base/AjaxHandler.php:1363
+#: zephyr-project-manager/includes/Base/AjaxHandler.php:1412
 msgid "No results found..."
 msgstr "No se han encontrado resultados…"
 
@@ -1566,72 +1566,77 @@ msgstr ""
 "poder trabajar en el complemento a tiempo completo y centrarse más en él "
 "para mejorarlo y agregar nuevas funciones. Muchas gracias."
 
-#: zephyr-project-manager/templates/edit_members.php:58
+#: zephyr-project-manager/templates/edit_members.php:63
 msgid "Edit Member"
 msgstr "Editar Miembro"
 
-#: zephyr-project-manager/templates/edit_members.php:62
+#: zephyr-project-manager/templates/edit_members.php:67
 #: zephyr-project-manager/templates/settings.php:117
 msgid "Profile Picture"
 msgstr "Foto de Perfil"
 
-#: zephyr-project-manager/templates/edit_members.php:77
-#: zephyr-project-manager/templates/edit_members.php:78
+#: zephyr-project-manager/templates/edit_members.php:82
+#: zephyr-project-manager/templates/edit_members.php:83
 #: zephyr-project-manager/templates/settings.php:132
 #: zephyr-project-manager/templates/settings.php:133
 msgid "Email Address"
 msgstr "Dirección de correo electrónico"
 
-#: zephyr-project-manager/templates/edit_members.php:80
+#: zephyr-project-manager/templates/edit_members.php:85
 #: zephyr-project-manager/templates/settings.php:149
 msgid "Email Notifications"
 msgstr "Notificaciónes de Correo Electrónico"
 
-#: zephyr-project-manager/templates/edit_members.php:90
+#: zephyr-project-manager/templates/edit_members.php:95
 #: zephyr-project-manager/templates/settings.php:159
 msgid "All Activity"
 msgstr "Toda la actividad"
 
-#: zephyr-project-manager/templates/edit_members.php:103
+#: zephyr-project-manager/templates/edit_members.php:108
 #: zephyr-project-manager/templates/settings.php:172
 msgid "Task Reminders"
 msgstr "Recordatorios de tareas"
 
-#: zephyr-project-manager/templates/edit_members.php:123
+#: zephyr-project-manager/templates/edit_members.php:121
+#: zephyr-project-manager/templates/settings.php:185
+msgid "Tasks Assigned"
+msgstr "Tareas asignadas"
+
+#: zephyr-project-manager/templates/edit_members.php:141
 msgid "Allow access to Zephyr"
 msgstr "Permitir el acceso a Zephyr"
 
-#: zephyr-project-manager/templates/edit_members.php:135
+#: zephyr-project-manager/templates/edit_members.php:153
 #: zephyr-project-manager/templates/teams_and_members.php:84
 msgid "Allow Access"
 msgstr "Permitir el acceso"
 
-#: zephyr-project-manager/templates/edit_members.php:139
+#: zephyr-project-manager/templates/edit_members.php:157
 #: zephyr-project-manager/templates/settings.php:205
 msgid "Lowest Level of Access to Zephyr Project Manager"
 msgstr "El nivel más bajo de acceso a Zephyr Project Manager"
 
-#: zephyr-project-manager/templates/edit_members.php:141
+#: zephyr-project-manager/templates/edit_members.php:159
 #: zephyr-project-manager/templates/settings.php:207
 msgid "Administrator"
 msgstr "Administrador"
 
-#: zephyr-project-manager/templates/edit_members.php:142
+#: zephyr-project-manager/templates/edit_members.php:160
 #: zephyr-project-manager/templates/settings.php:208
 msgid "Editor"
 msgstr "Editor"
 
-#: zephyr-project-manager/templates/edit_members.php:143
+#: zephyr-project-manager/templates/edit_members.php:161
 #: zephyr-project-manager/templates/settings.php:209
 msgid "Author"
 msgstr "Autor"
 
-#: zephyr-project-manager/templates/edit_members.php:144
+#: zephyr-project-manager/templates/edit_members.php:162
 #: zephyr-project-manager/templates/settings.php:210
 msgid "Contributor"
 msgstr "Contribuyente"
 
-#: zephyr-project-manager/templates/edit_members.php:145
+#: zephyr-project-manager/templates/edit_members.php:163
 #: zephyr-project-manager/templates/settings.php:211
 msgid "Subscriber"
 msgstr "Abonado"
@@ -1962,10 +1967,6 @@ msgstr "Ocultar los widgets de WordPress Dashboard"
 #: zephyr-project-manager/templates/settings.php:145
 msgid "Hidden"
 msgstr "Oculto"
-
-#: zephyr-project-manager/templates/settings.php:185
-msgid "Tasks Assigned"
-msgstr "Tareas asignadas"
 
 #: zephyr-project-manager/templates/settings.php:226
 msgid "Anyone"

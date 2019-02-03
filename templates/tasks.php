@@ -91,15 +91,21 @@
 
 <!-- New Subtask Modal -->
 <div id="zpm_new_subtask_modal" class="zpm-modal zpm_compact_modal">
-	<label class="zpm_label" for="zpm_new_subtask_name"><?php _e( 'Subtask Name', 'zephyr-project-manager' ); ?></label>
-	<input class="zpm_input" id="zpm_new_subtask_name" placeholder="<?php _e( 'Subtask Name', 'zephyr-project-manager' ); ?>"/>
+	<div class="zpm-form__group">
+		<input type="text" name="zpm_new_subtask_name" id="zpm_new_subtask_name" class="zpm-form__field" placeholder="<?php _e( 'Subtask Name', 'zephyr-project-manager' ); ?>">
+		<label for="zpm_new_subtask_name" class="zpm-form__label"><?php _e( 'Subtask Name', 'zephyr-project-manager' ); ?></label>
+	</div>
+
 	<button id="zpm_save_new_subtask" class="zpm_button"><?php _e( 'Create Subtask', 'zephyr-project-manager' ); ?></button>
 </div>
 
 <!-- Edit Subtask Modal -->
 <div id="zpm_edit_subtask_modal" class="zpm-modal zpm_compact_modal">
-	<label class="zpm_label" for="zpm_edit_subtask_name"><?php _e( 'Subtask Name', 'zephyr-project-manager' ); ?></label>
-	<input class="zpm_input" id="zpm_edit_subtask_name" placeholder="<?php _e( 'Subtask Name', 'zephyr-project-manager' ); ?>" />
+	<div class="zpm-form__group">
+		<input type="text" name="zpm_edit_subtask_name" id="zpm_edit_subtask_name" class="zpm-form__field" placeholder="<?php _e( 'Subtask Name', 'zephyr-project-manager' ); ?>">
+		<label for="zpm_edit_subtask_name" class="zpm-form__label"><?php _e( 'Subtask Name', 'zephyr-project-manager' ); ?></label>
+	</div>
+
 	<button id="zpm_update_subtask" class="zpm_button"><?php _e( 'Save Changes', 'zephyr-project-manager' ); ?></button>
 </div>
 

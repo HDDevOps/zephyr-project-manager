@@ -84,6 +84,7 @@ class Activity {
 			$link = '';
 
 			switch ($activity->action) {
+
 				case 'project_added':
 					$link = esc_url(admin_url('/admin.php?page=zephyr_project_manager_projects&action=edit_project&project=' . $activity->subject_id));
 					$project_html = '<a class="zpm_link" href="' . $link . '">' . $activity->subject_name . '</a>';
@@ -146,7 +147,10 @@ class Activity {
 					$assignee_name = !empty($assignee) ? $assignee['name'] : '';
 					$username_html = '<b>' . $username . '</b>';
 					$task_html = '<a class="zpm_link" href="' . $link . '">' . $activity->subject_name . '</a>';
-					$message = sprintf( __( '%s assigned the task %s to %s', 'zephyr-project-manager' ), $username_html, $task_html, $assignee_name );
+
+					if ($task->assignee !== "-1") {
+						$message = sprintf( __( '%s assigned the task %s to %s', 'zephyr-project-manager' ), $username_html, $task_html, $assignee_name );
+					}
 					break;
 				case 'task_deleted':
 					$username_html = '<b>' . $username . '</b>';

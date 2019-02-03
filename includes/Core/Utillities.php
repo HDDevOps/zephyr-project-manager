@@ -26,7 +26,7 @@ class Utillities {
 		$users = get_users();
 		$user_array = [];
 		foreach ($users as $user) {
-			$user = Utillities::get_user( $user->id );
+			$user = Utillities::get_user( $user->ID );
 			array_push( $user_array, $user );
 		}
 		return $user_array;
@@ -40,11 +40,14 @@ class Utillities {
 	public static function get_user( $id ) {
 		$current_user = get_user_by('ID', $id);
 		$preferences = get_option( 'zpm_user_' . $id . '_settings' );
+		$notify_activity = isset( $preferences['notify_activity'] ) ? $preferences['notify_activity'] : false;
+		$notify_tasks = isset( $preferences['notify_tasks'] ) ? $preferences['notify_tasks'] : false;
+		$notify_updates = isset( $preferences['notify_updates'] ) ? $preferences['notify_updates'] : false;
 
 		$notification_preferences = [
-			'notify_activity' => $preferences['notify_activity'],
-			'notify_tasks' 	  => $preferences['notify_tasks'],
-			'notify_updates'  => $preferences['notify_updates']
+			'notify_activity' => $notify_activity,
+			'notify_tasks' 	  => $notify_updates,
+			'notify_updates'  => $notify_updates
 		];
 
 		if ($id !== '-1' && is_object($current_user)) {
@@ -180,5 +183,18 @@ class Utillities {
 		$defaults = Utillities::get_user_settings( $user_id );
 		$settings = wp_parse_args( $args, $defaults );
 		update_option( 'zpm_user_' . $user_id . '_settings', $settings );
+	}
+
+	public static function get_one_signal_device_ids() {
+		$devices = maybe_unserialize( get_option( 'zpm_devices', array() ) );
+		$device_ids = [];
+
+		foreach ( (array) $devices as $device) {
+			if ( isset( $device['one_signal_user_id'] ) ) {
+				$device_ids[] = $device['one_signal_user_id'];
+			}
+		}
+
+		return $device_ids;
 	}
 }

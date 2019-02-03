@@ -39,15 +39,12 @@
 <input type="hidden" id="zpm_task_view_id" value="<?php echo $task->id; ?>"/>
 <div class="zpm_modal_body">
 	<div class="zpm_modal_top">
-		<label for="zpm_task_id_<?php echo $task->id; ?>" class="zpm_checkbox_label">
+		
+		<label for="zpm_task_id_<?php echo $task->id; ?>" class="zpm-material-checkbox">
 			<input type="checkbox" id="zpm_task_id_<?php echo $task->id; ?>" name="zpm_task_id_<?php echo $task->id; ?>" class="zpm_task_mark_complete zpm_toggle invisible" value="1" <?php echo $task->completed == '1' ? 'checked' : ''; ?> data-task-id="<?php echo $task->id; ?>">
-			<div class="zpm_main_checkbox">
-				<svg width="20px" height="20px" viewBox="0 0 20 20">
-					<path d="M3,1 L17,1 L17,1 C18.1045695,1 19,1.8954305 19,3 L19,17 L19,17 C19,18.1045695 18.1045695,19 17,19 L3,19 L3,19 C1.8954305,19 1,18.1045695 1,17 L1,3 L1,3 C1,1.8954305 1.8954305,1 3,1 Z"></path>
-					<polyline points="4 11 8 15 16 6"></polyline>
-				</svg>
-			</div>
+			<span class="zpm-material-checkbox-label"></span>
 		</label>
+
 		<h3 class="zpm_modal_task_name"><?php echo stripslashes($task->name); ?></h3>
 	</div>
 	<small class="zpm_title_information"><?php echo $created_by; ?></small>
@@ -123,7 +120,14 @@
 				<ul class="zpm_view_subtasks">
 					<?php foreach ($subtasks as $subtask) : ?>
 						<li class="zpm_subtask_item <?php echo $subtask->completed == '1' ? 'zpm_task_complete' : ''; ?>" data-zpm-subtask="<?php echo $subtask->id; ?>">
-							<input type="checkbox" class="zpm_subtask_is_done" data-task-id="<?php echo $subtask->id; ?>" <?php echo $subtask->completed == '1' ? 'checked' : ''; ?> />
+
+						<!-- 	<input type="checkbox" class="zpm_subtask_is_done" data-task-id="<?php echo $subtask->id; ?>" <?php echo $subtask->completed == '1' ? 'checked' : ''; ?> /> -->
+
+							<label for="zpm_subtask_<?php echo $subtask->id; ?>" class="zpm-material-checkbox">
+								<input type="checkbox" data-task-id="<?php echo $subtask->id; ?>" id="zpm_subtask_<?php echo $subtask->id; ?>" class="zpm_subtask_is_done" <?php echo $subtask->completed == '1' ? 'checked' : ''; ?>>
+								<span class="zpm-material-checkbox-label"></span>
+							</label>
+
 							<span class="zpm_subtask_name"><?php echo $subtask->name; ?></span>
 						</li>
 					<?php endforeach; ?>
@@ -162,7 +166,7 @@
 
 		<div class="zpm_tab_pane" data-zpm-tab="2">
 			<!-- Discussion -->
-			<div class="zpm_task_comments">
+			<div class="zpm_task_comments" data-task-id="<?php echo $task_id; ?>">
 				<?php $comments = Tasks::get_comments($task_id); ?>
 				<?php foreach ($comments as $comment) : ?>
 					<?php echo Tasks::new_comment($comment); ?>

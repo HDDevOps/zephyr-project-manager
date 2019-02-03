@@ -562,18 +562,15 @@ class Tasks {
 		$complete = (($task->completed == '1') ? 'completed disabled' : '');
 		$task = Tasks::get_task( $task->id );
 		$checked = (($task->completed == '1') ? 'checked' : '');
+		$task_url = esc_url(admin_url("/admin.php?page=zephyr_project_manager_tasks&action=view_task&task_id=" . $task->id ));
         ob_start(); ?>
 
-        <div class="zpm_task_list_row <?php echo $row_classes; ?>" data-task-id="<?php echo $task->id; ?>" data-task-name="<?php echo $task->name; ?>">
-			<label for="zpm_task_id_<?php echo $task->id; ?>" class="zpm_checkbox_label">
+        <a href="<?php echo $task_url; ?>" class="zpm_task_list_row <?php echo $row_classes; ?>" data-task-id="<?php echo $task->id; ?>" ripple="ripple" data-ripple="rgba(0,0,0,0.1)" data-task-name="<?php echo $task->name; ?>">
+
+        	<label for="zpm_task_id_<?php echo $task->id; ?>" class="zpm-material-checkbox">
 				<input type="checkbox" id="zpm_task_id_<?php echo $task->id; ?>" name="zpm_task_id_<?php echo $task->id; ?>" class="zpm_task_mark_complete zpm_toggle invisible" value="1" <?php echo $checked; ?> data-task-id="<?php echo $task->id; ?>">
-				<div class="zpm_main_checkbox">
-					<svg width="20px" height="20px" viewBox="0 0 20 20">
-						<path d="M3,1 L17,1 L17,1 C18.1045695,1 19,1.8954305 19,3 L19,17 L19,17 C19,18.1045695 18.1045695,19 17,19 L3,19 L3,19 C1.8954305,19 1,18.1045695 1,17 L1,3 L1,3 C1,1.8954305 1.8954305,1 3,1 Z"></path>
-						<polyline points="4 11 8 15 16 6"></polyline>
-					</svg>
-				</div>
-		    </label>
+				<span class="zpm-material-checkbox-label"></span>
+			</label>
 
 			<span class="zpm_task_list_data task_name">
 				<?php echo $task->name; ?>
@@ -599,7 +596,7 @@ class Tasks {
 				<?php endif; ?>
 				<span class="zpm_task_due_date <?php echo $overdue ? 'zpm_overdue' : ''; ?>"><?php echo $due_date; ?></span>
 			</span>
-		</div>
+		</a>
 		<?php
 		$html = ob_get_clean();
 		return $html;
@@ -773,8 +770,15 @@ class Tasks {
 		?>
 		<div class="zpm-custom-task-template" data-template-id="<?php echo $template['id']; ?>">
 
+			<label for="zpm-task-template-checkbox-<?php echo $template['id']; ?>" class="zpm-material-checkbox">
+			  <input type="checkbox" id="zpm-task-template-checkbox-<?php echo $template['id']; ?>" name="zpm_can_zephyr" class="zpm-default-task-template zpm_toggle invisible" value="1" data-template-id="<?php echo $template['id']; ?>" <?php echo $is_default ? 'checked' : ''; ?>>
+			  <span></span>
+			</label>
+
 			<span class="zpm-task-template-name"><?php echo $template['name']; ?> <?php echo Tasks::get_default_template() == $template['id'] ? '<span class="zpm-task-template-default-notice">' . __( 'Default', 'zephyr-project-manager' ) . '</span>' : ''; ?></span>
 
+			
+<!-- 
 			<label for="zpm-task-template-checkbox-<?php echo $template['id']; ?>" class="zpm_checkbox_label">
 
 				<input type="checkbox" id="zpm-task-template-checkbox-<?php echo $template['id']; ?>" name="zpm_can_zephyr" class="zpm-default-task-template zpm_toggle invisible" value="1" data-template-id="<?php echo $template['id']; ?>" <?php echo $is_default ? 'checked' : ''; ?>>
@@ -785,7 +789,7 @@ class Tasks {
 						<polyline points="4 11 8 15 16 6"></polyline>
 					</svg>
 				</div>
-		    </label>
+		    </label> -->
 
 		    <span class="zpm-remove-task-template lnr lnr-cross" data-template-id="<?php echo $template['id']; ?>"></span>
 		</div>

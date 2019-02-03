@@ -100,6 +100,11 @@ class Members {
 		return $members;
 	}
 
+	public static function get_member_name( $member_id ) {
+		$member = Utillities::get_user_settings( $member_id );
+		return isset( $member['name'] ) ? $member['name'] : "";
+	}
+
 	/**
 	* Returns an array of all users that have access to Zephyr
 	*/
@@ -123,7 +128,7 @@ class Members {
 		ob_start();
 		?>
 		<div class="zpm_team_member" data-team-id="<?php echo $team['id']; ?>">
-			<div class="zpm_member_details">
+			<div class="zpm_member_details" data-ripple="rgba(0,0,0,0.1)" zpm-ripple>
 				<h3 class="zpm-team-name"><?php echo $team['name']; ?></h3>
 				<p class="zpm-description-text"><?php echo $team['description'] !== "" ? $team['description'] : "<p class='zpm-no-description-error'>No description added.</p>"; ?></p>
 				<h3 class="zpm-team-members-title"><?php _e( 'Members', 'zephyr-project-manager' ); ?></h3>

@@ -62,14 +62,19 @@ class EnqueueScripts extends AjaxHandler {
 	    wp_register_script( 'chosen_js', ZPM_PLUGIN_URL . '/assets/js/chosen.jquery.js', array( 'jquery' ) );
 	    wp_register_script( 'chartjs', ZPM_PLUGIN_URL . '/assets/js/chart.js', array( 'jquery' ) );
 		wp_enqueue_script( 'chartjs' );
+
+		wp_register_script( 'zephyr-socket-io', ZPM_PLUGIN_URL . '/assets/js/socket.io.js' );
+		wp_enqueue_script( 'zephyr-socket-io' );
 		
 	    wp_enqueue_script( 'wp-color-picker');
 		wp_enqueue_script( 'jquery-ui-datepicker' );
 	    wp_enqueue_script( 'moment' );
 	    wp_enqueue_script( 'fullcalender_js', array( 'jquery', 'moment' ) ); 
 	    wp_enqueue_script( 'chosen_js' ); 
-	    wp_enqueue_script( 'zephyr-projects', ZPM_PLUGIN_URL . '/assets/js/zephyr-projects.js', array( 'jquery', 'fullcalender_js' ), $version );
-	    wp_enqueue_script( 'zpm-core-admin', ZPM_PLUGIN_URL . '/assets/js/core-admin.js', array( 'jquery', 'wp-color-picker', 'jquery-ui-datepicker' ), $version );
+
+	    wp_enqueue_script( 'zephyr-projects', ZPM_PLUGIN_URL . '/assets/js/zephyr-projects.js', array( 'jquery', 'fullcalender_js', 'zephyr-socket-io' ), $version );
+
+	    wp_enqueue_script( 'zpm-core-admin', ZPM_PLUGIN_URL . '/assets/js/core-admin.js', array( 'jquery', 'wp-color-picker', 'jquery-ui-datepicker', 'zephyr-socket-io' ), $version );
 
 	    $localized_strings = array(
 	    	'choose_image' => __( 'Choose Image', 'zephyr-project-manager' ),
@@ -163,7 +168,7 @@ class EnqueueScripts extends AjaxHandler {
 	    	'error_exporting_task' => __( 'There was a problem exporting the task. Please try again.', 'zephyr-project-manager' ),
 	    	'error_exporting_tasks' => __( 'There was a problem exporting the tasks. Please try again.', 'zephyr-project-manager' ),
 	    	'task_created' => __( 'Task successfully created', 'zephyr-project-manager' ),
-	    	'task_upaded' => __( 'Task updated successfully.', 'zephyr-project-manager' ),
+	    	'task_updated' => __( 'Task updated successfully.', 'zephyr-project-manager' ),
 	    	'error_viewing_task' => __( 'There was a problem loading the task', 'zephyr-project-manager' ),
 	    	'copying_project' => __( 'Copying project...', 'zephyr-project-manager' ),
 	    	'error_copying_project' => __( 'There was an unexpected problem while copying the project', 'zephyr-project-manager' ),
@@ -206,20 +211,28 @@ class EnqueueScripts extends AjaxHandler {
 	    	'members_saved' => __( 'Members saved', 'zephyr-project-manager' ),
 	    	'project_status_saved' => __( 'Project status saved', 'zephyr-project-manager' ),
 	    	'error_updating_status' => __( 'There was a problem updating the status.', 'zephyr-project-manager' ),
+	    	'no_results_found' => __( 'No results found...', 'zephyr-project-manager' ),
+	    	'no_templates_found' => __( 'No templates found...', 'zephyr-project-manager' )
 	    );
+
+		$device_ids = Utillities::get_one_signal_device_ids();
 
 		wp_localize_script( 'zpm-core-admin', 'zpm_localized', array(
 			'rest_url' 	 => $rest_url . 'zephyr_project_manager/v1/',
 			'plugin_url' => ZPM_PLUGIN_URL,
 			'tasks_url'  => esc_url(admin_url('/admin.php?page=zephyr_project_manager_tasks')),
+			'projects_url'  => esc_url(admin_url('/admin.php?page=zephyr_project_manager_projects')),
 			'ajaxurl' 	 => admin_url( 'admin-ajax.php' ),
 			'user_id' 	 => get_current_user_id(),
             'user_name'  => $user['name'],
             'users' 	 => get_users(),
             'wp_nonce'	 => wp_create_nonce('zpm_nonce'),
             'strings'	 => $localized_strings,
-            'is_admin'	 => true
+            'is_admin'	 => true,
+           	'device_ids' => $device_ids,
+           	'website'    => get_site_url()
 		) );
+
 		wp_register_script( 'zpm-progress-charts', ZPM_PLUGIN_URL . '/assets/js/progress-charts.js' );
 		wp_enqueue_script( 'zpm-progress-charts' );
 

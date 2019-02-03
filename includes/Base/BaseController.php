@@ -144,6 +144,7 @@ class BaseController {
 	* @return array
 	*/
 	public static function get_project_manager_user( $user_id ) {
+		$user_id = is_array($user_id) && isset( $user_id['id'] ) ? $user_id['id'] : $user_id;
 		$current_user = get_user_by('ID', $user_id);
 		$preferences = get_option( 'zpm_user_' . $user_id . '_settings' );
 		$can_zephyr = isset($preferences['can_zephyr']) ? $preferences['can_zephyr'] : "true";

@@ -1,7 +1,24 @@
+const zephyrSocket = io('https://zephyr-project-manager.eu-4.evennode.com/');
+
+zephyrSocket.on('connect', function(data) {
+	zephyrSocket.emit('join', zpm_localized.website);
+});
+
 jQuery(document).ready(function($) {
+
+	// zephyrSocket.on('task-created', function(data) {
+	// 	ZephyrProjects.sendDesktopNotification( 'New Task Created', 'A new task has been created called ' + data.name, 'icon.jpg' );
+	// });
+
+	$('.zpm-choose-website').on('click', function(){
+		zephyrSocket.emit( 'leave', zpm_localized.website );
+		zpm_localized.website = $(this).data('website');
+		zephyrSocket.emit( 'join', zpm_localized.website );
+	});
 
 	// Initialization functions
 	cct_initialize();
+	zpmSetupRippleEffect();
 	
 	// Initialize
 	function cct_initialize() {
@@ -255,10 +272,18 @@ jQuery(document).ready(function($) {
 		}
 	});
 	
+	$('body').on('click', '[data-zpm-trigger="remove_modal"]', function(){
+		var modalId = $(this).closest('.zpm-modal').attr('id');
+		ZephyrProjects.remove_modal( modalId );
+	});
+
+	$('body').on('click', '.zpm-modal-background[data-zpm-trigger="remove_modal"]', function(){
+		$('.zpm-modal').remove();
+	});
+
 	$('body').on('click', '[data-zpm-trigger="close_modal"]', function(){
 		ZephyrProjects.close_modal();
 	});
-
 
 	// Close modals when clicking on modal background
 	$('body').on('click', '.zpm_modal_background', function() {
@@ -437,6 +462,10 @@ jQuery(document).ready(function($) {
 		var start_date = $('#zpm_new_task_start_date').val();
 		var team = $('#zpm-new-task-team-selection').val();
 
+		$('#zpm_new_task_project').val('-1').trigger("chosen:updated");
+		$('#zpm_new_task_assignee').val('-1').trigger("chosen:updated");
+		$('#zpm-new-task-team-selection').val('-1').trigger("chosen:updated");
+
 		var custom_fields = [];
 		$('body').find('.zpm_task_custom_field').each(function(){
 			var id = $(this).data('zpm-cf-id');
@@ -450,6 +479,18 @@ jQuery(document).ready(function($) {
 		if (name == '') { 
 			alert( zpm_localized.strings.enter_task_name );
 			return; 
+		}
+
+		
+		if (due_date !== "" && start_date !== "") {
+			
+			dateStart = Date.parse(start_date);
+			dateEnd = Date.parse(due_date);
+
+			if (dateStart > dateEnd) {
+				alert("Due Date should be greater than the Start Date.");
+				return;
+			}	
 		}
 
 		var subtasks = [];
@@ -477,6 +518,9 @@ jQuery(document).ready(function($) {
         }
 
 		ZephyrProjects.create_task(data, function(response){
+
+			jQuery.event.trigger( { type: 'zephyr_task_created', ndata: response } );
+
         	var new_task = 	response.new_task_html;
 			$('body').find('.zpm_task_list').prepend(new_task);
 			$('body').find('.zpm_message_center').remove();
@@ -515,6 +559,20 @@ jQuery(document).ready(function($) {
 		var team = $('body').find('#zpm-edit-task-team-selection').val();
 		var subtasks = [];
 		var custom_fields = [];
+
+		if (name == "") {
+			alert(zpm_localized.strings.enter_task_name);
+			return;
+		}
+
+		if (start_date !== "" && due_date !== "") {
+			var startDate = Date.parse(start_date);
+			var endDate = Date.parse(due_date);
+			if (endDate < startDate) {
+				alert("Due date should greated than start date.");
+				return;
+			}
+		}
 
 		$('body').find('#zpm_task_edit_custom_fields .zpm_task_custom_field').each(function(){
 			var id = $(this).data('zpm-cf-id');
@@ -603,7 +661,9 @@ jQuery(document).ready(function($) {
 		if (name == '') {
 			$(this).closest('#zpm_project_modal').find('.zpm_project_name_input').after('<span class="zpm_validation_error">' + zpm_localized.strings.enter_project_name + '</span>');
 		} else {
+			$(this).closest('#zpm_project_modal').find('.zpm_project_name_input').val('');
 			ZephyrProjects.close_modal();
+
 			ZephyrProjects.create_project({
 				project_name: name,
 				project_description: '',
@@ -612,6 +672,7 @@ jQuery(document).ready(function($) {
 				project_due_date: '2018-14-03',
 				type: type
 			}, function(response){
+				jQuery.event.trigger( { type: 'zephyr_project_created', ndata: response } );
 				$('body').find('#zpm_project_manager_display').removeClass('zpm_hide');
 				$('body').find('.zpm_no_results_message').hide();
 				$('body').find('.zpm_project_grid').prepend(response.html);
@@ -621,31 +682,38 @@ jQuery(document).ready(function($) {
 
 	var task_loading_ajax = null;
 
+	// Selected task from list
 	$('body').on('click', '.zpm_task_list_row', function(e) {
-		if (e.target.className.indexOf('zpm_task_mark_complete') > -1) {
-			return;
-		}
-		var data = $(this).data();
-		var task_name = data.taskName;
-		var task_id = data.taskId;
-		var task_view_modal = $('body').find('#zpm_task_view_container');
-		task_view_modal.html('<div class="zpm_task_loader"></div>');
-		var data = {
-			task_id: task_id
-		}
+		//e.preventDefault();
 
-		if ($(this).closest('#zpm_quickview_modal').length > 0) {
-			var url = zpm_localized.tasks_url + '&action=view_task&task_id=' + task_id;
-			var win = window.open(url, '_blank');
-  			win.focus();
+		if (e.target.className.indexOf('zpm_task_mark_complete') > -1 || e.target.className.indexOf('zpm-material-checkbox-label') > -1) {
+			
+			//return;
 		} else {
-			ZephyrProjects.view_task(data, function(response){
-				task_view_modal.html(response);
-			});
+			e.preventDefault();
+			var data = $(this).data();
+			var task_name = data.taskName;
+			var task_id = data.taskId;
+			var task_view_modal = $('body').find('#zpm_task_view_container');
+			task_view_modal.html('<div class="zpm_task_loader"></div>');
 
-			ZephyrProjects.open_modal('zpm_task_view_container');
-			$('body').find('#zpm_task_view_container').attr('data-task-id', task_id);
-		}
+			var data = {
+				task_id: task_id
+			}
+
+			if ($(this).closest('#zpm_quickview_modal').length > 0) {
+				var url = zpm_localized.tasks_url + '&action=view_task&task_id=' + task_id;
+				var win = window.open(url, '_blank');
+	  			win.focus();
+			} else {
+				ZephyrProjects.view_task(data, function(response){
+					task_view_modal.html(response);
+				});
+
+				ZephyrProjects.open_modal('zpm_task_view_container');
+				$('body').find('#zpm_task_view_container').attr('data-task-id', task_id);
+			}
+		}		
 	});
 
 	$('body').on('click', '#zpm_create_quicktask', function() {
@@ -738,6 +806,24 @@ jQuery(document).ready(function($) {
 	$('body').find('#zpm_new_task_assignee').chosen({
 	    disable_search_threshold: 10,
 	    no_results_text: zpm_localized.strings.no_users_found,
+	    width: "50%"
+	});
+
+	$('body').find('#zpm_file_upload_project').chosen({
+	    disable_search_threshold: 10,
+	    no_results_text: zpm_localized.strings.no_users_found,
+	    width: "50%"
+	});
+
+	$('body').find('#zpm-new-task-team-selection').chosen({
+	    disable_search_threshold: 10,
+	    no_results_text: zpm_localized.strings.no_teams_found,
+	    width: "50%"
+	});
+
+	$('body').find('#zpm-new-task-template-select').chosen({
+	    disable_search_threshold: 10,
+	    no_results_text: zpm_localized.strings.no_templates_found,
 	    width: "50%"
 	});
 
@@ -1421,7 +1507,14 @@ jQuery(document).ready(function($) {
 			attachments: attachments
 		};
 
-		ZephyrProjects.send_comment(data, function(response){
+		ZephyrProjects.send_comment(data, function(response) {
+
+			response.id = subject_id;
+			response.user_id = zpm_localized.user_id;
+			response.subject = subject;
+			response.type = data.type;
+			jQuery.event.trigger( { type: 'zephyr_new_message', ndata: response } );
+
 			if ($('#zpm_task_chat_comment').text() == zpm_localized.strings.sending) {
 				$('#zpm_task_chat_comment').html( zpm_localized.strings.comment );
 			}
@@ -1541,7 +1634,10 @@ jQuery(document).ready(function($) {
 		ZephyrProjects.update_subtasks(data, function(response){
 			ZephyrProjects.notification( zpm_localized.strings.subtask_saved );
 			var new_subtask = '<li class="zpm_subtask_item" data-zpm-subtask="' + response.id + '">' +
-								'<input type="checkbox" class="zpm_subtask_is_done" data-task-id="' + response.id + '"/>' +
+								'<label for="zpm_subtask_' + response.id + '" class="zpm-material-checkbox">' +
+									'<input type="checkbox" id="zpm_subtask_' + response.id + '" class="zpm_subtask_is_done" data-task-id="' + response.id + '">' +
+									'<span class="zpm-material-checkbox-label"></span>' +
+								'</label>' +
 								'<span class="zpm_subtask_name">' + response.name + '</span>' +
 								'<span data-zpm-subtask-id="' + response.id + '" class="zpm_update_subtask">' + zpm_localized.strings.save_changes + '</span>' +
 								'<span data-zpm-subtask-id="' + response.id + '" class="zpm_delete_subtask">' + zpm_localized.strings.delete + '</span>' +
@@ -1699,7 +1795,7 @@ jQuery(document).ready(function($) {
 			return;
 		}
 
-		ZephyrProjects.notification( zpm_localized.string.saving_changes );
+		ZephyrProjects.notification( zpm_localized.strings.saving_changes );
 		ZephyrProjects.close_modal();
 		ZephyrProjects.update_category(data, function(response){
 			$('.zpm_category_list').html(response);
@@ -1755,10 +1851,17 @@ jQuery(document).ready(function($) {
 		});
 
 		$('body').find('.zpm_task_list_row[data-task-id="' + task_id + '"]').remove();
+
 		if ($('body').find('.zpm_task_list_row').length <= 0) {
-			$('.zpm_no_results_message').show();
-			$('body').find('#zpm_task_option_container').addClass('zpm_hidden');
-			$('body').find('#zpm_task_list_container').addClass('zpm_hidden');
+
+			// If user is on the 'All Tab'
+			if ( $('body').find('.zpm_selection_option[data-zpm-filter="-1"]').hasClass('zpm_nav_item_selected') ) {
+				$('.zpm_no_results_message').show();
+				$('body').find('#zpm_task_option_container').addClass('zpm_hidden');
+				$('body').find('#zpm_task_list_container').addClass('zpm_hidden');
+			} else {
+				$('body').find('.zpm_task_list').html( '<p class="zpm_error_message">' + zpm_localized.strings.no_results_found + '</p>' );
+			}
 		}
 
     	ZephyrProjects.close_modal();
@@ -2166,4 +2269,147 @@ jQuery(document).ready(function($) {
 		ZephyrProjects.close_modal('#zpm-edit-team-modal');
 	});
 
+	// Deactivation survey
+	// $('body').on('click', '[data-slug="zephyr-project-manager"] .deactivate a', function(e){
+	// 	e.preventDefault()
+ //        var urlRedirect = document.querySelector('[data-slug="zephyr-project-manager"] .deactivate a').getAttribute('href');
+ //        var html = `<div id="zpm_modal_background" class="zpm_modal_background zpm-modal-background active" data-zpm-trigger="remove_modal"></div><div id="zephyr-deactivation-modal" class="zpm-modal active">
+ //        	<div class="zpm-modal-header">Please can you let me know why you are deactivating the plugin so that I can improve it?</div>
+ //        	<div class="zpm-deactivation-form">
+ //        		<div><input type="radio" name="zpm-deactivation-reason" id="zpm-deactivation-reason-needs" value="didnt_meet_needs"> <label for="zpm-deactivation-reason-needs">Plugin did not meet my needs</label></div>
+	// 			<div><input type="radio" name="zpm-deactivation-reason" id="zpm-deactivation-reason-bugs" value="bugs"> <label for="zpm-deactivation-reason-bugs">There were bugs or errors on my site</label></div>
+	// 			<div><input type="radio" name="zpm-deactivation-reason" id="zpm-deactivation-reason-features" value="features"> <label for="zpm-deactivation-reason-features">Features were lacking</label>
+	// 			<textarea id="zpm-deactivation-features-suggestion" placeholder="Please let me know which features you felt were lacking I could add them ASAP and improve the plugin" class="zpm_input"></textarea></div>
+			
+	// 			<div>
+	// 			<input type="radio" name="zpm-deactivation-reason" id="zpm-deactivation-reason-other" value="other"> <label for="zpm-deactivation-reason-other">Other</label>
+	// 			<textarea id="zpm-deactivation-other-textarea" placeholder="Please specify so that I can improve the plugin in the future. Thank you." class="zpm_input"></textarea>
+	// 			</div>
+	// 			<p>Thank you for your feedback, it is greatly appreciated!</p>
+ //        	</div>
+ //        	<div class="zpm-deactivation-buttons">
+ //        		<a data-zpm-trigger="remove_modal" class="zpm_button">Cancel</a>
+ //        		<a id="zpm-send-deactivate-form" href="${urlRedirect}" class="zpm_button">Deactivate</a>
+ //        	</div>
+ //        </div>`;
+
+ //        $('body').append(html);
+ //    });
+
+ //    $('body').on('click', '#zpm-send-deactivate-form', function(e){
+ //    	e.preventDefault();
+ //    	$(this).text('Deactivating...');
+ //        let urlRedirect = $(this).attr('href');
+ //        let val = $('body').find('input[name="zpm-deactivation-reason"]:checked').val();
+ //        let suggestionText = $('body').find('#zpm-deactivation-features-suggestion').val();
+ //        let otherText = $('body').find('#zpm-deactivation-other-textarea').val();
+ //        ZephyrProjects.submit_deactivation_survey( { reason: val, suggestion: suggestionText, other: otherText }, function( res ) {
+ //        	window.location.href = urlRedirect;
+ //        } );
+ //    });
+
+    function zpmSetupRippleEffect() {
+    	// Material ripple effect
+		$('body').on('click', '.zpm_button,[data-ripple], [ripple], [zpm-ripple], .zpm_project_title.project_name, .zpm_button_outline', function(e) {
+			var $self = $(this);
+
+			if ($self.attr('disabled') || e.target.className.indexOf('zpm_task_mark_complete') > -1 || e.target.className.indexOf('zpm-material-checkbox-label') > -1 ) {
+				return;
+			}
+
+			var initPos = $self.css('position'),
+				offs = $self.offset(),
+				x = e.pageX - offs.left,
+				y = e.pageY - offs.top,
+				dia = Math.min(this.offsetHeight, this.offsetWidth, 100), // start diameter
+				$ripple = $('<div/>', {class : 'ripple',appendTo : $self });
+
+			if (!initPos || initPos === 'static') {
+				$self.css({position:'relative'});
+			}
+
+			$('<div/>', {
+				class : 'rippleWave',
+				css : {
+					background: $self.data('ripple'),
+					width: dia,
+					height: dia,
+					left: x - (dia/2),
+					top: y - (dia/2),
+				},
+				appendTo: $ripple,
+				one: {
+				animationend : function(){
+					$ripple.remove();
+				}
+			}
+			});
+		});
+    }
+
+    $('#zpm_edit_task_name').on('input', function(){
+    	$('#zpm_task_name_title').text($(this).val());
+    });
+
+    jQuery(document).on( 'zephyr_task_created', function( e ){
+    	e.ndata.devices = zpm_localized.device_ids;
+    	e.ndata.user_id = zpm_localized.user_id;
+    	zephyrSocket.emit('task-created', zpm_localized.website, e.ndata );
+    });
+
+    jQuery(document).on( 'zephyr_new_message', function( e ){
+    	e.ndata.devices = zpm_localized.device_ids;
+    	zephyrSocket.emit( 'new-message', zpm_localized.website, e.ndata );
+    });
+
+    jQuery(document).on( 'zephyr_project_created', function( e ){
+    	e.ndata.devices = zpm_localized.device_ids;
+    	zephyrSocket.emit( 'new-project', zpm_localized.website, e.ndata );
+    });
+
+    // Listen for new tasks created by other users
+   //  zephyrSocket.on( 'task-created', function( data ) {
+   //  	if (typeof data.user_id !== zpm_localized.user_id) {
+   //  		if (data.assignee == zpm_localized.user_id) {
+   //  			ZephyrProjects.notification( data.username + " assigned a new task to you: <a href='" + zpm_localized.tasks_url + "&action=view_task&task_id=" + data.id + "' target='_blank'>" + data.name + "</a>", false, 5000 );
+   //  		} else {
+   //  			ZephyrProjects.notification( data.username + " created a new task: <a href='" + zpm_localized.tasks_url + "&action=view_task&task_id=" + data.id + "' target='_blank'>" + data.name + "</a>", false, 4000 );
+   //  		}
+
+   //  		var new_task = 	data.new_task_html;
+			// $('body').find('.zpm_task_list').prepend(new_task);
+			// $('body').find('.zpm_message_center').remove();
+			// $('body').find('#zpm_task_option_container').removeClass('zpm_hidden');
+			// $('body').find('#zpm_task_list_container').removeClass('zpm_hidden');
+			// $('body').find('.zpm_no_results_message').addClass('zpm_hidden');
+			// $('.zpm_no_results_message').hide();
+   //  	}
+   //  });
+
+   //  // Listen for new tasks created by other users
+   //  zephyrSocket.on( 'new-project', function( data ) {
+   //  	if (typeof data.user_id !== zpm_localized.user_id) {
+   //  		$('body').find('#zpm_project_manager_display').removeClass('zpm_hide');
+			// $('body').find('.zpm_no_results_message').hide();
+			// $('body').find('.zpm_project_grid').prepend(data.html);
+			// ZephyrProjects.notification( data.username + " created a new project: <a href='" + zpm_localized.projects_url + "&action=edit_project&project=" + data.project.id + "' target='_blank'>" + data.project.name + "</a>", false, 4000 );
+   //  	}
+   //  });
+
+   //  // Listen for new message sent by other users
+   //  zephyrSocket.on( 'new-message', function( data ) {
+   //  	if (typeof data.user_id !== zpm_localized.user_id) {
+   //  		if (data.subject == "task") {
+   //  			$('body').find('.zpm_task_comments[data-task-id="' + data.id + '"]').prepend(data.html);
+   //  			ZephyrProjects.notification( "New comment on the task: <a href='" + zpm_localized.tasks_url + "&action=view_task&task_id=" + data.id + "' target='_blank'>" + data.subject_object.name + "</a>", false, 4000 );
+   //  		} else {
+   //  			$('body').find('.zpm_task_comments[data-project-id="' + data.id + '"]').prepend(data.html);
+   //  			ZephyrProjects.notification( "New comment on the project: <a href='" + zpm_localized.projects_url + "&action=edit_project&project=" + data.id + "' target='_blank'>" + data.subject_object.name + "</a>", false, 4000 );
+   //  		}
+   //  	}
+   //  });
+
+   $('#zpm_edit_project_name').on('input', function(){
+   		$('#zpm_project_name_title').text($(this).val());
+   });
 });

@@ -38,13 +38,13 @@ class Admin extends BaseController {
 		$this->settings = new SettingsApi();
 		$this->callbacks = new AdminCallbacks();
 		$this->callbacks_sanitization = new SanitizationCallbacks();
-		$this->set_pages();
+		//$this->set_pages();
 
 		$project = new Projects();
 		$zpm_used = get_option('zpm_used');
 
 		if (get_option('zpm_first_time')) {
-			$this->set_sub_pages();
+			//$this->set_sub_pages();
 		} else {
 			add_action( 'admin_notices', array( $this, 'first_time_use' ) );
 		}
@@ -54,7 +54,7 @@ class Admin extends BaseController {
 			//add_action( 'admin_notices', array( $this, 'review_notice' ) );
 		}
 		
-		$this->settings->add_pages( $this->pages )->with_sub_page( 'Dashboard' )->add_sub_pages( $this->subpages )->register();
+		$this->settings->add_pages( $this->pages )->with_sub_page( __( 'Dashboard', 'zephyr-project-manager' ) )->add_sub_pages( $this->subpages )->register();
 		
 		add_filter( 'upload_mimes', array($this, 'custom_mime_types'), 1, 1 );
 		add_action( 'admin_print_scripts', array( $this, 'hide_unrelated_notices' ) );
@@ -162,101 +162,125 @@ class Admin extends BaseController {
 	/**
 	* Sets all the main plugin pages
 	*/
-	public function set_pages() {
-		
-		$this->pages = array(
+	public static function get_pages() {
+		$callbacks = new AdminCallbacks();
+		$access_level = 'manage_options';
+		$pages = array(
 			array(
 				'page_title' => __( 'Zephyr Project Manager', 'zephyr-project-manager' ), 
 				'menu_title' => __( 'Zephyr Project Manager', 'zephyr-project-manager' ), 
-				'capability' => $this->access_level, 
+				'capability' => $access_level, 
 				'menu_slug'  => 'zephyr_project_manager', 
-				'callback'   => array( $this->callbacks, 'adminDashboard' ), 
+				'callback'   => array( $callbacks, 'adminDashboard' ), 
 				'icon_url'   => ZPM_PLUGIN_URL . 'assets/img/logo.png', 
 				'position'   => 110
 			)
 		);
+
+		return $pages;
 	}
 
 	/**
 	* Sets all the plugin subpages
 	*/
-	public function set_sub_pages() {
-		$this->subpages = array(
+	public static function get_sub_pages() {
+		$callbacks = new AdminCallbacks();
+		$access_level = 'manage_options';
+		$subpages = array(
 			array(
 				'parent_slug' => 'zephyr_project_manager',
 				'page_title'  => __( 'Zephyr Projects', 'zephyr-project-manager' ), 
 				'menu_title'  => __( 'Projects', 'zephyr-project-manager' ), 
-				'capability'  => $this->access_level, 
+				'capability'  => $access_level, 
 				'menu_slug'   => 'zephyr_project_manager_projects', 
-				'callback'    => array( $this->callbacks, 'adminProjects' )
+				'callback'    => array( $callbacks, 'adminProjects' )
 			),
 			array(
 				'parent_slug' => 'zephyr_project_manager',
 				'page_title'  => __( 'Zephyr Tasks', 'zephyr-project-manager' ), 
 				'menu_title'  => __( 'Tasks', 'zephyr-project-manager' ), 
-				'capability'  => $this->access_level, 
+				'capability'  => $access_level, 
 				'menu_slug'   => 'zephyr_project_manager_tasks', 
-				'callback'    => array( $this->callbacks, 'adminTasks' )
+				'callback'    => array( $callbacks, 'adminTasks' )
 			),
 			array(
 				'parent_slug' => 'zephyr_project_manager',
 				'page_title'  => __( 'Zephyr File Manager', 'zephyr-project-manager' ), 
 				'menu_title'  => __( 'Files', 'zephyr-project-manager' ), 
-				'capability'  => $this->access_level, 
+				'capability'  => $access_level, 
 				'menu_slug'   => 'zephyr_project_manager_files', 
-				'callback'    => array( $this->callbacks, 'adminFiles' )
+				'callback'    => array( $callbacks, 'adminFiles' )
 			),
 			array(
 				'parent_slug' => 'zephyr_project_manager',
 				'page_title'  => __( 'Zephyr Activity', 'zephyr-project-manager' ), 
 				'menu_title'  => __( 'Activity', 'zephyr-project-manager' ), 
-				'capability'  => $this->access_level, 
+				'capability'  => $access_level, 
 				'menu_slug'   => 'zephyr_project_manager_activity', 
-				'callback'    => array( $this->callbacks, 'adminActivity' )
+				'callback'    => array( $callbacks, 'adminActivity' )
 			),
 			array(
 				'parent_slug' => 'zephyr_project_manager',
 				'page_title'  => __( 'Zephyr Calendar', 'zephyr-project-manager' ), 
 				'menu_title'  => __( 'Calendar', 'zephyr-project-manager' ), 
-				'capability'  => $this->access_level, 
+				'capability'  => $access_level, 
 				'menu_slug'   => 'zephyr_project_manager_calendar', 
-				'callback'    => array( $this->callbacks, 'adminCalendar' )
+				'callback'    => array( $callbacks, 'adminCalendar' )
 			),
 			array(
 				'parent_slug' => 'zephyr_project_manager',
 				'page_title'  => __( 'Zephyr Categories', 'zephyr-project-manager' ), 
 				'menu_title'  => __( 'Categories', 'zephyr-project-manager' ), 
-				'capability'  => $this->access_level, 
+				'capability'  => $access_level, 
 				'menu_slug'   => 'zephyr_project_manager_categories', 
-				'callback'    => array( $this->callbacks, 'adminCategories' )
+				'callback'    => array( $callbacks, 'adminCategories' )
+			),
+			array(
+				'parent_slug' => 'zephyr_project_manager',
+				'page_title'  => __( 'Zephyr Devices', 'zephyr-project-manager' ), 
+				'menu_title'  => __( 'Devices', 'zephyr-project-manager' ), 
+				'capability'  => $access_level, 
+				'menu_slug'   => 'zephyr_project_manager_devices', 
+				'callback'    => array( $callbacks, 'devicesPage' )
 			),
 			array(
 				'parent_slug' => 'zephyr_project_manager',
 				'page_title'  => __( 'Zephyr Settings', 'zephyr-project-manager' ), 
 				'menu_title'  => __( 'Settings', 'zephyr-project-manager' ), 
-				'capability'  => $this->access_level, 
+				'capability'  => $access_level, 
 				'menu_slug'   => 'zephyr_project_manager_settings', 
-				'callback'    => array( $this->callbacks, 'adminSettings' )
+				'callback'    => array( $callbacks, 'adminSettings' )
 			),
 			array(
 				'parent_slug' => 'zephyr_project_manager',
 				'page_title'  => __( 'Zephyr Teams & Members', 'zephyr-project-manager' ), 
 				'menu_title'  => __( 'Teams & Members', 'zephyr-project-manager' ), 
-				'capability'  => $this->access_level, 
+				'capability'  => $access_level, 
 				'menu_slug'   => 'zephyr_project_manager_teams_members', 
-				'callback'    => array( $this->callbacks, 'adminTeamsMembers' )
-			),
+				'callback'    => array( $callbacks, 'adminTeamsMembers' )
+			), 
+			// Testing
+			// array(
+			// 	'parent_slug' => 'zephyr_project_manager',
+			// 	'page_title'  => __( 'Gantt', 'zephyr-project-manager' ), 
+			// 	'menu_title'  => __( 'Gantt', 'zephyr-project-manager' ), 
+			// 	'capability'  => $access_level, 
+			// 	'menu_slug'   => 'zephyr_project_manager_gantt', 
+			// 	'callback'    => array( $callbacks, 'ganttPage' )
+			// ), 
 		);
 		if (!BaseController::is_pro()) {
-			$this->subpages[] = array(
+			$subpages[] = array(
 				'parent_slug' => 'zephyr_project_manager',
 				'page_title'  => __( 'Zephyr Pro', 'zephyr-project-manager' ), 
 				'menu_title'  => __( 'Get Premium', 'zephyr-project-manager' ), 
 				'capability'  => 'manage_options', 
 				'menu_slug'   => 'zephyr_project_manager_purchase_premium', 
-				'callback'    => array( $this->callbacks, 'purchase_premium' )
+				'callback'    => array( $callbacks, 'purchase_premium' )
 			);
 		}
+
+		return $subpages;
 	}
 
 	/**

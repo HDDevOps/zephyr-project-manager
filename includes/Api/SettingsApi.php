@@ -10,6 +10,8 @@ if ( !defined( 'ABSPATH' ) ) {
 	die;
 }
 
+use Inc\Pages\Admin;
+
 class SettingsApi {
 
 	public $admin_pages = array();
@@ -41,6 +43,7 @@ class SettingsApi {
 	}
 
 	public function with_sub_page( $title = null ) {
+		$this->admin_pages = Admin::get_pages();
 		if ( empty($this->admin_pages) ) {
 			return $this;
 		}
@@ -63,9 +66,14 @@ class SettingsApi {
 	* Adds the menu and submenu pages
 	*/
 	public function add_admin_menu() {
+		if (get_option('zpm_first_time')) {
+			//$this->set_sub_pages();
+			$this->admin_subpages = Admin::get_sub_pages();
+		} 
 		foreach ( $this->admin_pages as $page ) {
 			add_menu_page( $page['page_title'], $page['menu_title'], $page['capability'], $page['menu_slug'], $page['callback'], $page['icon_url'], $page['position'] );
 		}
+
 		foreach ( $this->admin_subpages as $page ) {
 			add_submenu_page( $page['parent_slug'], $page['page_title'], $page['menu_title'], $page['capability'], $page['menu_slug'], $page['callback'] );
 		}

@@ -9,6 +9,7 @@ namespace Inc\Base;
 if ( !defined( 'ABSPATH' ) ) {
 	die;
 }
+error_reporting(E_ALL);
 
 use \DateTime;
 use Inc\Zephyr;
@@ -140,6 +141,13 @@ class AjaxHandler extends BaseController {
 
 	    add_action( 'wp_ajax_zpm_delete_team', array( $this, 'delete_team' ) );
 	    add_action( 'wp_ajax_nopriv_zpm_delete_team', array( $this, 'delete_team' ) );
+
+	    add_action( 'wp_ajax_zpm_get_all_tasks', array( $this, 'get_all_tasks' ) );
+	    add_action( 'wp_ajax_nopriv_zpm_get_all_tasks', array( $this, 'get_all_tasks' ) );
+
+	    add_action( 'wp_ajax_zpm_deactivation_survey', array( $this, 'deactivation_survey' ) );
+	    add_action( 'wp_ajax_nopriv_zpm_deactivation_survey', array( $this, 'deactivation_survey' ) );
+
 	}
 
 	/**
@@ -196,17 +204,50 @@ class AjaxHandler extends BaseController {
 			}
 		}
 
-		
 
 		if ($subject == 'task') {
-			$last_comment = Tasks::get_comment($last_comment);
+			$last_comment = Tasks::get_comment( $last_comment );
+			$html = Tasks::new_comment( $last_comment );
+			$attachments = Tasks::get_comment_attachments( $last_comment->id );
+			$user = BaseController::get_project_manager_user( $last_comment->user_id );
+			$last_comment->message = maybe_unserialize( $last_comment->message );
+			$last_comment->message = html_entity_decode( $last_comment->message );
+			$last_comment->username = $user['name'];
+			$attachments_array = [];
+
+			foreach ($attachments as $attachment) {
+				$this_attachment = wp_get_attachment_url( unserialize( $attachment->message ) );
+				array_push( $attachments_array, $this_attachment );
+			}
+
+			$last_comment->attachments = $attachments_array;
+
 			$response = array(
-				'html' => Tasks::new_comment($last_comment)
+				'html' => $html,
+				'subject_object' => Tasks::get_task( $subject_id ),
+				'comment' => $last_comment
 			);
 		} elseif ($subject == 'project') {
 			$last_comment = Projects::get_comment($last_comment);
+			$html = Projects::new_comment($last_comment);
+			$attachments = Projects::get_comment_attachments( $last_comment->id );
+			$user = BaseController::get_project_manager_user( $last_comment->user_id );
+			$last_comment->message = maybe_unserialize( $last_comment->message );
+			$last_comment->message = html_entity_decode( $last_comment->message );
+			$last_comment->username = $user['name'];
+			$attachments_array = [];
+
+			foreach ($attachments as $attachment) {
+				$this_attachment = wp_get_attachment_url( unserialize( $attachment->message ) );
+				array_push( $attachments_array, $this_attachment );
+			}
+
+			$last_comment->attachments = $attachments_array;
+
 			$response = array(
-				'html' => Projects::new_comment($last_comment)
+				'html' => $html,
+				'subject_object' => Projects::get_project( $subject_id ),
+				'comment' => $last_comment
 			);
 		} else {
 			$html = Projects::file_html($attachments[0]['attachment_id'], $wpdb->insert_id);
@@ -253,10 +294,14 @@ class AjaxHandler extends BaseController {
 		do_action( 'zpm_new_project', $project );
 		Projects::update_progress($last_id);
 		Emails::new_project_email($last_id);
+
+		$username = Members::get_member_name( $project->user_id );
 		
 		$response = array(
-			'html' => Projects::new_project_cell($project),
-			'frontend_html' => Projects::frontend_project_item($project)
+			'html' 			=> Projects::new_project_cell($project),
+			'frontend_html' => Projects::frontend_project_item($project),
+			'project' 		=> $project,
+			'username'		=> $username
 		);
 		echo json_encode($response);
 		die();
@@ -710,6 +755,9 @@ class AjaxHandler extends BaseController {
 		$Tasks = new Tasks();
 		$task->new_task_html = $Tasks->new_task_row($task);
 		$task->kanban_html = $kanban_html;
+		$task->id = $last_id;
+		$task->name = $name;
+		$task->username = Members::get_member_name( $this->get_user_id() );
 
 		echo json_encode($task);
 		die();
@@ -1558,6 +1606,20 @@ class AjaxHandler extends BaseController {
 	public function delete_team() {
 		$id = $_POST['id'];
 		Members::delete_team( $id );
+		die();
+	}
+
+	public function get_all_tasks() {
+		echo json_encode( Tasks::get_tasks() );
+		die();
+	}
+
+	public function deactivation_survey() {
+		$reason = $_POST['reason'];
+		$suggestion_text = $_POST['suggestion'];
+		$other_text = $_POST['other'];
+		wp_mail( 'dylanjkotze@gmail.com', 'Zephyr Deactivation', 'Reason: ' . $reason . ' \n Suggesstion: ' . $suggestion_text . ' \n Other: ' . $other_text );
+		echo json_encode( array( 'result' => 'success' ) );
 		die();
 	}
 }

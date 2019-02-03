@@ -42,7 +42,7 @@
 			<?php echo apply_filters( 'zpm_header_taskbar', '' ); ?>
 		</h3>
 
-		<button id="zpm_add_new_btn" class="<?php echo $quickbutton_class; ?>" data-zpm-dropdown-toggle="zpm_add_new_dropdown"><img src="<?php echo ZPM_PLUGIN_URL . 'assets/img/icon_plus.png'; ?>"/></button>
+		<button id="zpm_add_new_btn" zpm-ripple="ripple" class="<?php echo $quickbutton_class; ?>" data-zpm-dropdown-toggle="zpm_add_new_dropdown"><img src="<?php echo ZPM_PLUGIN_URL . 'assets/img/icon_plus.png'; ?>"/></button>
 
 		<ul id="zpm_add_new_dropdown" class="zpm_fancy_dropdown">
 			<?php ob_start(); ?>

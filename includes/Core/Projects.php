@@ -264,7 +264,7 @@ class Projects extends Tasks {
 		?>
 		<div class="zpm_project_grid_cell">
 			<div class="zpm_project_grid_row zpm_project_item" data-project-id="<?php echo $project->id; ?>">
-				<a href="<?php echo $base_url; ?>&action=edit_project&project=<?php echo $project->id; ?>" data-project_id="<?php echo $project->id; ?>" class="zpm_project_title project_name">
+				<a href="<?php echo $base_url; ?>&action=edit_project&project=<?php echo $project->id; ?>" data-project_id="<?php echo $project->id; ?>" class="zpm_project_title project_name" data-ripple="rgba(0,0,0,0.2)">
 					<span class="zpm_project_grid_name"><?php echo $project->name; ?></span>
 					<!-- Project options button and dropwdown -->
 					<span class="zpm_project_grid_options">

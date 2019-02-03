@@ -6,9 +6,10 @@
 	ZephyrProjects.Project = {};
 	ZephyrProjects.Task = {};
 
-	ZephyrProjects.notification = function( string, infinite ) {
+	ZephyrProjects.notification = function( string, infinite, time ) {
 		var infinite = (infinite) ? true : false;
 		var current_notification = $(document).find('#zpm_system_notification');
+		var time = (time) ? time : 2000;
 		var notification = '<div id="zpm_system_notification">' + string + '</div>';
 
 		if ( current_notification.length !== 0 ) {
@@ -23,7 +24,7 @@
 				setTimeout( function() {
 					$('body').find('#zpm_system_notification').remove();
 				}, 800 );
-			}, 2000 );
+			}, time );
 		}
 	}
 
@@ -84,6 +85,24 @@
 		});
 	}
 
+	ZephyrProjects.submit_deactivation_survey = function( data, callback ) {
+		data.action = 'zpm_deactivation_survey';
+		data.wp_nonce = zpm_localized.wp_nonce;
+
+		$.ajax({
+			url: zpm_localized.ajaxurl,
+			type: 'post',
+			dataType: 'json',
+			data: data,
+			error: function(response) {
+				callback(response);
+			},
+			success: function(response) {
+				callback(response);	
+			}
+		});
+	}
+
 	ZephyrProjects.get_tasks = function(data, callback) {
 		data.action = 'zpm_get_tasks';
 		data.wp_nonce = zpm_localized.wp_nonce;
@@ -94,6 +113,25 @@
 			data: data,
 			error: function(response) {
 				alert( zpm_localized.strings.error_loading_tasks );
+			},
+			success: function(response) {
+				callback(response);	
+			}
+		});
+	}
+
+	ZephyrProjects.get_all_tasks = function( callback) {
+		var data = {};
+		data.action = 'zpm_get_all_tasks';
+		data.wp_nonce = zpm_localized.wp_nonce;
+
+		$.ajax({
+			url: zpm_localized.ajaxurl,
+			type: 'post',
+			dataType: 'json',
+			data: data,
+			error: function(response) {
+				callback(response);
 			},
 			success: function(response) {
 				callback(response);	
@@ -197,9 +235,11 @@
 	*/
 	ZephyrProjects.initialize_calendar = function(){
 		var tasks = [];
-		
-		$.getJSON( zpm_localized.rest_url + 'tasks', function( data ) {
+
+		ZephyrProjects.get_all_tasks(function(data){
+
 			$.each( data, function( key, val ) {
+				console.log(val);
 				var url = zpm_localized.is_admin ? zpm_localized.tasks_url + '&action=view_task&task_id=' + val.id : zpm_localized.manager_home + '?action=task&id=' + val.id;
 				var completed = (val.completed !== '0') ? 'completed' : 'not-completed';
 				tasks.push({ 
@@ -210,7 +250,7 @@
 					url: url
 				});
 			});
-		}).success(function() { 
+
 			$('#zpm_calendar').fullCalendar({
 				header: {
 				    right: 'month, agendaWeek, today prev,next'
@@ -218,22 +258,75 @@
 				events: tasks
 			}); 
 			$('body').find('.zpm_task_loader').remove();
-		}).error(function() {
-			$('#zpm_calendar').fullCalendar({
-				header: {
-				    right: 'month, agendaWeek, today prev,next'
-				  }
-			}); 
-			$('body').find('.zpm_task_loader').remove();
-		}).complete(function() {
-			$('body').find('.zpm_task_loader').remove();
 		});
+		
+		// $.getJSON( zpm_localized.rest_url + 'tasks', function( data ) {
+		// 	$.each( data, function( key, val ) {
+		// 		var url = zpm_localized.is_admin ? zpm_localized.tasks_url + '&action=view_task&task_id=' + val.id : zpm_localized.manager_home + '?action=task&id=' + val.id;
+		// 		var completed = (val.completed !== '0') ? 'completed' : 'not-completed';
+		// 		tasks.push({ 
+		// 			title: val.name + '\n' + val.description,
+		// 			start: val.date_start,
+		// 			end: val.date_due,
+		// 			className: completed,
+		// 			url: url
+		// 		});
+		// 	});
+		// }).success(function() { 
+		// 	$('#zpm_calendar').fullCalendar({
+		// 		header: {
+		// 		    right: 'month, agendaWeek, today prev,next'
+		// 		  },
+		// 		events: tasks
+		// 	}); 
+		// 	$('body').find('.zpm_task_loader').remove();
+		// }).error(function() {
+		// 	$('#zpm_calendar').fullCalendar({
+		// 		header: {
+		// 		    right: 'month, agendaWeek, today prev,next'
+		// 		  }
+		// 	}); 
+		// 	$('body').find('.zpm_task_loader').remove();
+		// }).complete(function() {
+		// 	$('body').find('.zpm_task_loader').remove();
+		// });
 	}
 
 	ZephyrProjects.task_reminders = function(){
 		var tasks = [];
 
-		$.getJSON( zpm_localized.rest_url + 'tasks', function(data) {
+		// $.getJSON( zpm_localized.rest_url + 'tasks', function(data) {
+		// 	$.each( data, function( key, val ) {
+		// 		var name = val.name;
+		// 		var id = val.id;
+		// 		var date_due = val.date_due;
+		// 		const now = new Date();
+		// 		var parts = date_due.split('-');
+		// 		parts[2] = parts[2].split(' ');
+		// 		parts[2] = parts[2][0];
+
+		// 		if (val.completed == "1") {
+		// 			return;
+		// 		}
+				
+		// 		var mydate = new Date(parts[0], parts[1] - 1, parts[2]);
+
+		// 		if (val.assignee == zpm_localized.user_id) {
+		// 			if ((mydate.getFullYear() == now.getFullYear()) &&
+		// 				(mydate.getMonth() == now.getMonth()) &&
+		// 				(mydate.getDay() == now.getDay()) && !localStorage.getItem('task' + id)) {
+		// 					ZephyrProjects.task_notification( zpm_localized.strings.task_due_today + ': ' + name, id, 'task');
+		// 			} else if ((mydate.getFullYear() == now.getFullYear()) &&
+		// 				(mydate.getMonth() == now.getMonth()) &&
+		// 				(mydate.getDay() == now.getDay()+1) && !localStorage.getItem('taskReminder' + id)) {
+		// 				ZephyrProjects.task_notification( zpm_localized.strings.task_due_tomorrow + ': "' + name + '"', id, 'taskReminder');
+		// 			}
+		// 		}
+		// 	});
+
+		// });
+
+		ZephyrProjects.get_all_tasks( function( data ) {
 			$.each( data, function( key, val ) {
 				var name = val.name;
 				var id = val.id;
@@ -261,7 +354,6 @@
 					}
 				}
 			});
-
 		});
 	}
 
@@ -1196,4 +1288,36 @@
 
 		}
 	}
+
+	ZephyrProjects.sendDesktopNotification = function( title, body, icon ) {
+		if (!("Notification" in window)) {
+			alert("This browser does not support desktop notification");
+		}
+		else if (Notification.permission === "granted") {
+			var options = {
+			    body: body,
+			    icon: icon,
+			    dir : "ltr"
+			};
+			var notification = new Notification( title, options );
+		}
+		else if (Notification.permission !== 'denied') {
+			Notification.requestPermission(function (permission) {
+				if (!('permission' in Notification)) {
+					Notification.permission = permission;
+				}
+
+				if (permission === "granted") {
+					var options = {
+					    body: body,
+					    icon: icon,
+					    dir : "ltr"
+					};
+
+					var notification = new Notification( title, options );
+				}
+			});
+		}
+	}
+
 })(jQuery)

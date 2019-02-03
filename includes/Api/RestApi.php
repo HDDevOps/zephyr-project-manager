@@ -480,6 +480,12 @@ class RestApi {
 						'validate_callback' => function($param, $request, $key) {
 							return is_string( $param );
 						}
+					),
+					'one_signal_user_id' => array(
+						'default' => '',
+						'validate_callback' => function($param, $request, $key) {
+							return is_string( $param );
+						}
 					)
 				),
 			) );
@@ -793,10 +799,11 @@ class RestApi {
 	function check_status( $data ) {
 
 		$response = array(
-			'installed' => true,
-			'is_pro' => BaseController::is_pro(),
-			'code' => 'basic_installed',
-			'is_valid_version' => true
+			'installed' 	   => true,
+			'is_pro' 		   => BaseController::is_pro(),
+			'code'			   => 'basic_installed',
+			'is_valid_version' => true,
+			'site_url'		   => get_site_url()
 		);
 
 		return $response;
@@ -805,6 +812,7 @@ class RestApi {
 	function authenticate($data) {
 		$username = $data['username'];
 		$password = $data['password'];
+		$one_signal_user_id = $data['one_signal_user_id'];
 
 		$user = get_user_by( 'login', $username );
 
@@ -813,12 +821,17 @@ class RestApi {
 			if ($data['device_id'] !== '') {
 				$devices = maybe_unserialize( get_option( 'zpm_devices', array() ) );
 				if (!isset( $devices[$data['device_id']] )) {
+
 					$devices[$data['device_id']] = array(
 						'id' => $data['device_id'],
 						'name' => $data['device_name'],
 						'linked_to' => $user->ID,
-						'os'	=> $data['os']
+						'os'	=> $data['os'],
 					);
+
+					if ($one_signal_user_id !== "" && !empty($one_signal_user_id)) {
+						$devices[$data['device_id']]['one_signal_user_id'] = $one_signal_user_id;
+					}
 				}
 				update_option( 'zpm_devices', serialize( $devices ) );
 			}
@@ -835,7 +848,9 @@ class RestApi {
 				'user_data'		 => $project_manager_user,
 				'status'		 => true,
 				'can_zephyr'	 => $user_settings['can_zephyr'],
-				'is_admin'		 => user_can( $user->data->ID, 'administrator' )
+				'is_admin'		 => user_can( $user->data->ID, 'administrator' ),
+				'is_pro'		 => BaseController::is_pro(),
+				'site_url'		 => get_site_url()
 			];
 			return $user_results;
 		} else {
@@ -1093,8 +1108,10 @@ class RestApi {
 		$message_id = Tasks::send_comment( $task_id, $data );
 		$message = Tasks::get_comment( $message_id );
 
+		$html = Tasks::new_comment( $message );
 		$user = BaseController::get_project_manager_user( $message->user_id );
-		$message->message = unserialize( $message->message );
+		$message->message = maybe_unserialize( $message->message );
+		$message->message = html_entity_decode( $message->message );
 		$message->username = $user['name'];
 
 		// Comment attachments
@@ -1108,7 +1125,13 @@ class RestApi {
 
 		$message->attachments = $attachments_array;
 
-		return $message;
+		$response = array(
+			'html' => $html,
+			'subject_object' => Tasks::get_task( $subject_id ),
+			'comment' => $message
+		);
+
+		return $response;
 	}
 
 	public static function new_project_message( $data ) {
@@ -1118,7 +1141,8 @@ class RestApi {
 		$message = Projects::get_comment( $message_id );
 
 		$user = BaseController::get_project_manager_user( $message->user_id );
-		$message->message = unserialize( $message->message );
+		$message->message = maybe_unserialize( $message->message );
+		$message->message = html_entity_decode( $message->message );
 		$message->username = $user['name'];
 
 		// Comment attachments
@@ -1132,7 +1156,15 @@ class RestApi {
 
 		$message->attachments = $attachments_array;
 
-		return $message;
+		$html = Projects::new_comment($last_comment);
+		
+		$response = array(
+			'html' => $html,
+			'subject_object' => Projects::get_project( $subject_id ),
+			'comment' => $message
+		);
+
+		return $response;
 	}
 
 	public static function general_statistics( $data ) {

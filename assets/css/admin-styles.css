@@ -25,7 +25,6 @@ body.zephyr-project-manager_page_zephyr_project_manager_categories #wpcontent
 	width: 100%;
 	min-height: 70px;
 	border-radius: 2px;
-	border-color: #e9e9e9;
 	box-shadow: none;
 	transition: all .15s ease;
 	padding: 10px;
@@ -1996,14 +1995,12 @@ article.zpm_body h3 {
 	user-select: none;
 }
 #zpm_new_task_description {
-	border: 1px solid #eee;
 	box-shadow: none;
 	min-height: 100px;
 	padding: 15px 20px;
 	width: 100%;
 }
 #zpm_new_task_due_date {
-	border: 1px solid #eee;
 	padding: 5px 10px;
 	width: 100%;
 }
@@ -2353,7 +2350,6 @@ button.zpm_button_outline:hover {
 #zpm_new_task_name:active, #zpm_new_task_name:focus {
 	outline: none;
 	box-shadow: none;
-	border-color: #ccc;
 }
 #zpm_create_task {
 	max-width: 200px;
@@ -2667,7 +2663,6 @@ div#ui-datepicker-div {
 }
 #zpm_edit_task_description {
 	display: block;
-	max-width: 400px;
 }
 #zpm_edit_task_due_date:active, #zpm_edit_task_due_date:focus {
 	box-shadow: none;
@@ -2684,7 +2679,7 @@ div#ui-datepicker-div {
 #zpm_task_editor.zpm_body input {
 	display: block;
 	margin: 0;
-	max-width: 399px;
+	max-width: 100%;
 }
 #zpm_task_list_container h3 {
 	margin-top: 20px;
@@ -3431,7 +3426,7 @@ button.zpm_button_borderless:hover {
 	margin-right: 0;
 }
 #zpm_task_editor .chosen-container {
-	border: none !important;
+	border: none;
 	width: 100% !important;
 }
 #zpm_task_editor .chosen-drop {
@@ -3449,7 +3444,7 @@ button.zpm_button_borderless:hover {
 	vertical-align: top;
 }
 #zpm_task_editor_settings {
-	width: 49%;
+	width: 100%;
 	display: inline-block;
 	vertical-align: top;
 }
@@ -4090,14 +4085,7 @@ button.zpm_button_borderless:hover {
 #zpm_save_changes_task {
 	margin-top: 15px;
 }
-#zpm_edit_task_assignee_chosen .chosen-single {
-	width: 399px !important;
-	border: 1px solid #eee !important;
-	text-align: left !important;
-	padding: 7px 10px !important;
-	height: 33px !important;
-	line-height: 19px !important;
-}
+
 #zpm_task_editor_subtasks {
 	padding-top: 0;
 	padding-left: 15px;
@@ -4106,7 +4094,6 @@ button.zpm_button_borderless:hover {
 #zpm_task_editor_subtasks input {
 	border: 1px solid #eee;
 	padding: 7px 10px;
-	width: 399px;
 }
 #zpm_task_editor_subtasks input:active, #zpm_task_editor_subtasks input:focus {
 	outline: none;
@@ -4143,10 +4130,10 @@ button.zpm_button_borderless:hover {
 	box-shadow: none !important;
 	outline: none !important;
 }
-.zpm_input::placeholder {
+/*.zpm_input::placeholder {
 	color: #ccc;
 	font-weight: normal;
-}
+}*/
 .zpm_input:focus, .zpm_input:active {
 	outline: none;
 	border-color: #ccc;
@@ -4187,33 +4174,6 @@ button.zpm_button_borderless:hover {
 .zpm_subtask_name {
 	display: inline-block;
 	min-width: 200px;
-}
-.zpm_subtask_is_done {
-	display: inline-block !important;
-	width: 15px !important;
-	height: 15px !important;
-	text-align: center !important;
-	font-size: 12px !important;
-	position: relative !important;
-	transition: all .12s ease !important;
-	border: 1px solid #eee !important;
-	border-radius: 1px !important;
-	box-shadow: none !important;
-}
-.zpm_subtask_is_done:active, .zpm_subtask_is_done:focus {
-	box-shadow: none !important;
-}
-.zpm_subtask_is_done:before {
-	transition: all .12s ease !important;
-	font-size: 15px !important;
-	text-align: left !important;
-	position: absolute !important;
-	left: 2px !important;
-	top: 2px !important;
-	background: #60bbe9 !important;
-	color: #fff !important;
-	margin: -3px !important;
-	border-radius: 1px !important;
 }
 .zpm_checkbox {
 	display: inline-block !important;
@@ -4354,15 +4314,10 @@ input#zpm_new_task_name {
 input#zpm_new_task_start_date, input#zpm_new_task_due_date {
 	padding: 7px 10px !important;
 }
-input#zpm_new_task_start_date::placeholder, input#zpm_new_task_due_date::placeholder {
-	color: #ccc !important;
-}
 #zpm_new_task_description {
 	font-size: 13px !important;
 }
-#zpm_new_task_description::placeholder {
-	color: #ccc !important;
-}
+
 .zpm_options_container {
 	box-sizing: border-box;
 }
@@ -4978,8 +4933,8 @@ input#zpm_edit_category_color {
 	padding-bottom: 10px;
 }
 #zpm_task_editor.zpm_body .zpm_input, #zpm_task_editor.zpm_body .chosen-container {
-	width: 399px;
 	margin-bottom: 10px;
+	width: 100%;
 }
 .zpm_panel {
 	background: #fff;
@@ -5673,9 +5628,6 @@ button#zpm_front_end_settings, button#zpm_profile_settings {
 .zpm_button.inactive:hover {
 	background: #ccc !important;
 }
-#zpm_profile_settings label {
-	margin-top: 10px;   
-}
 
 #zpm_create_task .zpm_modal_header {
     margin-top: 15px;
@@ -6015,9 +5967,9 @@ a.zpm_button:hover, a.zpm_button:active, a.zpm_button:focus, a.zpm_button:visite
 }
 
 .chosen-container .chosen-single {
-    border: none !important;
-    border-bottom: 1.5px solid #eee !important;
-    transition: border-color 0.3s cubic-bezier(.25, .8, .25, 1) !important;
+    border: none;
+    border-bottom: 1.5px solid #eee;
+    transition: border-color 0.3s cubic-bezier(.25, .8, .25, 1);
 }
 
 .chosen-container .chosen-single:hover, .chosen-container .chosen-single:focus, .chosen-container .chosen-single:active {
@@ -6831,3 +6783,557 @@ a.zpm_team_member {
     vertical-align: top;
 }
 
+#zephyr-deactivation-modal .zpm-modal-header {
+    background: #14aaf5;
+    padding: 15px;
+    color: #fff;
+    margin-left: 0;
+}
+
+.zpm-deactivation-buttons {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 15px;
+}
+
+.zpm-deactivation-form {
+    text-align: left;
+    padding: 15px;
+}
+
+#zephyr-deactivation-modal {
+    min-width: unset;
+    max-width: 500px;
+    width: max-content;
+    height: max-content;
+    min-height: unset;
+    padding-bottom: 40px;
+}
+
+.zpm-deactivation-form .zpm_input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 12px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+.zpm-deactivation-form > div {
+    margin-bottom: 10px;
+}
+
+.zpm-deactivation-form p {
+	text-align: center;   
+}
+
+.ripple{
+    position: absolute;
+    top:0; left:0; bottom:0; right:0;
+    overflow: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    border-radius: inherit;
+    pointer-events: none;
+    animation: ripple-shadow 0.4s forwards;
+    -webkit-animation: ripple-shadow 0.4s forwards;
+}
+.rippleWave{
+    backface-visibility: hidden;
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0.7);
+    -webkit-transform: scale(0.7);
+    background: rgba(255,255,255, 1);
+    opacity: 0.45;
+    animation: ripple 2s forwards;
+    -webkit-animation: ripple 2s forwards;
+}
+
+/* Animations */
+
+@keyframes ripple-shadow {
+    0% {
+        box-shadow: 0 0 0 rgba(0,0,0,0.0);
+    }
+    20% {
+        box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    }
+    100% {
+        box-shadow: 0 0 0 rgba(0,0,0,0.0);
+    }
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(24);
+        opacity:0;
+    }
+}
+
+.zpm-material-checkbox {
+    z-index: 0;
+    position: relative;
+    display: inline-block;
+    color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.17);
+    font-family: var(--pure-material-font, "Roboto", "Segoe UI", BlinkMacSystemFont, system-ui, -apple-system);
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Input */
+.zpm-material-checkbox > input {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    z-index: -1;
+    position: absolute;
+    left: -10px;
+    top: -8px;
+    display: block;
+    margin: 0;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.6);
+    box-shadow: none;
+    outline: none;
+    opacity: 0;
+    transform: scale(1);
+    pointer-events: none;
+    transition: opacity 0.3s, transform 0.2s;
+}
+
+/* Span */
+.zpm-material-checkbox > span {
+    display: inline-block;
+    width: 100%;
+    cursor: pointer;
+}
+
+/* Box */
+.zpm-material-checkbox > span::before {
+    content: "";
+    display: inline-block;
+    box-sizing: border-box;
+    margin: 3px 11px 3px 1px;
+    border: solid 2px; /* Safari */
+    border-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.3);
+    border-radius: 2px;
+    width: 18px;
+    height: 18px;
+    vertical-align: top;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+/* Checkmark */
+.zpm-material-checkbox > span::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 3px;
+    left: 1px;
+    width: 10px;
+    height: 5px;
+    border: solid 2px transparent;
+    border-right: none;
+    border-top: none;
+    transform: translate(3px, 4px) rotate(-45deg);
+}
+
+/* Checked, Indeterminate */
+.zpm-material-checkbox > input:checked,
+.zpm-material-checkbox > input:indeterminate {
+    background-color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+}
+
+.zpm-material-checkbox > input:checked + span::before,
+.zpm-material-checkbox > input:indeterminate + span::before {
+    border-color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+    background-color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+}
+
+.zpm-material-checkbox > input:checked + span::after,
+.zpm-material-checkbox > input:indeterminate + span::after {
+    border-color: rgb(var(--pure-material-onprimary-rgb, 255, 255, 255));
+}
+
+.zpm-material-checkbox > input:indeterminate + span::after {
+    border-left: none;
+    transform: translate(4px, 3px);
+}
+
+/* Hover, Focus */
+.zpm-material-checkbox:hover > input {
+    opacity: 0.04;
+}
+
+.zpm-material-checkbox > input:focus {
+    opacity: 0.12;
+}
+
+.zpm-material-checkbox:hover > input:focus {
+    opacity: 0.16;
+}
+
+/* Active */
+.zpm-material-checkbox > input:active {
+    opacity: 1;
+    transform: scale(0);
+    transition: transform 0s, opacity 0s;
+}
+
+.zpm-material-checkbox > input:active + span::before {
+    border-color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+}
+
+.zpm-material-checkbox > input:checked:active + span::before {
+    border-color: transparent;
+    background-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.6);
+}
+
+/* Disabled */
+.zpm-material-checkbox > input:disabled {
+    opacity: 0;
+}
+
+.zpm-material-checkbox > input:disabled + span {
+    color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.38);
+    cursor: initial;
+}
+
+.zpm-material-checkbox > input:disabled + span::before {
+    border-color: currentColor;
+}
+
+.zpm-material-checkbox > input:checked:disabled + span::before,
+.zpm-material-checkbox > input:indeterminate:disabled + span::before {
+    border-color: transparent;
+    background-color: currentColor;
+}
+
+
+.zpm_task_mark_complete {
+ vertical-align: middle;
+  height: 100%;
+  position: absolute;
+  top: 100px;
+}
+
+.zpm_task_list_data {
+  vertical-align: middle;
+}
+
+.zpm_project_body {
+  max-height: 100px;
+  overflow: hidden;
+}
+
+
+
+.zpm-form__group {
+  position: relative;
+  padding: 15px 0 0;
+  margin-top: 10px;
+  background: transparent;
+}
+
+input.zpm-form__field,
+textarea.zpm-form__field{
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 1.5px solid #eee;
+  outline: 0;
+  font-size: 16px;
+  color: #212121;
+  padding: 7px 0;
+  transition: border-color 0.2s;
+  background: transparent;
+  box-shadow: none;
+  outline: none;
+}
+
+.zpm_body input[type="text"].zpm-form__field,
+.zpm_body textarea.zpm-form__field{
+  border: none;
+  border-bottom: 1.5px solid #eee;
+  padding-left: 0;
+}
+#zpm_container textarea.zpm-form__field {
+  padding-left: 0;
+}
+input.zpm-form__field:active,
+input.zpm-form__field:focus,
+input.zpm-form__field:hover,
+textarea.zpm-form__field:active,
+textarea.zpm-form__field:focus,
+textarea.zpm-form__field:hover{
+  outline: none;
+  box-shadow: none;
+}
+
+.zpm-form__field::placeholder {
+  color: transparent;
+}
+
+.zpm-form__field:placeholder-shown ~ .zpm-form__label {
+  font-size: 15px;
+  cursor: text;
+  top: 20px;
+}
+
+.zpm-form__label,
+.zpm-form__field:focus ~ .zpm-form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 12px;
+  color: #9b9b9b;
+}
+
+.zpm-form__field:focus ~ .zpm-form__label {
+  color: #14aaf5;
+}
+
+
+.zpm-form__field:focus {
+  padding-bottom: 6px;
+  border-bottom: 1.5px solid #14aaf5 !important;
+}
+
+#zpm_task_name_title {
+  min-height: 20px;
+  display: inline-block;
+}
+
+.zpm_title_information {
+  display: block;
+}
+
+#zpm_task_editor_settings .zpm-form__field:active, #zpm_task_editor_settings .zpm-form__field:focus {
+  border-color: #14aaf5 !important;
+}
+
+
+#zpm_task_view_container .zpm_modal_task_name {
+  display:inline-block;
+  margin-left: 0px;
+  margin-bottom: 15px;
+  vertical-align: middle;
+}
+
+#zpm_task_view_container .zpm-material-checkbox {
+  padding-bottom: 0;
+}
+
+#zpm_task_following {
+	display: none !important;
+}
+
+#zpm-whats-new {
+  margin-bottom: 15px;
+}
+
+.zpm_task_list_row {
+  display: block;
+}
+
+.zpm_comment_user_text {
+	max-width: 100%;
+}
+
+#zpm_system_notification a {
+  color: #fff;
+}
+
+#zpm_new_task_start_date::placeholder {
+  color: transparent !important;
+}
+
+#zpm_new_task_template_select_chosen,
+#zpm_new_task_team_selection_chosen {
+  width: 100% !important;
+  max-width: unset;
+}
+
+#zpm_create_task .zpm_label {
+    display: block;
+    transition: 0.2s;
+    font-size: 12px;
+    color: #9b9b9b;
+}
+
+.zpm-material-card-colored:hover {
+  transform: translateY(-3px);
+}
+
+.zpm-material-card-colored {
+  cursor: pointer;
+}
+
+#zpm_new_file_upload {
+  overflow: visible;
+}
+
+#zpm_file_upload_project_chosen {
+  width: 100% !important;
+}
+#zpm-edit-member-container {
+  padding-top: 10px
+}
+
+#zpm_profile_settings .zpm-material-checkbox-label {
+  font-size: 13px;
+  line-height: 30px;
+  color: #888;
+  margin-right: 10px;
+}
+
+#zpm-access-level {
+  width: 100%;
+}
+
+
+.zpm_label {
+  margin-top: 10px;
+}
+
+.zpm_task_list_row,
+.zpm_task_list_row:active,
+.zpm_task_list_row:focus{
+  outline: none;
+  box-shadow: none;
+  text-decoration: none;
+}
+
+.zpm_task_complete .zpm_task_list_data.task_name {
+  color: #aaa;
+}
+
+.zpm_task_list_data.task_name {
+  color: #333;
+}
+
+
+.zpm_settings_wrap .chosen-container, .zpm-modal .chosen-container {
+  border-bottom: 1.5px solid #eee !important;
+}
+#zpm_project_editor #zpm_project_view_tasks {
+  margin-bottom: 0;
+}
+
+.zpm_settings_wrap .chosen-container:hover,
+.zpm-modal .chosen-container:hover{
+  border-color: #14aaf5 !important
+}
+
+.chosen-focus-input {
+  padding-left: 1px !important;
+  padding-bottom: 0 !important;
+}
+
+#zpm_task_editor.zpm_body .zpm_input, #zpm_task_editor.zpm_body .chosen-container {
+  max-width: 100%;
+}
+
+.zpm-modal .chosen-single {
+  border: none !important;
+}
+
+#zpm_task_name_title {
+  min-height: 10px;
+}
+
+#zpm-linked-device-list {
+    display: flex;
+}
+
+.zpm-linked-device {
+    padding: 10px;
+    box-sizing: border-box;
+    flex: .3333;
+}
+
+.zpm-linked-device-card {
+    min-height: 200px;
+    background: #fff;
+    height: 100%;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 1px 1px rgba(0, 0, 0, 0.1);
+    border: 1px solid #eee;
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+    cursor: pointer;
+    padding: 10px 15px;
+    color: #777;
+    box-sizing: border-box;
+}
+
+.zpm-linked-device-card:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05), 0 6px 6px rgba(0, 0, 0, 0.05);
+}
+
+#zpm_project_name_title {
+  min-height: 20px;
+}
+
+#zpm_create_task .zpm_modal_buttons {
+  left: unset;
+  right: 10px;
+  width: max-content; 
+}
+
+#zpm_create_task .zpm_modal_buttons button{
+  margin-left: 10px;
+}
+
+#zpm_create_task .zpm_modal_header {
+  margin-bottom: 0 !important;
+}
+
+.zpm-gantt-chart {
+      display: inline-block;
+    margin-bottom: 15px;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.00), 0 1px 2px rgba(0, 0, 0, 0.07);
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+}
+
+.zpm-gantt-tasks {
+	width: 20%;
+	display: inline-box;
+}
+
+.zpm-gantt-task,
+.zpm-gantt-subtask{
+	padding: 5px;
+	cursor: pointer;
+}
+
+.zpm-gantt-task:hover,
+.zpm-gantt-subtask:hover {
+	background: #eee;
+}
+
+.zpm-gantt-subtask {
+	padding-left: 10px;
+}
+
+#zpm_task_view_container .zpm_modal_buttons,
+#zpm_quickview_modal .zpm_modal_buttons,
+#zpm_create_task .zpm_modal_buttons{
+  width: 100%;
+  left: 0;
+   bottom: 0;
+  border-top: 1px solid #eee;
+  padding: 10px;
+  text-align: right;
+  box-sizing: border-box;
+  right: 0;
+  transform: none;
+  max-height: 60px;
+}

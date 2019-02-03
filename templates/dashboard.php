@@ -12,7 +12,7 @@
 	use Inc\Core\Utillities;
 
 	$dashboard_projects = Projects::get_dashboard_projects();
-	$notice_version = '1.3';
+	$notice_version = '1.4';
 	$user_id = get_current_user_id();
 	Utillities::save_user_settings( $user_id, array(
 		'hide_dashboard_widgets' => true
@@ -48,7 +48,7 @@
 			<div class="zpm_panel_container">
 				
 				<!-- Display Whats New Notice -->
-				<?php if ( !Utillities::notice_is_dismissed( $notice_version ) ) : ?>
+				<!-- <?php if ( !Utillities::notice_is_dismissed( $notice_version ) ) : ?>
 					<div id="zpm-whats-new" class="zpm-panel zpm-panel-12" data-notice="<?php echo $notice_version; ?>">
 						<h4 class="zpm_panel_title"><?php _e( 'What\'s new?', 'zephyr-project-manager' ); ?></h4>
 
@@ -57,19 +57,19 @@
 							</div>
 						<div class="zpm-notice-content">
 							
-							<h3 class="zpm-notice-content-title">Zephyr Project Manager Android App has been released!</h3>
+							<h3 class="zpm-notice-content-title">Android App is now available to all users - basic and Pro</h3>
 							<p>You can now manage all your projects and tasks on the go, from anywhere by linking your Android app to your website.</p>
-							<p>* Note, that the app requires the Pro version of Zephyr Project Manager. If you do not already have the Pro version installed, you can purchase it from <a href="https://zephyr-one.com/purchase-pro" class="zpm-link" target="_blank">here.</a></p>
-							<p>Get the app now on Google Play Store.</p>
+							<p>You will also get real time notifications of new tasks created and new tasks assigned to you as well as comments and messages on tasks and projects.</p>
+							<p><a href="https://play.google.com/store/apps/details?id=com.zephyr.dylank.zephyrprojectmanager">Get the app now on Google Play Store.</a></p>
 						</div>
 
 						<div class="zpm-notice-buttons">
-							<a class="zpm_button" href="https://zephyr-one.com/purchase-pro" target="_blank"><?php _e( 'Get the Android App', 'zephyr-project-manager' ); ?></a>
+							<a class="zpm_button" href="https://play.google.com/store/apps/details?id=com.zephyr.dylank.zephyrprojectmanager" target="_blank"><?php _e( 'Get the Android App', 'zephyr-project-manager' ); ?></a>
 							<a class="zpm_button" href="https://zephyr-one.com/purchase-pro" target="_blank"><?php _e( 'Get the Pro Add-On', 'zephyr-project-manager' ); ?></a>
 							<button class="zpm-dismiss-whats-new zpm_button"><?php _e( 'Dismiss Notice', 'zephyr-project-manager' ); ?></button>
 						</div>
 					</div>
-				<?php endif; ?>
+				<?php endif; ?> -->
 
 				<div class="zpm-grid-container">
 					<div class="zpm-grid-row zpm-grid-row-12">
@@ -139,7 +139,7 @@
 							<span class="zpm-project-stat-label"><?php _e( 'Completed Projects', 'zephyr-project-manager' ); ?></span>
 						</span>
 						<span class="zpm-project-stat">
-							<span class="zpm-project-stat-value good"><?php echo sizeof($completed_tasks); ?></span>
+							<span class="zpm-project-stat-value good"><?php echo $completed_tasks; ?></span>
 							<span class="zpm-project-stat-label"><?php _e( 'Completed Tasks', 'zephyr-project-manager' ); ?></span>
 						</span>
 					</div>
@@ -177,8 +177,8 @@
 					}
 				?>
 
-				<!-- Display Whats New Notice -->
-				<?php if ( !Utillities::notice_is_dismissed( 'zpm-patreon-notice' ) ) : ?>
+				<!-- Display Patreon Notice -->
+				<!-- <?php if ( !Utillities::notice_is_dismissed( 'zpm-patreon-notice' ) ) : ?>
 					<div id="zpm-whats-new" class="zpm-panel zpm-panel-12" data-notice="'zpm-patreon-notice'">
 						<h4 class="zpm_panel_title"><?php _e( 'Support me on Patreon', 'zephyr-project-manager' ); ?></h4>
 						<p><?php _e( 'If you like the plugin and what I do and would like to help me improve the plugin more, please consider supporting me on Patreon. This would help a lot in being able to work on the plugin full-time and focus more on it to make it better and add new features. Thank you so much.', 'zephyr-project-manager' ); ?></p>
@@ -188,7 +188,7 @@
 							<a href="https://www.patreon.com/dylanjkotze" target="_blank" class="zpm-patreon-button zpm_button"><?php _e( 'Support me on Patreon', 'zephyr-project-manager' ); ?></a>
 						</div>
 					</div>
-				<?php endif; ?>
+				<?php endif; ?> -->
 
 			</div>
 		</div>

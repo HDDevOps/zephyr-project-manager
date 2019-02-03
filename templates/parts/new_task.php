@@ -20,15 +20,18 @@
 <div id="zpm_create_task" class="zpm-modal">
 	<h5 class="zpm_modal_header"><?php _e( 'New Task', 'zephyr-project-manager' ); ?></h5>
 	<div class="zpm_modal_body">
-		<span class="zpm_close_modal">+</span>
 		<div class="zpm_modal_content">
 			<?php echo apply_filters( 'zpm_new_task_before', '' ); ?>
 
-			<label class="zpm_label" for="zpm_new_task_name"><?php _e( 'Task Name', 'zephyr-project-manager' ); ?></label>
-			<input type="text" id="zpm_new_task_name" class="zpm_new_task_name_input zpm_input" placeholder="<?php _e( 'Task Name', 'zephyr-project-manager' ); ?>" />
+			<div class="zpm-form__group">
+				<input type="text" name="zpm_new_task_name" id="zpm_new_task_name" class="zpm-form__field" placeholder="<?php _e( 'Task Name', 'zephyr-project-manager' ); ?>">
+				<label for="zpm_new_task_name" class="zpm-form__label"><?php _e( 'Task Name', 'zephyr-project-manager' ); ?></label>
+			</div>
 
-			<label class="zpm_label" for="zpm_new_task_description"><?php _e( 'Task Description', 'zephyr-project-manager' ); ?></label>
-			<textarea id="zpm_new_task_description" class="zpm_input" placeholder="<?php _e( 'Task Description', 'zephyr-project-manager' ); ?>"></textarea>
+			<div class="zpm-form__group">
+				<textarea type="text" name="zpm_new_task_description" id="zpm_new_task_description" class="zpm-form__field" placeholder="<?php _e( 'Task Description', 'zephyr-project-manager' ); ?>"></textarea>
+				<label for="zpm_new_task_description" class="zpm-form__label"><?php _e( 'Task Description', 'zephyr-project-manager' ); ?></label>
+			</div>
 
 			<?php if (!isset($_GET['project'])) : ?>
 				<label class="zpm_label" for="zpm_new_task_project"><?php _e( 'Project', 'zephyr-project-manager' ); ?></label>
@@ -55,12 +58,16 @@
 		
 			<div class="zpm_options_container">
 				<span class="zpm_options_col">
-					<label class="zpm_label" for="zpm_new_task_start_date"><?php _e( 'Start Date', 'zephyr-project-manager' ); ?></label>
-					<input id="zpm_new_task_start_date" placeholder="<?php _e( 'Start Date', 'zephyr-project-manager' ); ?>" value="<?php echo $date; ?>" class="zpm_input" />
+					<div class="zpm-form__group">
+						<input type="text" name="zpm_new_task_start_date" id="zpm_new_task_start_date" class="zpm-form__field" placeholder="<?php _e( 'Start Date', 'zephyr-project-manager' ); ?>">
+						<label for="zpm_new_task_start_date" class="zpm-form__label"><?php _e( 'Start Date', 'zephyr-project-manager' ); ?></label>
+					</div>
 				</span>
 				<span class="zpm_options_col">
-					<label class="zpm_label" for="zpm_new_task_due_date"><?php _e( 'Due Date', 'zephyr-project-manager' ); ?></label>
-					<input id="zpm_new_task_due_date" placeholder="<?php _e( 'Due Date', 'zephyr-project-manager' ); ?>" class="zpm_input" />
+					<div class="zpm-form__group">
+						<input type="text" name="zpm_new_task_due_date" id="zpm_new_task_due_date" class="zpm-form__field" placeholder="<?php _e( 'Due Date', 'zephyr-project-manager' ); ?>">
+						<label for="zpm_new_task_due_date" class="zpm-form__label"><?php _e( 'Due Date', 'zephyr-project-manager' ); ?></label>
+					</div>
 				</span>
 			</div>
 
